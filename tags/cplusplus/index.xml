@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>cplusplus on WinterSun</title>
+    <link>http://blog.nstop.cn/tags/cplusplus/</link>
+    <description>Recent content in cplusplus on WinterSun</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>nerverstop@163.com (WinterSun)</managingEditor>
+    <webMaster>nerverstop@163.com (WinterSun)</webMaster>
+    <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Sun, 15 Mar 2020 00:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="http://blog.nstop.cn/tags/cplusplus/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+
+      
+      <item>
+        <title>c&#43;&#43;基础小结</title>
+        <link>http://blog.nstop.cn/posts/cpp/cpp-notes/</link>
+        <pubDate>Sun, 15 Mar 2020 00:00:00 +0000</pubDate>
+        <author>nerverstop@163.com (WinterSun)</author>
+        <atom:modified>Sun, 15 Mar 2020 00:00:00 +0000</atom:modified>
+        <guid>http://blog.nstop.cn/posts/cpp/cpp-notes/</guid>
+        <description>class class 与 struct 的区别 class 与struct的默认访问权限不同。class 默认访问权限是private，struct 默认访问权限是public
+计算类的大小 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  class A { }; class B { private: int a; char b; }; class C { public: virtual ~C() { } }; sizeof(A); // 1 sizeof(B); // 8 (内存字节对齐) sizeof(C); // 8 (多一个虚指针) 64位机器上   构造、析构函数 一个空类，编译器会为其生成一个默认构造、默认拷贝构造、默认赋值运算符、默认析构函数。
+ 构造函数中的初始值列表  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  class A { private: int i; int j; public: A() = default; // 成员初始化顺序必须与它们在类定义中的顺序保持一致 	A(int x, int y) : i(x), j(y) { }	// 初始化(尽量写成这种形式) 	// A(int x, int y) { i = x; j = y} // 在初始化完之后才赋值 	// 虽然都达到了同样的效果，但过程却不同，一个是初始化，一个是赋值  // 只有构造函数和拷贝构造函数才能用初始值列表 }; // A a(); // error: 这是一个函数声明，而非创建对象 A a;	// 这才是用默认构造函数创建对象的正确方式    虚析构函数  当一个class with pointer(带有指针的类), 在它定义之后有子类继承，这时应为其基类声明虚析构函数</description>
+        
+        <dc:creator>WinterSun</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>cplusplus</category>
+            
+          
+        
+        
+        
+      </item>
+      
+
+    
+  </channel>
+</rss>

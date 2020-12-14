@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>linux命令 on WinterSun</title>
+    <link>http://blog.nstop.cn/tags/linux%E5%91%BD%E4%BB%A4/</link>
+    <description>Recent content in linux命令 on WinterSun</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>nerverstop@163.com (WinterSun)</managingEditor>
+    <webMaster>nerverstop@163.com (WinterSun)</webMaster>
+    <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Mon, 21 Sep 2020 17:15:16 +0000</lastBuildDate>
+    
+        <atom:link href="http://blog.nstop.cn/tags/linux%E5%91%BD%E4%BB%A4/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+
+      
+      <item>
+        <title>linux command -- find</title>
+        <link>http://blog.nstop.cn/posts/linux/find/</link>
+        <pubDate>Mon, 21 Sep 2020 17:15:16 +0000</pubDate>
+        <author>nerverstop@163.com (WinterSun)</author>
+        <atom:modified>Mon, 21 Sep 2020 17:15:16 +0000</atom:modified>
+        <guid>http://blog.nstop.cn/posts/linux/find/</guid>
+        <description>正则表达式 必备常识
+   正则表达式 描述 示例     ^ 以某内容开头 ^hel匹配hello   $ 以某内容结尾 llo$匹配hello   . 匹配任意一个字符 Hack.匹配Hacki   [ ] 匹配括号内中的任意一个字符 [0-9]匹配任意一个数字   [^] 匹配不属于括号内中的任意一个字符 [^.]匹配除.以外的任意字符   [[:xxx:]] xxx表示一些命名字符类 [[:alpha:]]匹配字符[[:digit:]]匹配数字   \b 匹配单词开头或结尾的项 \bth\b只匹配th   \B 匹配非单词开头或结尾的项 \Bth\B匹配other但不匹配this或oith   ？ 匹配之前的项0次或1次 colou?r匹配color或colour   + 匹配之前的项1次或多次 [0-9]+匹配9或99或999   * 匹配之前的项0次或多次 co*l匹配cl或col或cool   {n} 匹配之前的项n次 [a-z]{3}匹配任意3个字符   {n, } 匹配之前的项至少n次 [a-z]{3, }匹配abc或abcd   { ,m} 匹配之前的项最多m次 [a-z]{ ,2}匹配a或ab   {n, m} n &amp;lt;= 匹配之前的项次数 &amp;lt;= m [a-z]{1, 2}匹配a或ab   | 匹配|两边的任意一项 th(is|at)匹配this或that   ( ) ( )作为一个单元,可以对其使用数量限定符 b(a[0-9])?</description>
+        
+        <dc:creator>WinterSun</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>linux命令</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>linux command -- sed</title>
+        <link>http://blog.nstop.cn/posts/linux/sed/</link>
+        <pubDate>Mon, 25 May 2020 00:00:00 +0000</pubDate>
+        <author>nerverstop@163.com (WinterSun)</author>
+        <atom:modified>Mon, 25 May 2020 00:00:00 +0000</atom:modified>
+        <guid>http://blog.nstop.cn/posts/linux/sed/</guid>
+        <description>前言 sed 可以说是与 awk 是一对亲兄妹
+sed 主要是控制行的内容, 而 awk 则主要是控制列的内容, 二者相辅相成
+sed 与 vim 中有些用法雷同  简单尝试
+sed &#39;s/pattern/replace_string/&#39; file
+pattern可以是任何正则表达式，replace_string代表要替换的字符串  1 2 3 4 5 6 7  cat file.txt 1 hello world hello world 2 hello world hello world sed &amp;#39;s/hello/HELLO/&amp;#39; file.txt 1 HELLO world hello world 2 HELLO world hello world   你会发现所有行中的第一个hello会被替换为HELLO
+扩展:
+ 修改一行中所有的匹配项, 而不仅仅是第一个
+sed &#39;s/pattern/replace_string/g&#39; file 指定修改哪一行, 那么你可以这样
+sed &#39;2s/pattern/replace_string/g&#39; file 加个范围，比如你想只改第一行到第三行的内容</description>
+        
+        <dc:creator>WinterSun</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>linux命令</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>linux command -- grep</title>
+        <link>http://blog.nstop.cn/posts/linux/grep/</link>
+        <pubDate>Thu, 21 May 2020 00:00:00 +0000</pubDate>
+        <author>nerverstop@163.com (WinterSun)</author>
+        <atom:modified>Thu, 21 May 2020 00:00:00 +0000</atom:modified>
+        <guid>http://blog.nstop.cn/posts/linux/grep/</guid>
+        <description>grep 查找文件内容
+1  grep &amp;#34;test&amp;#34; file.txt file1.txt    选项-n
+显示匹配内容所在行的行号  1  grep &amp;#34;test&amp;#34; file.txt file1.txt -n    选项-o
+只输出匹配到的文本,不会打印整行  1  grep -o &amp;#34;test&amp;#34; file.txt    选项-v
+反转，打印出除匹配内容所在行之外的内容  1  grep -v &amp;#34;test&amp;#34; file.txt    选项-c
+统计匹配内容行的行数, 注意如果一行中有多个
+匹配项，则只计数1次  1 2 3 4  grep -c &amp;#34;test&amp;#34; file.txt # 如果要统计某文本中匹配项的个数 grep -o &amp;#34;test&amp;#34; file.txt | wc -l    选项-l</description>
+        
+        <dc:creator>WinterSun</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>linux命令</category>
+            
+          
+        
+        
+        
+      </item>
+      
+
+    
+  </channel>
+</rss>

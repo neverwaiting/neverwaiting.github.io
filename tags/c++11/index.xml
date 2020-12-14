@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>c&#43;&#43;11 on WinterSun</title>
+    <link>http://blog.nstop.cn/tags/c&#43;&#43;11/</link>
+    <description>Recent content in c&#43;&#43;11 on WinterSun</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>nerverstop@163.com (WinterSun)</managingEditor>
+    <webMaster>nerverstop@163.com (WinterSun)</webMaster>
+    <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Mon, 16 Mar 2020 00:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="http://blog.nstop.cn/tags/c++11/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+
+      
+      <item>
+        <title>c&#43;&#43;11一些新特性</title>
+        <link>http://blog.nstop.cn/posts/cpp/cpp11/</link>
+        <pubDate>Mon, 16 Mar 2020 00:00:00 +0000</pubDate>
+        <author>nerverstop@163.com (WinterSun)</author>
+        <atom:modified>Mon, 16 Mar 2020 00:00:00 +0000</atom:modified>
+        <guid>http://blog.nstop.cn/posts/cpp/cpp11/</guid>
+        <description>检查编译器是否支持c++11 1 2 3 4 5 6 7 8 9 10 11  #include &amp;lt;iostream&amp;gt; using namespace std; int main() { //c++98：199711  //c++11: 201103  cout &amp;lt;&amp;lt; __cplusplus &amp;lt;&amp;lt; endl; retrurn 0; }   defalut &amp;amp;&amp;amp; delete  =default的使用
+一般设计一个空类，编译器会默认为其生成默认的构造函数，默认的析构函数，
+默认的拷贝构造，默认的拷贝赋值，如果自定义写出了自己的版本，那么编译器将不再生成默认的以上函数。
+假设既想有自己版本的构造函数，又想要编译器提供默认的构造函数，那么可以这么写  1 2 3 4 5  class Foo{ public: Foo()=default; Foo(int a); };    注意：一个类中只允许存在一个拷贝构造（拷贝赋值、析构函数）
+  =delete
+将默认的版本禁用（删除）
+好像不太常用，那什么时候用这个关键字呢？   在设计单例模式的时候应该要用到=delete, 单例模式中在整个运行过程中只允许出现一个该对象，</description>
+        
+        <dc:creator>WinterSun</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>c&#43;&#43;11</category>
+            
+          
+        
+        
+        
+      </item>
+      
+
+    
+  </channel>
+</rss>

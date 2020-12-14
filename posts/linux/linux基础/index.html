@@ -1,0 +1,4083 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>linux基础学习 – WinterSun</title>
+    
+
+
+  
+  <script defer src="/js/fuse.min.32195737929df2c8096e855a5789cbb3f1331224d9169e8705493e7008f47df8.js"></script>
+
+
+
+<script src="/js/enquire.min.dfb99dee1e029d51d6cfb672d847929890b1585402de17f5ed092edd72a688b4.js"></script>
+
+<script defer src="/js/lazysizes.min.fb649fcae62177dfe63e67081ddceb830b5ce1f05a4184e9bbb7d87ac4b8f4e5.js"></script>
+
+<script defer src="/js/helper/getParents.min.1618c696be7c98933f9a92677f518b512a74e55bdbb976b09936b4182e93181b.js"></script>
+
+<script defer src="/js/helper/fadeinout.min.efa35f4c090622130b3f4cfae6971448b5ffb61c5f0a8f21cdfd157fa712abc4.js"></script>
+
+<script defer src="/js/helper/closest.min.js"></script>
+  
+<script>
+  "use strict";
+
+  
+  
+  if (window.NodeList && !NodeList.prototype.forEach) {
+    NodeList.prototype.forEach = Array.prototype.forEach;
+  }
+
+  
+  if (!String.prototype.includes) {
+    String.prototype.includes = function (search, start) {
+      'use strict';
+
+      if (search instanceof RegExp) {
+        throw TypeError('first argument must not be a RegExp');
+      }
+      if (start === undefined) { start = 0; }
+      return this.indexOf(search, start) !== -1;
+    };
+  }
+
+  
+  Document.prototype.append = Element.prototype.append = function append() {
+    this.appendChild(_mutation(arguments));
+  };
+  function _mutation(nodes) {
+    if (!nodes.length) {
+      throw new Error('DOM Exception 8');
+    } else if (nodes.length === 1) {
+      return typeof nodes[0] === 'string' ? document.createTextNode(nodes[0]) : nodes[0];
+    } else {
+      var
+      fragment = document.createDocumentFragment(),
+      length = nodes.length,
+      index = -1,
+      node;
+
+      while (++index < length) {
+        node = nodes[index];
+
+        fragment.appendChild(typeof node === 'string' ? document.createTextNode(node) : node);
+      }
+
+      return fragment;
+    }
+  }
+
+  
+  if (!String.prototype.startsWith) {
+    String.prototype.startsWith = function (searchString, position) {
+      position = position || 0;
+      return this.indexOf(searchString, position) === position;
+    };
+  }
+  
+
+
+  document.addEventListener('DOMContentLoaded', function () {
+    
+    var navCollapseBtn = document.querySelector('.navbar__burger');
+    navCollapseBtn ? navCollapseBtn.addEventListener('click', function (e) {
+      var navCollapse = document.querySelector('.navbarm__collapse');
+
+      if (navCollapse) {
+        var dataOpen = navCollapse.getAttribute('data-open');
+
+        if (dataOpen === 'true') {
+          navCollapse.setAttribute('data-open', 'false');
+          navCollapse.style.maxHeight = 0;
+          navCollapseBtn.classList.remove('is-active');
+        } else {
+          navCollapse.setAttribute('data-open', 'true');
+          navCollapse.style.maxHeight = navCollapse.scrollHeight + "px";
+          navCollapseBtn.classList.add('is-active');
+        }
+      }
+    }) : null;
+    
+
+
+    
+    var tables = document.querySelectorAll('.single__contents > table');
+    for (let i = 0; i < tables.length; i++) {
+      var table = tables[i];
+      var wrapper = document.createElement('div');
+      wrapper.className = 'table-wrapper';
+      table.parentElement.replaceChild(wrapper, table);
+      wrapper.appendChild(table);
+    }
+    
+
+
+    
+    var footNoteRefs = document.querySelectorAll('.footnote-ref');
+    var footNoteBackRefs = document.querySelectorAll('.footnote-backref');
+
+    footNoteRefs ? 
+    footNoteRefs.forEach(function(elem, idx) {
+      elem.onmouseenter = function () {
+        if (navbar.classList.contains('scrolling')) {
+          navbar.classList.remove('scrolling');
+        }
+      }
+
+      elem.onmouseleave = function () {
+        if (!navbar.classList.contains('scrolling')) {
+          setTimeout(function () {
+            navbar.classList.add('scrolling');
+          }, 100);
+        }
+      }
+
+      elem.onclick = function () {
+        if (!navbar.classList.contains('scrolling')) {
+          navbar.classList.remove('navbar--show');
+          navbar.classList.remove('navbar--hide');
+          navbar.classList.add('navbar--hide');
+        }
+      }
+    }) : null;
+
+    footNoteBackRefs ? 
+    footNoteBackRefs.forEach(function(elem, idx) {
+      elem.onmouseenter = function () {
+        if (navbar.classList.contains('scrolling')) {
+          navbar.classList.remove('scrolling');
+        }
+      }
+
+      elem.onmouseleave = function () {
+        if (!navbar.classList.contains('scrolling')) {
+          setTimeout(function() {
+            navbar.classList.add('scrolling');
+          }, 100);
+        }
+      }
+
+      elem.onclick = function () {
+        if (!navbar.classList.contains('scrolling')) {
+          navbar.classList.remove('navbar--show');
+          navbar.classList.remove('navbar--hide');
+          navbar.classList.add('navbar--hide');
+        }
+      }
+    }) : null;
+    
+
+
+    
+    var summaryContainer = document.querySelector('.summary__container');
+    var searchResult = document.querySelector('.search-result');
+    var searchResultCloseBtn = document.querySelector('.search-result__close');
+    searchResultCloseBtn ? searchResultCloseBtn.addEventListener('click', function (e) {
+      searchResult.setAttribute('data-display', 'none');
+      summaryContainer.setAttribute('data-display', 'block');
+    }) : null;
+    
+
+
+    
+    document.querySelectorAll('.tab') ? 
+    document.querySelectorAll('.tab').forEach(function(elem, idx) {
+      var containerId = elem.getAttribute('id');
+      var containerElem = elem;
+      var tabLinks = elem.querySelectorAll('.tab__link');
+      var tabContents = elem.querySelectorAll('.tab__content');
+      var ids = [];
+
+      tabLinks && tabLinks.length > 0 ?
+      tabLinks.forEach(function(link, index, self) {
+        link.onclick = function(e) {
+          for (var i = 0; i < self.length; i++) {
+            if (index === parseInt(i, 10)) {
+              if (!self[i].classList.contains('active')) {
+                self[i].classList.add('active');
+                tabContents[i].style.display = 'block';
+              }
+            } else {
+              self[i].classList.remove('active');
+              tabContents[i].style.display = 'none';
+            }
+          }
+        }
+      }) : null;
+    }) : null;
+    
+
+
+    
+    document.querySelectorAll('.codetab') ? 
+    document.querySelectorAll('.codetab').forEach(function(elem, idx) {
+      var containerId = elem.getAttribute('id');
+      var containerElem = elem;
+      var codetabLinks = elem.querySelectorAll('.codetab__link');
+      var codetabContents = elem.querySelectorAll('.codetab__content');
+      var ids = [];
+
+      codetabLinks && codetabLinks.length > 0 ?
+      codetabLinks.forEach(function(link, index, self) {
+        link.onclick = function(e) {
+          for (var i = 0; i < self.length; i++) {
+            if (index === parseInt(i, 10)) {
+              if (!self[i].classList.contains('active')) {
+                self[i].classList.add('active');
+                codetabContents[i].style.display = 'block';
+              }
+            } else {
+              self[i].classList.remove('active');
+              codetabContents[i].style.display = 'none';
+            }
+          }
+        }
+      }) : null;
+    }) : null;
+    
+
+
+    
+    var gttBtn = document.getElementById("gtt");
+    gttBtn.style.display = "none";
+    gttBtn.addEventListener('click', function () {
+      if (window.document.documentMode) {
+        document.documentElement.scrollTop = 0;
+      } else {
+        scrollToTop(250);
+      }
+    });
+
+    function scrollToTop(scrollDuration) {
+      var scrollStep = -window.scrollY / (scrollDuration / 15);
+      var scrollInterval = setInterval(function () {
+        if (window.scrollY != 0) {
+          window.scrollBy(0, scrollStep);
+        }
+        else clearInterval(scrollInterval);
+      }, 15);
+    }
+
+    var scrollFunction = function () {
+      if (document.body.scrollTop > 250 || document.documentElement.scrollTop > 250) {
+        gttBtn.style.display = "block";
+      } else {
+        gttBtn.style.display = "none";
+      }
+    }
+    
+
+
+    
+    var expandBtn = document.querySelectorAll('.expand__button');
+
+    for (let i = 0; i < expandBtn.length; i++) {
+      expandBtn[i].addEventListener("click", function () {
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight) {
+          content.style.maxHeight = null;
+          this.querySelector('svg').classList.add('expand-icon__right');
+          this.querySelector('svg').classList.remove('expand-icon__down');
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+          this.querySelector('svg').classList.remove('expand-icon__right');
+          this.querySelector('svg').classList.add('expand-icon__down');
+        }
+      });
+    }
+    
+
+
+    
+    var lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    var tocElem = document.querySelector('.toc');
+    var tableOfContentsElem = tocElem ? tocElem.querySelector('#TableOfContents') : null;
+    var toggleTocElem = document.getElementById('toggle-toc');
+    var singleContentsElem = document.querySelector('.single__contents');
+    var navbar = document.querySelector('.navbar');
+    var tocFlexbox = document.querySelector('.toc__flexbox');
+    var tocFlexboxOuter = document.querySelector('.toc__flexbox--outer');
+    var expandContents = document.querySelectorAll('.expand__content');
+    var boxContents = document.querySelectorAll('.box');
+    var notAllowedTitleIds = null;
+
+    
+    var tocFolding = JSON.parse("true");
+    
+    var tocLevels = JSON.parse("[\"h2\",\"h3\",\"h4\"]");
+    
+    if (tocLevels) {
+      tocLevels = tocLevels.toString();
+    } else {
+      tocLevels = "h1, h2, h3, h4, h5, h6";
+    }
+
+    
+    singleContentsElem && singleContentsElem.querySelectorAll(".tab") ?
+    singleContentsElem.querySelectorAll(".tab").forEach(function (elem) {
+      elem.querySelectorAll(tocLevels).forEach(function (element) {
+        notAllowedTitleIds = Array.isArray(notAllowedTitleIds) ?
+          notAllowedTitleIds.concat(element.getAttribute('id')) :
+          [element.getAttribute('id')];
+      });
+    }) : null;
+
+    
+    expandContents ? expandContents.forEach(function(elem) {
+      elem.querySelectorAll(tocLevels).forEach(function (element) {
+        notAllowedTitleIds = Array.isArray(notAllowedTitleIds) ?
+          notAllowedTitleIds.concat(element.getAttribute('id')) :
+          [element.getAttribute('id')];
+      });
+    }) : null;
+
+    
+    boxContents ? boxContents.forEach(function(elem) {
+      elem.querySelectorAll(tocLevels).forEach(function (element) {
+        notAllowedTitleIds = Array.isArray(notAllowedTitleIds) ?
+          notAllowedTitleIds.concat(element.getAttribute('id')) :
+          [element.getAttribute('id')];
+      });
+    }) : null;
+
+    
+    window.onscroll = function () {
+      scrollFunction();
+      
+      var st = window.pageYOffset || document.documentElement.scrollTop;
+      if (st > lastScrollTop) { 
+        if (st < 250) {
+          gttBtn.style.display = "none";
+        } else {
+          gttBtn.style.display = "block";
+        }
+
+        if (st < 45) {
+          return null;
+        }
+
+        if (navbar.classList.contains('scrolling')) {
+          if (!navbar.classList.contains('navbar--hide')) {
+            navbar.classList.add('navbar--hide');
+          } else if (navbar.classList.contains('navbar--show')) {
+            navbar.classList.remove('navbar--show');
+          }
+        }
+
+        if (singleContentsElem) {
+          if (singleContentsElem.querySelectorAll(tocLevels).length > 0) {
+            singleContentsElem.querySelectorAll(tocLevels).forEach(function (elem) {
+              if (toggleTocElem && !toggleTocElem.checked) {
+                return null;
+              }
+
+              if (notAllowedTitleIds && notAllowedTitleIds.includes(elem.getAttribute('id'))) {
+                return null;
+              }
+              
+              if (document.documentElement.scrollTop >= elem.offsetTop) {
+                if (tableOfContentsElem) {
+                  var id = elem.getAttribute('id');
+                  tocElem.querySelectorAll('a').forEach(function (elem) {
+                    elem.classList.remove('active');
+                  });
+                  tocElem.querySelector('a[href="#' + id + '"]') ?
+                    tocElem.querySelector('a[href="#' + id + '"]').classList.add('active') : null;
+
+                  if (false === tocFolding) {
+                    
+                  } else {
+                    tableOfContentsElem.querySelectorAll('ul') ?
+                      tableOfContentsElem.querySelectorAll('ul').forEach(function (rootUl) {
+                        rootUl.querySelectorAll('li').forEach(function (liElem) {
+                          liElem.querySelectorAll('ul').forEach(function (ulElem) {
+                            ulElem.style.display = 'none';
+                          });
+                        });
+                      }) : null;
+                  }
+
+                  var curElem = tableOfContentsElem.querySelector("[href='#" + id + "']");
+                  if (curElem && curElem.nextElementSibling) {
+                    curElem.nextElementSibling.style.display = 'block';
+                  }
+                  getParents(curElem, 'ul') ?
+                    getParents(curElem, 'ul').forEach(function (elem) {
+                      elem.style.display = 'block';
+                    }) : null;
+                }
+              }
+            });
+          } else {
+            if (tocFlexbox) {
+              tocFlexbox.setAttribute('data-position', '');
+              if (!tocFlexbox.classList.contains('hide')) {
+                tocFlexbox.classList.add('hide');
+              }
+            }
+            if (tocFlexboxOuter) {
+              tocFlexboxOuter.setAttribute('data-position', '');
+              if (!tocFlexboxOuter.classList.contains('hide')) {
+                tocFlexboxOuter.classList.add('hide');
+              }
+            }
+          }
+        }
+      } else { 
+        if (st < 250) {
+          gttBtn.style.display = "none";
+        }
+
+        if (navbar.classList.contains('scrolling')) {
+          if (navbar.classList.contains('navbar--hide')) {
+            navbar.classList.remove('navbar--hide');
+          } else if (!navbar.classList.contains('navbar--show')) {
+            navbar.classList.add('navbar--show');
+          }
+        }
+
+        if (singleContentsElem) {
+          if (singleContentsElem.querySelectorAll(tocLevels).length > 0) {
+            singleContentsElem.querySelectorAll(tocLevels).forEach(function (elem) {
+              if (toggleTocElem && !toggleTocElem.checked) {
+                return null;
+              }
+              
+              if (notAllowedTitleIds && notAllowedTitleIds.includes(elem.getAttribute('id'))) {
+                return null;
+              }
+
+              if (document.documentElement.scrollTop >= elem.offsetTop) {
+                if (tableOfContentsElem) {
+                  var id = elem.getAttribute('id');
+                  tocElem.querySelectorAll('a').forEach(function (elem) {
+                    elem.classList.remove('active');
+                  });
+                  tocElem.querySelector('a[href="#' + id + '"]') ?
+                    tocElem.querySelector('a[href="#' + id + '"]').classList.add('active') : null;
+
+                  if (false === tocFolding) {
+                    
+                  } else {
+                    tableOfContentsElem.querySelectorAll('ul') ?
+                      tableOfContentsElem.querySelectorAll('ul').forEach(function (rootUl) {
+                        rootUl.querySelectorAll('li').forEach(function (liElem) {
+                          liElem.querySelectorAll('ul').forEach(function (ulElem) {
+                            ulElem.style.display = 'none';
+                          });
+                        });
+                      }) : null;
+                  }
+
+                  var curElem = tableOfContentsElem.querySelector("[href='#" + id + "']");
+                  if (curElem && curElem.nextElementSibling) {
+                    curElem.nextElementSibling.style.display = 'block';
+                  }
+                  getParents(curElem, 'ul') ?
+                    getParents(curElem, 'ul').forEach(function (elem) {
+                      elem.style.display = 'block';
+                    }) : null;
+                }
+              }
+            });
+          } else {
+            if (tocFlexbox && !tocFlexbox.classList.contains('hide')) {
+              tocFlexbox.classList.add('hide');
+            }
+            if (tocFlexboxOuter && !tocFlexboxOuter.classList.contains('hide')) {
+              tocFlexboxOuter.classList.add('hide');
+            }
+          }
+          
+        }
+
+        if (tableOfContentsElem && document.documentElement.scrollTop < 250) {
+          if (false === tocFolding) {
+
+          } else {
+            tableOfContentsElem.querySelector('ul') ?
+              tableOfContentsElem.querySelector('ul').querySelectorAll('li').forEach(function (liElem) {
+                liElem.querySelectorAll('ul').forEach(function (ulElem) {
+                  ulElem.style.display = 'none';
+                });
+              }) : null;
+          }
+        }
+      }
+      lastScrollTop = st <= 0 ? 0 : st;
+    };
+  
+
+
+  
+    var localTheme = localStorage.getItem('theme');
+    var rootEleme = document.getElementById('root');
+    var selectThemeElem = document.querySelectorAll('.select-theme');
+    var selectThemeItemElem = document.querySelectorAll('.select-theme__item');
+    
+    
+    var skinDarkCode = JSON.parse("\"dark\"");
+    
+    var skinLightCode = JSON.parse("\"light\"");
+    
+    var skinHackerCode = JSON.parse("\"hacker\"");
+    
+    var skinSolarizedCode = JSON.parse("\"solarized\"");
+    
+    var skinKimbieCode = JSON.parse("\"kimbie\"");
+
+    var setMetaColor = function(themeColor) {
+      var metaMsapplicationTileColor = document.getElementsByName('msapplication-TileColor')[0];
+      var metaThemeColor = document.getElementsByName('theme-color')[0];
+      var metaMsapplicationNavbuttonColor = document.getElementsByName('msapplication-navbutton-color')[0];
+      var metaAppleMobileWebAappStatusBarStyle = document.getElementsByName('apple-mobile-web-app-status-bar-style')[0];
+
+      if (themeColor.includes('dark')) {
+        metaMsapplicationTileColor.setAttribute('content', '#fcfcfa');
+        metaThemeColor.setAttribute('content', '#403E41');
+        metaMsapplicationNavbuttonColor.setAttribute('content', '#403E41');
+        metaAppleMobileWebAappStatusBarStyle.setAttribute('content', '#403E41');
+      } else if (themeColor.includes('light')) {
+        metaMsapplicationTileColor.setAttribute('content', '#555');
+        metaThemeColor.setAttribute('content', '#eee');
+        metaMsapplicationNavbuttonColor.setAttribute('content', '#eee');
+        metaAppleMobileWebAappStatusBarStyle.setAttribute('content', '#eee');
+      } else if (themeColor.includes('hacker')) {
+        metaMsapplicationTileColor.setAttribute('content', '#e3cd26');
+        metaThemeColor.setAttribute('content', '#252526');
+        metaMsapplicationNavbuttonColor.setAttribute('content', '#252526');
+        metaAppleMobileWebAappStatusBarStyle.setAttribute('content', '#252526');
+      } else if (themeColor.includes('solarized')) {
+        metaMsapplicationTileColor.setAttribute('content', '#d3af86');
+        metaThemeColor.setAttribute('content', '#51412c');
+        metaMsapplicationNavbuttonColor.setAttribute('content', '#51412c');
+        metaAppleMobileWebAappStatusBarStyle.setAttribute('content', '#51412c');
+      } else if (themeColor.includes('kimbie')) {
+        metaMsapplicationTileColor.setAttribute('content', '#586e75');
+        metaThemeColor.setAttribute('content', '#eee8d5');
+        metaMsapplicationNavbuttonColor.setAttribute('content', '#eee8d5');
+        metaAppleMobileWebAappStatusBarStyle.setAttribute('content', '#eee8d5');
+      }
+    }
+
+    var parseSkinCode = function(themeText) {
+      if (themeText === skinDarkCode) {
+        return 'dark';
+      } else if (themeText === skinLightCode) {
+        return 'light';
+      } else if (themeText === skinHackerCode) {
+        return 'hacker';
+      } else if (themeText === skinSolarizedCode) {
+        return 'solarized';
+      } else if (themeText === skinKimbieCode) {
+        return 'kimbie';
+      }
+    }
+    
+    if (localTheme) {
+      selectThemeItemElem ? 
+      selectThemeItemElem.forEach(function (elem) {
+        if (elem.text.trim() === localTheme) {
+          elem.classList.add('is-active');
+        } else {
+          elem.classList.remove('is-active');
+        }
+      }) : null;
+
+      setMetaColor(localTheme);
+    } else {
+      setMetaColor(rootEleme.className);
+    }
+
+    selectThemeItemElem ? 
+    selectThemeItemElem.forEach(function (v, i) {
+      v.addEventListener('click', function (e) {
+        var selectedThemeVariant = parseSkinCode(e.target.text.trim());
+        localStorage.setItem('theme', selectedThemeVariant);
+        setMetaColor(selectedThemeVariant);
+
+        rootEleme.removeAttribute('class');
+        rootEleme.classList.add('theme__' + selectedThemeVariant);
+        selectThemeElem.forEach(function(rootElem) {
+          rootElem.querySelectorAll('a').forEach(function (elem) {
+            if (elem.classList) {
+              if (elem.text.trim() === selectedThemeVariant) {
+                if (!elem.classList.contains('is-active')) {
+                  elem.classList.add('is-active');
+                }
+              } else {
+                if (elem.classList.contains('is-active')) {
+                  elem.classList.remove('is-active');
+                }
+              }
+            }
+          });
+        });
+
+        if (window.mermaid) {
+          if (selectedThemeVariant === "dark" || selectedThemeVariant === "hacker") {
+            mermaid.initialize({ theme: 'dark' });
+            location.reload();
+          } else {
+            mermaid.initialize({ theme: 'default' });
+            location.reload();
+          }
+        }
+
+        var utterances = document.getElementById('utterances');
+        if (utterances) {
+          utterances.querySelector('iframe').contentWindow.postMessage({
+            type: 'set-theme',
+            theme: selectedThemeVariant === "dark" || selectedThemeVariant === "hacker" ? 'photon-dark' : selectedThemeVariant === 'kimbie' ? 'github-dark-orange' : 'github-light',
+          }, 'https://utteranc.es');
+        }
+
+        var twitterCards = document.querySelectorAll('.twitter-timeline');
+        if (twitterCards) {
+          window.postMessage({
+            type: 'set-twitter-theme',
+            theme: selectedThemeVariant === 'light' || selectedThemeVariant === 'solarized' ? 'light' : 'dark',
+          });
+        }
+      });
+    }) : null;
+  
+
+
+  
+    
+    var baseurl = JSON.parse("\"http://blog.nstop.cn\"");
+    
+    var permalink = JSON.parse("\"http://blog.nstop.cn/posts/linux/linux%E5%9F%BA%E7%A1%80/\"");
+    
+    var langprefix = JSON.parse("\"\"");
+    var searchResults = null;
+    var searchMenu = null;
+    var searchText = null;
+    
+    
+    var enableSearch = JSON.parse("true");
+    
+    var enableSearchHighlight = JSON.parse("true");
+    
+    var searchResultPosition = JSON.parse("\"main\"");
+    
+    var sectionType = JSON.parse("\"posts\"");
+    
+    var kind = JSON.parse("\"page\"");
+    
+    var fuse = null;
+
+    if (enableSearch) {
+      (function initFuse() {
+        var xhr = new XMLHttpRequest();
+        if (sectionType === "publication" && kind !== "page") {
+          xhr.open('GET', permalink + "index.json");
+        } else {
+          xhr.open('GET', baseurl + langprefix + "/index.json");
+        }
+        
+        xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+        xhr.onload = function () {
+          if (xhr.status === 200) {
+            fuse = new Fuse(JSON.parse(xhr.response.toString('utf-8')), {
+              keys: sectionType.includes('publication') ? ['title', 'abstract'] : ['title', 'description', 'content'],
+              includeMatches: enableSearchHighlight,
+              shouldSort: true, 
+              threshold: 0.4, 
+              location: 0, 
+              distance: 100, 
+              maxPatternLength: 32,
+              minMatchCharLength: 1,
+              isCaseSensitive: false, 
+              findAllMatches: false, 
+              useExtendedSearch: false, 
+            });
+            window.fuse = fuse;
+          }
+          else {
+            console.error('[' + xhr.status + ']Error:', xhr.statusText);
+          }
+        };
+        xhr.send();
+      })();
+    }
+
+    function makeLi(ulElem, obj) {
+      var li = document.createElement('li');
+      li.className = 'search-result__item';
+      
+      var a = document.createElement('a');
+      a.innerHTML = obj.item.title;
+      a.setAttribute('class', 'search-result__item--title');
+      a.setAttribute('href', obj.item.permalink);
+
+      var descDiv = document.createElement('div');
+      descDiv.setAttribute('class', 'search-result__item--desc');
+      if (obj.item.description) {
+        descDiv.innerHTML = obj.item.description;
+      } else if (obj.item.content) {
+        descDiv.innerHTML = obj.item.content.substring(0, 225);
+      }
+      
+      li.appendChild(a);
+      li.appendChild(descDiv);
+      ulElem.appendChild(li);
+    }
+
+    function makeHighlightLi(ulElem, obj) {
+      var li = document.createElement('li');
+      li.className = 'search-result__item';
+      var descDiv = null;
+
+      var a = document.createElement('a');
+      a.innerHTML = obj.item.title;
+      a.setAttribute('class', 'search-result__item--title');
+      a.setAttribute('href', obj.item.uri);
+
+      if (obj.matches && obj.matches.length) {
+        for (var i = 0; i < obj.matches.length; i++) {
+          if ('title' === obj.matches[i].key) {
+            a = document.createElement('a');
+            a.innerHTML = generateHighlightedText(obj.matches[i].value, obj.matches[i].indices);
+            a.setAttribute('class', 'search-result__item--title');
+            a.setAttribute('href', obj.item.uri);
+          }
+          
+          if ('description' === obj.matches[i].key) {
+            descDiv = document.createElement('div');
+            descDiv.setAttribute('class', 'search-result__item--desc');
+            descDiv.innerHTML = generateHighlightedText(obj.item.description, obj.matches[i].indices);
+          } else if ('content' === obj.matches[i].key) {
+            if (!descDiv) {
+              descDiv = document.createElement('div');
+              descDiv.setAttribute('class', 'search-result__item--desc');
+              descDiv.innerHTML = generateHighlightedText(obj.item.content.substring(0, 150), obj.matches[i].indices);
+            }
+          } else {
+            if (obj.item.description) {
+              descDiv = document.createElement('div');
+              descDiv.setAttribute('class', 'search-result__item--desc');
+              descDiv.innerHTML = obj.item.description;
+            } else {
+              descDiv = document.createElement('div');
+              descDiv.setAttribute('class', 'search-result__item--desc');
+              descDiv.innerHTML = obj.item.content.substring(0, 150);
+            }
+          }
+        }
+
+        li.appendChild(a);
+        if (descDiv) {
+          li.appendChild(descDiv);
+        }
+        if (li) {
+          ulElem.appendChild(li);
+        }
+      }
+    }
+
+    function renderSearchResultsSide(searchText, results) {
+      searchResults = document.getElementById('search-results');
+      searchMenu = document.getElementById('search-menu');
+      searchResults.setAttribute('class', 'dropdown is-active');
+      
+      var ul = document.createElement('ul');
+      ul.setAttribute('class', 'dropdown-content search-content');
+
+      if (results.length) {
+        results.forEach(function (result) {
+          var li = document.createElement('li');
+          var a = document.createElement('a');
+          a.setAttribute('href', result.uri);
+          a.setAttribute('class', 'dropdown-item');
+          a.appendChild(li);
+
+          var titleDiv = document.createElement('div');
+          titleDiv.innerHTML = result.title;
+          titleDiv.setAttribute('class', 'menu-item__title');
+
+          var descDiv = document.createElement('div');
+          descDiv.setAttribute('class', 'menu-item__desc');
+          if (result.description) {
+            descDiv.innerHTML = result.description;
+          } else if (result.content) {
+            descDiv.innerHTML = result.content.substring(0, 150);
+          }
+
+          li.appendChild(titleDiv);
+          li.appendChild(descDiv);
+          ul.appendChild(a);
+        });
+      } else {
+        var li = document.createElement('li');
+        li.setAttribute('class', 'dropdown-item');
+        li.innerText = 'No results found';
+        ul.appendChild(li);
+      }
+
+      while (searchMenu.hasChildNodes()) {
+        searchMenu.removeChild(
+          searchMenu.lastChild
+        );
+      }
+      
+      searchMenu.appendChild(ul);
+    }
+
+    function renderSearchHighlightResultsSide(searchText, results) {
+      searchResults = document.getElementById('search-results');
+      searchMenu = document.getElementById('search-menu');
+      searchResults.setAttribute('class', 'dropdown is-active');
+
+      var ul = document.createElement('ul');
+      ul.setAttribute('class', 'dropdown-content search-content');
+
+      if (results.length) {
+        results.forEach(function (result) {
+          var li = document.createElement('li');
+          var a = document.createElement('a');
+          var descDiv = null;
+
+          a.setAttribute('href', result.item.uri);
+          a.setAttribute('class', 'dropdown-item');
+          a.appendChild(li);
+
+          var titleDiv = document.createElement('div');
+          titleDiv.innerHTML = result.item.title;
+          titleDiv.setAttribute('class', 'menu-item__title');
+          
+          if (result.matches && result.matches.length) {
+            for (var i = 0; i < result.matches.length; i++) {
+              if ('title' === result.matches[i].key) {
+                titleDiv.innerHTML = generateHighlightedText(result.matches[i].value, result.matches[i].indices);
+              }
+
+              if ('description' === result.matches[i].key) {
+                descDiv = document.createElement('div');
+                descDiv.setAttribute('class', 'menu-item__desc');
+                descDiv.innerHTML = generateHighlightedText(result.item.description, result.matches[i].indices);
+              } else if ('content' === result.matches[i].key) {
+                if (!descDiv) {
+                  descDiv = document.createElement('div');
+                  descDiv.setAttribute('class', 'menu-item__desc');
+                  descDiv.innerHTML = generateHighlightedText(result.item.content.substring(0, 150), result.matches[i].indices);
+                }
+              } else {
+                if (result.item.description) {
+                  descDiv = document.createElement('div');
+                  descDiv.setAttribute('class', 'menu-item__desc');
+                  descDiv.innerHTML = result.item.description;
+                } else {
+                  descDiv = document.createElement('div');
+                  descDiv.setAttribute('class', 'menu-item__desc');
+                  descDiv.innerHTML = result.item.content.substring(0, 150);
+                }
+              }
+            }
+            
+            li.appendChild(titleDiv);
+            if (descDiv) {
+              li.appendChild(descDiv);
+            }
+            ul.appendChild(a);
+          }
+        });
+      } else {
+        var li = document.createElement('li');
+        li.setAttribute('class', 'dropdown-item');
+        li.innerText = 'No results found';
+        ul.appendChild(li);
+      }
+
+      while (searchMenu.hasChildNodes()) {
+        searchMenu.removeChild(
+          searchMenu.lastChild
+        );
+      }
+      searchMenu.appendChild(ul);
+    }
+
+    function renderSearchResultsMobile(searchText, results) {
+      searchResults = document.getElementById('search-mobile-results');
+
+      var content = document.createElement('div');
+      content.setAttribute('class', 'mobile-search__content');
+
+      if (results.length > 0) {
+        results.forEach(function (result) {
+          var item = document.createElement('a');
+          item.setAttribute('href', result.uri);
+          item.innerHTML = '<div class="mobile-search__item"><div class="mobile-search__item--title">📄 ' + result.title + '</div><div class="mobile-search__item--desc">' + (result.description ? result.description : result.content) + '</div></div>';
+          content.appendChild(item);
+        });
+      } else {
+        var item = document.createElement('span');
+        content.appendChild(item);
+      }
+
+      let wrap = document.getElementById('search-mobile-results');
+      while (wrap.firstChild) {
+        wrap.removeChild(wrap.firstChild)
+      }
+      searchResults.appendChild(content);      
+    }
+
+    function renderSearchHighlightResultsMobile(searchText, results) {
+      searchResults = document.getElementById('search-mobile-results');
+
+      var ul = document.createElement('div');
+      ul.setAttribute('class', 'mobile-search__content');
+
+      if (results.length) {
+        results.forEach(function (result) {
+          var li = document.createElement('li');
+          var a = document.createElement('a');
+          var descDiv = null;
+
+          a.setAttribute('href', result.item.uri);
+          a.appendChild(li);
+          li.setAttribute('class', 'mobile-search__item');
+
+          var titleDiv = document.createElement('div');
+          titleDiv.innerHTML = result.item.title;
+          titleDiv.setAttribute('class', 'mobile-search__item--title');
+          
+          if (result.matches && result.matches.length) {
+            for (var i = 0; i < result.matches.length; i++) {
+              if ('title' === result.matches[i].key) {
+                titleDiv.innerHTML = generateHighlightedText(result.matches[i].value, result.matches[i].indices);
+              }
+
+              if ('description' === result.matches[i].key) {
+                descDiv = document.createElement('div');
+                descDiv.setAttribute('class', 'mobile-search__item--desc');
+                descDiv.innerHTML = generateHighlightedText(result.item.description, result.matches[i].indices);
+              } else if ('content' === result.matches[i].key) {
+                if (!descDiv) {
+                  descDiv = document.createElement('div');
+                  descDiv.setAttribute('class', 'mobile-search__item--desc');
+                  descDiv.innerHTML = generateHighlightedText(result.item.content.substring(0, 150), result.matches[i].indices);
+                }
+              } else {
+                if (result.item.description) {
+                  descDiv = document.createElement('div');
+                  descDiv.setAttribute('class', 'mobile-search__item--desc');
+                  descDiv.innerHTML = result.item.description;
+                } else {
+                  descDiv = document.createElement('div');
+                  descDiv.setAttribute('class', 'mobile-search__item--desc');
+                  descDiv.innerHTML = result.item.content.substring(0, 150);
+                }
+              }
+            }
+            
+            li.appendChild(titleDiv);
+            if (descDiv) {
+              li.appendChild(descDiv);
+            }
+            ul.appendChild(a);
+          }
+        });
+      } else {
+        var item = document.createElement('span');
+        ul.appendChild(item);
+      }
+
+      let wrap = document.getElementById('search-mobile-results');
+      while (wrap.firstChild) {
+        wrap.removeChild(wrap.firstChild)
+      }
+      searchResults.appendChild(ul);
+    }
+
+    function generateHighlightedText(text, regions) {
+      if (!regions) {
+        return text;
+      }
+
+      var content = '', nextUnhighlightedRegionStartingIndex = 0;
+
+      regions.forEach(function(region) {
+        if (region[0] === region[1]) {
+          return null;
+        }
+        
+        content += '' +
+          text.substring(nextUnhighlightedRegionStartingIndex, region[0]) +
+          '<span class="search__highlight">' +
+            text.substring(region[0], region[1] + 1) +
+          '</span>' +
+        '';
+        nextUnhighlightedRegionStartingIndex = region[1] + 1;
+      });
+
+      content += text.substring(nextUnhighlightedRegionStartingIndex);
+
+      return content;
+    };
+
+    var searchElem = document.getElementById('search');
+    var searchMobile = document.getElementById('search-mobile');
+    var searchResultsContainer = document.getElementById('search-results');
+
+    searchElem ?
+    searchElem.addEventListener('input', function(e) {
+      if (!e.target.value | window.innerWidth < 770) {
+        searchResultsContainer ? searchResultsContainer.setAttribute('class', 'dropdown') : null;
+        searchResult ? searchResult.setAttribute('data-display', 'none') : null;
+        summaryContainer ? summaryContainer.setAttribute('data-display', 'block') : null;
+        return null;
+      }
+
+      searchText = e.target.value;
+      var results = fuse.search(e.target.value);
+      
+      if (searchResultPosition === "main") {
+        if (enableSearchHighlight) {
+          renderSearchHighlightResultsMain(searchText, results);
+        } else {
+          renderSearchResultsMain(searchText, results);
+        }
+      } else {
+        if (enableSearchHighlight) {
+          renderSearchHighlightResultsSide(searchText, results);
+        } else {
+          renderSearchResultsSide(searchText, results);
+        }
+        
+        var dropdownItems = searchResultsContainer.querySelectorAll('.dropdown-item');
+        dropdownItems ? dropdownItems.forEach(function(item) {
+          item.addEventListener('mousedown', function(e) {
+            e.target.click();
+          });
+        }) : null;
+      }
+    }) : null;
+
+    searchElem ? 
+    searchElem.addEventListener('blur', function() {
+      if (window.innerWidth < 770) {
+        return null;
+      }
+      searchResultsContainer ? searchResultsContainer.setAttribute('class', 'dropdown') : null;
+    }) : null;
+
+    searchElem ? 
+    searchElem.addEventListener('click', function(e) {
+      if (window.innerWidth < 770) {
+        return null;
+      }
+      if (!e.target.value) {
+        searchResultsContainer ? searchResultsContainer.setAttribute('class', 'dropdown') : null;
+        return null;
+      }
+
+      searchText = e.target.value;
+      var results = fuse.search(e.target.value);
+
+      if (searchResultPosition === "main") {
+        if (enableSearchHighlight) {
+          renderSearchHighlightResultsMain(searchText, results);
+        } else {
+          renderSearchResultsMain(searchText, results);
+        }
+      } else{
+        if (enableSearchHighlight) {
+          renderSearchHighlightResultsSide(searchText, results);
+        } else {
+          renderSearchResultsSide(searchText, results);
+        }
+
+        var dropdownItems = searchResultsContainer.querySelectorAll('.dropdown-item');
+        dropdownItems ? dropdownItems.forEach(function (item) {
+          item.addEventListener('mousedown', function (e) {
+            e.target.click();
+          });
+        }) : null;
+      }
+    }) : null;
+
+    var searchMenuElem = document.getElementById("search-menu");
+    var activeItem = document.querySelector('#search-menu .dropdown-item.is-active');
+    var activeIndex = null;
+    var items = null;
+    var searchContainerMaxHeight = 350;
+
+    searchElem ? 
+    searchElem.addEventListener('keydown', function(e) {
+      if (window.innerWidth < 770) {
+        return null;
+      }
+
+      if (e.key === 'Escape') {
+        searchResult ? searchResult.setAttribute('data-display', 'none') : null;
+        summaryContainer ? summaryContainer.setAttribute('data-display', 'block') : null;
+      }
+
+      var items = document.querySelectorAll('#search-menu .dropdown-item');
+      var keyCode = e.which || e.keyCode;
+
+      if (!items || !items.length) {
+        return null;
+      }
+      
+      if (e.key === 'ArrowDown' || keyCode === 40) {
+        if (activeIndex === null) {
+          activeIndex = 0;
+          items[activeIndex].classList.remove('is-active');
+        } else {
+          items[activeIndex].classList.remove('is-active');
+          activeIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
+        }
+        items[activeIndex].classList.add('is-active');
+
+        let overflowedPixel = items[activeIndex].offsetTop + items[activeIndex].clientHeight - searchContainerMaxHeight;
+        if (overflowedPixel > 0) {
+          document.querySelector(".search-content").scrollTop += items[activeIndex].getBoundingClientRect().height;
+        } else if (activeIndex === 0) {
+          document.querySelector(".search-content").scrollTop = 0;
+        }
+      } else if (e.key === 'ArrowUp' || keyCode === 38) {
+        if (activeIndex === null) {
+          activeIndex = items.length - 1;
+          items[activeIndex].classList.remove('is-active');
+        } else {
+          items[activeIndex].classList.remove('is-active');
+          activeIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
+        }
+        items[activeIndex].classList.add('is-active');
+        
+        let overflowedPixel = items[activeIndex].offsetTop + items[activeIndex].clientHeight - searchContainerMaxHeight;
+        if (overflowedPixel < 0) {
+          document.querySelector(".search-content").scrollTop -= items[activeIndex].getBoundingClientRect().height;
+        } else {
+          document.querySelector(".search-content").scrollTop = overflowedPixel + items[activeIndex].getBoundingClientRect().height;
+        }
+      } else if (e.key === 'Enter' || keyCode === 13) {
+        if (items[activeIndex] && items[activeIndex].getAttribute('href')) {
+          location.href = items[activeIndex].getAttribute('href');
+        }
+      } else if (e.key === 'Escape' || keyCode === 27) {
+        e.target.value = null;
+        if (searchResults) {
+          searchResults.classList.remove('is-active');
+        }
+      }
+    }) : null;
+
+    searchMobile ? 
+    searchMobile.addEventListener('input', function(e) {
+      if (!e.target.value) {
+        let wrap = document.getElementById('search-mobile-results');
+        while (wrap.firstChild) {
+          wrap.removeChild(wrap.firstChild);
+        }
+        return null;
+      }
+
+      searchText = e.target.value;
+      var results = fuse.search(e.target.value);
+      renderSearchResultsMobile(searchText, results);
+      if (enableSearchHighlight) {
+        renderSearchHighlightResultsMobile(searchText, results);
+      } else {
+        renderSearchResultsMobile(searchText, results);
+      }
+    }) : null;
+  
+
+
+  
+    var mobileSearchInputElem = document.querySelector('#search-mobile');
+    var mobileSearchClassElem = document.querySelector('.mobile-search');
+    var mobileSearchBtnElems = document.querySelectorAll('.navbar-search');
+    var mobileSearchCloseBtnElem = document.querySelector('#search-mobile-close');
+    var mobileSearchContainer = document.querySelector('#search-mobile-container');
+    var mobileSearchResultsElem = document.querySelector('#search-mobile-results');
+    var htmlElem = document.querySelector('html');
+
+    if (mobileSearchClassElem) {
+      mobileSearchClassElem.style.display = 'none';
+    }
+
+    mobileSearchBtnElems ? 
+    mobileSearchBtnElems.forEach(function (elem, idx) {
+      elem.addEventListener('click', function () {
+        if (mobileSearchContainer) {
+          mobileSearchContainer.style.display = 'block';
+        }
+
+        if (mobileSearchInputElem) {
+          mobileSearchInputElem.focus();
+        }
+
+        if (htmlElem) {
+          htmlElem.style.overflowY = 'hidden';
+        }
+      });
+    }) : null;
+
+    mobileSearchCloseBtnElem ? 
+    mobileSearchCloseBtnElem.addEventListener('click', function() {
+      if (mobileSearchContainer) {
+        mobileSearchContainer.style.display = 'none';
+      }
+
+      if (mobileSearchInputElem) {
+        mobileSearchInputElem.value = '';
+      }
+      
+      if (mobileSearchResultsElem) {
+        while (mobileSearchResultsElem.firstChild) {
+          mobileSearchResultsElem.removeChild(mobileSearchResultsElem.firstChild);
+        }
+      }
+
+      if (htmlElem) {
+        htmlElem.style.overflowY = 'visible';
+      }
+    }) : null;
+
+    mobileSearchInputElem ?
+    mobileSearchInputElem.addEventListener('keydown', function(e) {
+      var keyCode = e.which || e.keyCode;
+      if (e.key === 'Escape' || keyCode === 27) {
+        if (mobileSearchContainer) {
+          mobileSearchContainer.style.display = 'none';
+        }
+        
+        if (mobileSearchInputElem) {
+          mobileSearchInputElem.value = '';
+        }
+
+        if (mobileSearchResultsElem) {
+          while (mobileSearchResultsElem.firstChild) {
+            mobileSearchResultsElem.removeChild(mobileSearchResultsElem.firstChild);
+          }
+        }
+        if (htmlElem) {
+          htmlElem.style.overflowY = 'visible';
+        }
+      }
+    }) : null;
+  
+
+
+  
+    function renderSearchResultsMain(searchText, results) {
+      var searchBody = document.querySelector('.search-result__body');
+      var originUl = searchBody.querySelector('ul');
+      var ul = document.createElement('ul');
+      
+      if (!searchText) {
+        searchResult ? searchResult.setAttribute('data-display', 'none') : null;
+        summaryContainer ? summaryContainer.setAttribute('data-display', 'block') : null;
+      } else if (results) {
+        if (results && results.length) {
+          results.forEach(function (result) {
+            makeLi(ul, result);
+          });
+
+          searchResult ? searchResult.setAttribute('data-display', 'block') : null;
+          summaryContainer ? summaryContainer.setAttribute('data-display', 'none') : null;
+        }
+      }
+
+      originUl.parentNode.replaceChild(ul, originUl);
+    }
+
+    function renderSearchHighlightResultsMain(searchText, results) {
+      var searchBody = document.querySelector('.search-result__body');
+      var originUl = searchBody.querySelector('ul');
+      var ul = document.createElement('ul');
+
+      if (!searchText) {
+        searchResult ? searchResult.setAttribute('data-display', 'none') : null;
+        summaryContainer ? summaryContainer.setAttribute('data-display', 'block') : null;
+      } else if (results) {
+        if (results && results.length) {
+          results.forEach(function (result) {
+            makeHighlightLi(ul, result);
+          });
+
+          searchResult ? searchResult.setAttribute('data-display', 'block') : null;
+          summaryContainer ? summaryContainer.setAttribute('data-display', 'none') : null;
+        }
+      }
+
+      originUl.parentNode.replaceChild(ul, originUl);
+    }
+  
+  });
+</script>    
+    
+
+
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+<meta name="description" content="初学linux笔记总结" />
+
+
+<meta name="keywords" content="linux">
+
+<meta name="created" content="2019-11-10T19:00:11&#43;0000">
+<meta name="modified" content="2019-11-10T19:00:11&#43;0000">
+<meta property="article:published_time" content="2019-11-10T19:00:11&#43;0000">
+
+<meta name="author" content="WinterSun">
+
+
+<meta property="og:site_name" content="WinterSun">
+<meta property="og:title" content="linux基础学习">
+<meta property="og:url" content="http://blog.nstop.cn/posts/linux/linux%E5%9F%BA%E7%A1%80/">
+<meta property="og:type" content="article">
+<meta property="og:description" content="初学linux笔记总结">
+
+<meta name="generator" content="Hugo 0.75.1" />
+<meta name="msapplication-TileColor" content="#fff">
+
+<meta name="theme-color" content="#fff">
+
+<meta name="msapplication-navbutton-color" content="#fff">
+
+<meta name="apple-mobile-web-app-status-bar-style" content="#fff">
+
+<link rel="canonical" href="http://blog.nstop.cn/posts/linux/linux%E5%9F%BA%E7%A1%80/">
+
+<link rel="manifest" href="/manifest.json">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-icon-512x512.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+
+
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "headline": "linux基础学习",
+    "datePublished": "2019-11-10T19:00:11Z",
+    "dateModified": "2019-11-10T19:00:11Z",
+    "url" : "http://blog.nstop.cn/posts/linux/linux%E5%9F%BA%E7%A1%80/",
+    "description": "初学linux笔记总结",
+    "keywords": ["linux"],
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http://blog.nstop.cn"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "WinterSun",
+      "url": "http://blog.nstop.cn"
+    }
+  }
+</script>
+
+    
+  
+  
+
+
+
+
+
+
+
+    
+</head>
+
+<body id="root" class="theme__dark">
+    <script>
+        var localTheme = localStorage.getItem('theme');
+        if (localTheme) {
+            document.getElementById('root').className = 'theme__' + localTheme;
+        }
+    </script>
+    <div id="container">
+        
+
+
+
+
+
+        <div class="wrapper" data-type="posts" data-kind="page">
+            <nav class="navbar scrolling" role="navigation" aria-label="main navigation" data-dir="ltr">
+  <div class="navbar__brand">
+    
+    <a href="/" title="Home" rel="home" class="navbar__logo-link">
+      <img src="/logo.png" alt="Home" class="navbar__logo">
+    </a>
+    
+    
+      <a href="/" title="Home" rel="home" class="navbar__title-link">
+        <h6 class="navbar__title">WinterSun</h6>
+      </a>
+    
+  </div>
+
+  
+<div class="theme theme-mobile" data-ani="true">
+  <div class="dropdown">
+    <button class="dropdown-trigger navbar__slide-down" aria-label="Select Theme Button" style="" data-ani="true">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="none" d="M24 0H0v24h24V0z"/><path fill="currentColor" d="M6.34 7.93c-3.12 3.12-3.12 8.19 0 11.31C7.9 20.8 9.95 21.58 12 21.58s4.1-.78 5.66-2.34c3.12-3.12 3.12-8.19 0-11.31l-4.95-4.95c-.39-.39-1.02-.39-1.41 0L6.34 7.93zM12 19.59c-1.6 0-3.11-.62-4.24-1.76C6.62 16.69 6 15.19 6 13.59s.62-3.11 1.76-4.24L12 5.1v14.49z"/></svg>      
+    </button>
+    <div class="dropdown-content select-theme">
+      
+        
+        <a href="#" class="dropdown-item select-theme__item is-active">
+          dark
+        </a>
+        
+        <a href="#" class="dropdown-item select-theme__item ">
+          light
+        </a>
+        
+        <a href="#" class="dropdown-item select-theme__item ">
+          hacker
+        </a>
+        
+        <a href="#" class="dropdown-item select-theme__item ">
+          solarized
+        </a>
+        
+        <a href="#" class="dropdown-item select-theme__item ">
+          kimbie
+        </a>
+        
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="mobile-search__btn navbar-search" data-ani="true">
+  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.79 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+</div>
+
+<div id="search-mobile-container" class="mobile-search hide" data-dir="ltr">
+  <div class="mobile-search__top">
+    <input id="search-mobile" type="text" aria-label="Mobile Search" placeholder="Search" class="mobile-search__top--input"/>
+    <div id="search-mobile-close" class="mobile-search__top--icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path opacity=".87" fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.59-13L12 10.59 8.41 7 7 8.41 10.59 12 7 15.59 8.41 17 12 13.41 15.59 17 17 15.59 13.41 12 17 8.41z"/></svg>
+    </div>
+  </div>
+  <div id="search-mobile-results" class="mobile-search__body">
+    
+  </div>
+</div>
+
+
+<a role="button" class="navbar__burger" aria-label="menu" aria-expanded="false"
+  data-ani="true">
+  <span aria-hidden="true"></span>
+  <span aria-hidden="true"></span>
+  <span aria-hidden="true"></span>
+</a>
+<div class="navbarm__collapse" data-open="false">
+  <ul dir="ltr">
+    
+    
+      
+      
+      
+      
+
+      
+        <li class="navbarm__menu--item active">
+          <a href="/posts">Posts</a>
+        </li>
+      
+      
+    
+      
+      
+      
+      
+
+      
+        <li class="navbarm__menu--item ">
+          <a href="/archive">Archive</a>
+        </li>
+      
+      
+    
+      
+      
+      
+      
+
+      
+        <li class="navbarm__menu--item ">
+          <a href="/about">AboutMe</a>
+        </li>
+      
+      
+    
+      
+      
+      
+      
+
+      
+        <li class="navbarm__menu--item ">
+          <a href="/showcase">Project</a>
+        </li>
+      
+      
+    
+
+    
+      <li class="navbarm__menu--item ">
+        <a href="/tags" class="navbarm__menu--term" data-index="0">
+          Tags
+        </a>
+      </li>
+    
+  </ul>
+</div>
+  <div class="navbar__menu">
+  
+    <div class="theme">
+  <div class="dropdown">
+    <button class="dropdown-trigger navbar__slide-down navbar-search" aria-label="Search Button" data-ani="true">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.79 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+    </button>
+    <div class="dropdown-content">
+    </div>
+  </div>
+</div>
+  
+  
+  
+<div class="theme" data-ani="true">
+  <div class="dropdown">
+    <button class="dropdown-trigger navbar__slide-down" aria-label="Select Theme Button" data-ani="true">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="none" d="M24 0H0v24h24V0z"/><path fill="currentColor" d="M6.34 7.93c-3.12 3.12-3.12 8.19 0 11.31C7.9 20.8 9.95 21.58 12 21.58s4.1-.78 5.66-2.34c3.12-3.12 3.12-8.19 0-11.31l-4.95-4.95c-.39-.39-1.02-.39-1.41 0L6.34 7.93zM12 19.59c-1.6 0-3.11-.62-4.24-1.76C6.62 16.69 6 15.19 6 13.59s.62-3.11 1.76-4.24L12 5.1v14.49z"/></svg>      
+    </button>
+    <div class="dropdown-content select-theme">
+      
+        
+        <a href="#" class="dropdown-item select-theme__item is-active">
+          dark
+        </a>
+        
+        <a href="#" class="dropdown-item select-theme__item ">
+          light
+        </a>
+        
+        <a href="#" class="dropdown-item select-theme__item ">
+          hacker
+        </a>
+        
+        <a href="#" class="dropdown-item select-theme__item ">
+          solarized
+        </a>
+        
+        <a href="#" class="dropdown-item select-theme__item ">
+          kimbie
+        </a>
+        
+      
+    </div>
+  </div>
+</div>
+
+  
+  
+  
+  
+  
+  
+  
+  <a href="/posts" class="navbar__menu-item navbar__slide-down active" dir="ltr" data-ani="true">Posts</a>
+  
+  
+  
+  
+  
+  
+  
+  <a href="/archive" class="navbar__menu-item navbar__slide-down " dir="ltr" data-ani="true">Archive</a>
+  
+  
+  
+  
+  
+  
+  
+  <a href="/about" class="navbar__menu-item navbar__slide-down " dir="ltr" data-ani="true">AboutMe</a>
+  
+  
+  
+  
+  
+  
+  
+  <a href="/showcase" class="navbar__menu-item navbar__slide-down " dir="ltr" data-ani="true">Project</a>
+  
+  
+</div>
+</nav>
+            
+            
+
+<main class="single__main main-main">
+  
+    <nav class="breadcrumb hide" aria-label="breadcrumbs">
+  <script>document.querySelector('.breadcrumb').classList.remove('hide')</script>
+  <ol>
+    
+  
+  
+  
+  
+  
+  <li >
+    
+      <a href="http://blog.nstop.cn/" class="capitalize">WinterSun</a>
+    
+  </li>
+  
+  
+  <li >
+    
+      <a href="http://blog.nstop.cn/posts/" class="capitalize">Posts</a>
+    
+  </li>
+  
+  
+  <li  class="is-active" >
+    
+      <span>linux基础学习</span>
+    
+  </li>
+  
+  </ol>
+  
+</nav>
+  
+  
+  <div class="single ">
+    <div class="single__nojs">This page looks best with JavaScript enabled</div>
+    <script>document.querySelector('.single').classList.remove('hide'); document.querySelector('.single__nojs').classList.add('hide');</script>
+    <h2 class="single__title" data-ani="true">linux基础学习</h2>
+    <h3 class="single__subtitle"></h3>
+    <div class="single__meta">
+      
+<div class="single__infos">
+  <time class="single__info" title="Written At">📅&nbsp;Nov 10, 2019 </time>
+  
+  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;7&nbsp;min read </span>
+  
+  <span class="single__info">
+    
+  </span>
+</div>
+
+      
+<ul class="single__tags caption">
+  
+  🏷️
+  
+
+  <li><a href="http://blog.nstop.cn/tags/linux/" class="single__tag" title="linux">#linux</a></li>
+
+</ul>
+
+    </div>
+    <article class="single__contents" data-dir="ltr" data-ani="true">
+      
+      <h3 id="前言">前言</h3>
+<p>学习Linux的笔记总结，主要是对当天学到的知识进行整理，以便将来能用到能够快速回忆。</p>
+<h3 id="1终端命令快捷键">1、终端命令快捷键</h3>
+<p>以下命令主要是方便在终端输入命令时的操作</p>
+<p>清屏：<code>clear</code> 或 <code>ctrl + l</code><br />
+查看最近使用命令的历史纪录：<code>history</code></p>
+<p>建议使用<code>ctrl + xxx</code> 代替 <code>上下左右箭头</code> 操作</p>
+<blockquote>
+<p>向前翻阅一个历史命令：<code>ctrl + p</code> 或  <code>上箭头</code><br />
+向后翻阅一个历史命令：<code>ctrl + n</code> 或  <code>下箭头</code></p>
+</blockquote>
+<blockquote>
+<p>向左移动光标： <code>ctrl + b</code> 或  <code>左箭头</code><br />
+向右移动光标： <code>ctrl + f</code> 或  <code>右箭头</code></p>
+</blockquote>
+<blockquote>
+<p>移动到行首： <code>ctrl + a</code><br />
+移动到行尾： <code>ctrl + e</code></p>
+</blockquote>
+<blockquote>
+<p>删除光标所在处字符：<code>ctrl + d</code><br />
+删除光标前一个字符：<code>ctrl + h</code><br />
+删除光标所在处到末尾的所有字符：<code>ctrl + k</code><br />
+删除光标前面的所有字符：<code>ctrl + u</code></p>
+</blockquote>
+<p>像以上这些快捷键还有很多，这里只是总结一些常用的。</p>
+<h3 id="2linux系统目录结构">2、Linux系统目录结构</h3>
+<p>一些比较常用的目录的作用</p>
+<blockquote>
+<p>/bin : 这里存放的是我们经常用到的一些shell命令，如<code>cat、ls、cp、rm、mv</code>等等。</p>
+<p>/root ：超级管理员（root）的家目录</p>
+<p>/usr ：用户软件资源目录，存放的是用户的一些应用程序文件</p>
+<p>/opt ：一般用来存放第三方的软件安装包。</p>
+<p>/home ：存放所有普通用户的家目录，如普通用户为<code>jake</code>，那么其家目录为<code>/home/jake</code></p>
+<p>/sbin : 存放的是系统管理员使用的系统管理程序</p>
+<p>/etc : 存放一些系统或应用程序的配置文件</p>
+<p>/dev : 存放的是一些外设（如u盘、光驱、磁盘）的设备文件</p>
+<p>/media : 和/mnt 一样存放的是外设文件，但是这是系统自动识别外设并挂载的设备文件。</p>
+<p>/mnt : 存放手动挂载的文件系统，如可以将u盘或者光驱手动挂载在该目录下</p>
+<p>/boot ：存放的是Linux启动时所需要的系统核心文件，包括一些链接文件以及镜像文件，不要轻易修改或删除这里面的文件</p>
+<p>/tmp : 存放的是一些临时文件</p>
+<p>/var : 经常要进行修改变动的文件可以放到该目录下。如各种日志文件</p>
+<p>/lib : 存放的是系统最基本的动态链接库（共享库），类似windows系统下的DLL文件。</p>
+</blockquote>
+<h3 id="3linux常用命令">3、Linux常用命令</h3>
+<ol>
+<li>操作目录或文件</li>
+</ol>
+<ul>
+<li>显示目录详细信息</li>
+</ul>
+<blockquote>
+<p>显示当前目录下的子目录或者文件：<code>ls</code> 或者 <code>tree</code><br />
+<code>tree</code>命令需要安装，tree 会将当前目录下所有文件以树的形式进行展示</p>
+<blockquote>
+<p>显示所有（包括隐藏文件）：<code>ls -a</code><br />
+显示详细信息：<code>ls -l</code></p>
+</blockquote>
+</blockquote>
+<ul>
+<li>创建</li>
+</ul>
+<blockquote>
+<p>创建目录：<code>mkdir 目录名</code> 例如：<code>mkdir aa</code>: 创建一个aa目录<br />
+创建多层目录：<code>mkdir 目录1/目录2/目录3 -p</code> 例如：<code>mkdir aa/bb/cc -p</code><br />
+创建文件：<code>touch 文件名</code></p>
+<blockquote>
+<p>例如：<code>touch aa</code>，如果文件名aa不存在，则创建文件aa<br />
+如果文件名存在，则将修改文件的时间，但是不会更改文件内容<br />
+如果跟某目录名重名，会修改已存在目录的时间，并不会创建文件</p>
+</blockquote>
+</blockquote>
+<ul>
+<li>删除</li>
+</ul>
+<blockquote>
+<p>删除空目录: <code>rm 目录名</code><br />
+删除非空目录: <code>rm -r 目录名</code><br />
+删除非空目录带提示: <code>rm -ri 目录名</code></p>
+<p>删除文件: <code>rm 文件名</code><br />
+删除文件带提示: <code>rm 文件名</code><br />
+删除文件或目录不带提示：<code>rm 文件或目录</code></p>
+</blockquote>
+<ul>
+<li>复制</li>
+</ul>
+<blockquote>
+<p><code>cp 文件1 文件2</code> :  如 <code>cp aa bb</code></p>
+<blockquote>
+<p><code>bb不存在</code>时, 会创建一个名为bb的文件并且将文件aa的内容复制<br />
+<code>bb存在</code>时, bb文件的内容会被清除并且将文件aa的内容复制过来</p>
+</blockquote>
+<p><code>cp 目录1 目录2 -r</code> :  如 <code>cp cc dd -r</code></p>
+<blockquote>
+<p>如果目录<code>dd</code>存在时,会将目录cc 复制到 目录dd 下,也就是说dd下会存在一个目录cc<br />
+如果目录<code>dd</code>不存在时,会创建一个dd目录,并且将aa目录下的所有内容拷贝到dd目录下</p>
+</blockquote>
+</blockquote>
+<ul>
+<li>移动</li>
+</ul>
+<blockquote>
+<p><code>mv 文件1 文件2</code> : 如 <code>mv a1 a2</code></p>
+<blockquote>
+<p>如果文件<code>a2</code>不存在时, 则相当于把文件a1改名为文件a2<br />
+如果文件<code>a2</code>存在时, 会将文件a1删除,并且a1的内容会覆盖到文件a2中去</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p><code>mv 目录1 目录2</code>: 如<code>mv aa bb</code></p>
+<blockquote>
+<p>如果目录<code>bb</code>不存在时, 则相当于把目录aa改名为目录bb<br />
+如果目录<code>bb</code>存在时, 会将目录aa 移动到 目录bb下(注意: 如果目录bb下原本存在目录aa,则会报错)</p>
+</blockquote>
+</blockquote>
+<ul>
+<li>查看文件<br />
+这里主要区分三种查看方式<code>cat more less</code></li>
+</ul>
+<blockquote>
+<p><code>cat 文件名</code> :  主要打开内容比较少的文件,内容多的文件显示不完整<br />
+<code>more 文件名</code> : 查看内容时不能往前翻, 按<code>space</code>换页,按<code>Enter</code>换行<br />
+<code>less 文件名</code> : 在<code>more</code>的基础上增加了能<code>往回看</code>的功能</p>
+<p>补充两个<br />
+<code>head 文件名</code><br />
+<code>tail 文件名</code></p>
+</blockquote>
+<ul>
+<li>查看文件属性的命令</li>
+</ul>
+<blockquote>
+<p>查看文件属性：<code>wc - [c|w|l|m]</code> 文件名<br />
+l：行数；<code>c</code>：字节数；<code>m</code>：字符数；<code>w</code>：单词数</p>
+<p>应用：查看当前目录下有多少个文件和子目录：<code>ls | wc -l</code></p>
+<p>查看二进制文件：<code>od -t  [c/d/f/u/o/x]</code> 二进制文件名</p>
+<blockquote>
+<p><code>c</code> ：以ASCII码显示 ；<code>d</code>：十进制数；<code>f</code>：浮点数；<code>u</code>：无符号十进制数；<code>o</code>：八进制数；<code>x</code>：十六进制数</p>
+</blockquote>
+<p>查看目录大小：<code>du -h</code><br />
+查看磁盘使用率：<code>df -h</code></p>
+</blockquote>
+<ol start="2">
+<li>软硬链接的创建</li>
+</ol>
+<ul>
+<li>为文件创建软链接：ln -s 文件的绝对路径 软链接名</li>
+</ul>
+<blockquote>
+<p>软链接名一般以<code>soft</code>为后缀<br />
+如：<code>ln -s /home/jake/aa /home/jake/bin/aa.soft</code></p>
+</blockquote>
+<ul>
+<li>为文件创建硬链接：ln 文件的绝对路径 硬链接名</li>
+</ul>
+<blockquote>
+<p>硬链接名一般以<code>hard</code>为后缀<br />
+如：<code>ln /home/jake/aa /home/jake/bin/aa.hard</code></p>
+</blockquote>
+<ol start="3">
+<li>其他常用命令</li>
+</ol>
+<ul>
+<li>显示当前用户: <code>whoami</code></li>
+<li>借用root权限: <code>sudo</code></li>
+<li>查看shell命令在哪个路径下: <code>which 命令</code> 如: <code>which cp</code></li>
+<li>切换到当前用户家目录:  如当前用户为jake</li>
+</ul>
+<blockquote>
+<p><code>cd</code><br />
+<code>cd ~</code><br />
+<code>cd /home/jake</code></p>
+</blockquote>
+<ul>
+<li>切换到前一个路径 <code>cd -</code>(这个命令可以在相邻的两个路径来回切换)</li>
+</ul>
+<h3 id="4linux文件权限">4、Linux文件权限</h3>
+<p>先说明一下<br />
+[root@localhost ~]#</p>
+<p><code>root</code>表示当前用户<br />
+<code>localhost</code>表示主机名<br />
+<code>~</code> 表示当前所在目录（此时是root的家目录）<br />
+<code>#</code> 表示的是超级管理员;如果是<code>$</code>表示普通用户</p>
+<p>修改文件目录权限<br />
+<code>chmod [u|g|o|a][+|-|=][r|w|x] 文件或目录名</code></p>
+<blockquote>
+<p><code>u</code> ：所有者 ，<code>g</code> ：所属组 ，<code>o</code> ：其他人 ，<code>a</code> ：all的简写，三者都改<br />
+<code>+</code> ：增加权限，<code>-</code> ： 减少权限，<code>=</code> ：重新赋予权限<br />
+<code>r</code> ：读 ，<code>w</code> ：写，<code>x</code> ：执行</p>
+</blockquote>
+<p>如：<br />
+<code>chmod a+x aa</code> 将aa的所有者、所属组、其他人都增加执行权限<br />
+<code>chmod ug=rw aa</code> 将aa的所有者、所属组都更改为可读可写权限</p>
+<p><code>chmod [+|-|=] 三位数 文件名</code></p>
+<blockquote>
+<p><code>+</code> : 增加权限， <code>-</code> ： 减少权限， <code>=</code> ： 重新赋予权限 ，一般可省略<br />
+三位数每一位分别代表所有者、所属组、其他人<br />
+读的权值为<code>4</code>，写的权值为<code>2</code>，执行的权值为<code>1</code><br />
+如：<br />
+<code>chmod 664 aa</code> 等同于<code>chmod =664 aa</code> aa的所有者、所属组具有可读可写权限，其他人只具有读权限<br />
+<code>chmod -112 aa</code>  aa的所有者、所属组取消可执行权限，其他人取消写权限</p>
+</blockquote>
+<p>更改文件或目录的所有者和所属组<br />
+<code>sudo chown 所有者:所属组 -R 文件或目录名</code></p>
+<p>更改文件或目录的所属组<br />
+<code>sudo chgrp 所属组 文件或目录名</code></p>
+<p><code>温馨提示</code>：目录必须具有执行权限才可进入</p>
+<h3 id="5linux文件或目录颜色区分">5、Linux文件或目录颜色区分</h3>
+<blockquote>
+<p>白色：普通文件<br />
+蓝色：目录<br />
+青色：链接<br />
+黄色：设备文件<br />
+绿色：可执行文件<br />
+红色：压缩文件<br />
+灰色：其他</p>
+</blockquote>
+<h3 id="6linux文件检索和内容查找">6、Linux文件检索和内容查找</h3>
+<ol>
+<li>文件查找 find</li>
+</ol>
+<ul>
+<li>按文件名查找: <code>find 查找路径 -name &quot;文件名&quot;</code></li>
+<li>按文件类型查找: <code>find 查找路径 -type 文件类型参数[f/d/b/c/l/s/p]</code></li>
+</ul>
+<blockquote>
+<p>文件类型参数 <code>f</code> 代表普通文件，其他类型参数的都是前面提过的</p>
+</blockquote>
+<ul>
+<li>按文件大小查找: <code>find 查找路径 -size +/- [k/M/G]</code></li>
+</ul>
+<blockquote>
+<p><code>+</code> : 大于， <code>-</code> ： 小于 ；<br />
+k、M、G都是文件大小单位(k是小写的)<br />
+如：<code>find ./ -size +5k -size -1M</code> 在当前路径下查找大于5k小于1M的文件</p>
+</blockquote>
+<ol start="2">
+<li>文件内容 grep<br />
+<code>grep -r &quot;文件内容&quot; 搜索目录</code><br />
+如： <code>grep -r &quot;abjsl&quot; ./</code>      在当前路径下递归查找有没有存在内容中有“abjsl”的文件</li>
+</ol>
+<h3 id="7u盘的手动挂载与卸载">7、u盘的手动挂载与卸载</h3>
+<p>自动挂载 ： 一般在/media/下<br />
+手动挂载 ： 一般指定在/mnt/ 下</p>
+<ul>
+<li>
+<p>umount卸载: <code>umount 要卸载的设备</code>（其实就是一个目录，linux一切皆文件）</p>
+</li>
+<li>
+<p>查看设备信息（查找要挂载的设备的路径）：<br />
+<code>sudo fdisk -l</code></p>
+</li>
+<li>
+<p>mount 挂载：mount 挂载设备路径 /mnt</p>
+</li>
+</ul>
+<blockquote>
+<p>注意：这里手动挂载一般选择在<code>/mnt</code>下，当然也可以挂载到其他目录，但是要保证其他目录内的内容和设备中的内容没有重名的，不然设备中的文件会覆盖原来目录的文件，这里的覆盖并不是说原来目录的文件就被删除了，只是说暂时不存在而已当你卸载设备后，原来目录的文件又会还原<br />
+所以在不能确定的情况下最好保证要手动挂载的指定目录是一个<code>空目录</code>（建议/mnt）</p>
+</blockquote>
+<h3 id="8压缩与解压缩">8、压缩与解压缩</h3>
+<ul>
+<li>
+<p>gzip gunzip</p>
+<ol>
+<li>
+<p><code>gzip *.txt</code> (不会保留源文件，并且会一一压缩每个txt文件，注意：这里不会合并为一个文件)</p>
+</li>
+<li>
+<p><code>gunzip *.gz </code>(不会保留源文件，并且会一一解压每个gz文件)</p>
+</li>
+</ol>
+</li>
+<li>
+<p>bzip2 bunzip2 &ndash;需要安装</p>
+<ol>
+<li>
+<p><code>bzip2 *.txt</code> (不会保留源文件，并且会一一压缩每个txt文件,跟gzip *.txt  一样的效果)</p>
+</li>
+<li>
+<p><code>bzip2 -k * .txt</code>（会保留源文件，并且会一一压缩每个txt文件</p>
+</li>
+<li>
+<p><code>bunzip2 *.bz2</code> (不会保留源文件，并且会一一解压每个bz2文件)</p>
+</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>注意事项：gzip 和 bzip2 不能压缩<code>目录</code></p>
+</blockquote>
+<ul>
+<li>
+<p>tar</p>
+<ol>
+<li>
+<p>-参数<br />
+c : 压缩<br />
+v : 显示提示信息 &ndash; 可以省略<br />
+f : 指定压缩文件的名字<br />
+x : 解压<br />
+j :  &ndash; 使用bzip2的方式压缩文件 &ndash; .bz2<br />
+z ：&ndash; 使用gzip的方式压缩文件 &ndash; .gz</p>
+</li>
+<li>
+<p>压缩：<br />
+<code>tar -zcvf 生成的压缩名(xxx.tar.gz) 要压缩的文件或目录</code><br />
+<code>tar -jcvf 生成的压缩名(xxx.tar.bz2) 要压缩的文件或目录</code></p>
+</li>
+<li>
+<p>在当前目录下解压：<code>tar -jxvf 压缩包</code></p>
+</li>
+<li>
+<p>解压到指定目录下：<code>tar -zxvf 压缩包 -C 指定解压的目录</code></p>
+</li>
+</ol>
+</li>
+<li>
+<p>rar &ndash;需要安装</p>
+<ol>
+<li>
+<p>压缩：<code>rar a 生成的压缩包名字 要压缩的文件</code></p>
+</li>
+<li>
+<p>解压：<code>rar x 压缩包  指定解压到哪个目录</code></p>
+</li>
+</ol>
+</li>
+<li>
+<p>zip unzip &ndash;需要安装 &ndash;可压缩目录</p>
+<ol>
+<li>
+<p><code>zip 生成的压缩包名字 要压缩的文件</code></p>
+</li>
+<li>
+<p><code>zip -r 生成的压缩包名字 要压缩的目录</code></p>
+</li>
+<li>
+<p><code>unzip 压缩包名字  -d 指定解压到哪个目录</code></p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="9常用网络与查看进程相关命令">9、常用网络与查看进程相关命令</h3>
+<ul>
+<li>
+<p>查看进程</p>
+<ol>
+<li>
+<p>查看所有进程：<code>ps a</code></p>
+</li>
+<li>
+<p>能查看到进程正在被使用的所属用户： <code>ps au</code></p>
+</li>
+<li>
+<p>查看包括没有终端的所有进程：<code> ps aux</code></p>
+</li>
+<li>
+<p>使用管道 | ，格式 ： 指令1 | 指令2 （指令1的输出作为指令2的输入，最后结果为指令2的输出）<br />
+例如： 查看所有内容中有bash的进程： ps aux | grep bash</p>
+</li>
+</ol>
+<blockquote>
+<p>注意在使用 ps aux | grep bash这条命令时，它也是一个进程</p>
+</blockquote>
+</li>
+<li>
+<p>终止进程： <code>kill -9 进程pid</code><br />
+9代表信号SIGKILL<br />
+可以通过 <code>kill -l</code> 命令查看所有信号</p>
+</li>
+<li>
+<p>查看当前进程的环境变量 : <code>env</code><br />
+例子：查看当前进程环境变量中有PATH的<br />
+<code>env | grep PATH</code></p>
+</li>
+</ul>
+<blockquote>
+<p>linux下的环境变量的格式  key-value<br />
+key=value:value:value:value(当有多个环境变量时，用 : 分隔)</p>
+</blockquote>
+<ul>
+<li>
+<p><code>top</code> : 类似windows中的任务管理器(只读，不能操作)</p>
+</li>
+<li>
+<p><code>ifconfig</code> 查看ip相关信息<br />
+<code>ping www.baidu.com</code><br />
+<code>nslookup www.baidu.com</code> 查看服务器域名对应的ip地址</p>
+</li>
+</ul>
+<h3 id="10用户管理">10、用户管理</h3>
+<ul>
+<li>添加用户 ： <code>adduser 用户名</code></li>
+<li>为用户设置密码： <code>passwd 用户名</code> 然后输入两次密码</li>
+<li>另一种方式设置密码：<code>echo &quot;passwd&quot; | passwd --stdin username</code></li>
+<li>删除用户： <code>userdel -r 用户名</code></li>
+</ul>
+<h3 id="11常用服务器搭建与配置">11、常用服务器搭建与配置</h3>
+<h4 id="ftp服务器搭建">ftp服务器搭建</h4>
+<ul>
+<li>
+<p>作用：文件的上传和下载 （不能是目录，要传目录的话直接可以将其打包）</p>
+</li>
+<li>
+<p>服务器端：<br />
+安装 ：<code>sudo yum install vsftpd</code></p>
+<p>修改配置文件：<code>/etc/vsftpd.conf</code></p>
+<p>重启服务器： <code>sudo service vsftpd restart</code></p>
+</li>
+<li>
+<p>客户端：<br />
+安装ftp：yum install ftp<br />
+实名用户登录: （可以随意地切换目录，对于服务器来说不安全）<br />
+<code>ftp serverip</code> ===&gt; 输入用户名和密码<br />
+<code>put filename</code> 上传文件<br />
+<code>get filename</code> 下载文件</p>
+<p>匿名用户登录：（只能在服务器指定的目录下操作，服务器须在配置文件中添加指定匿名用户访问的目录，或者用默认的目录 /srv/ftp）<br />
+<code>ftp serverip</code> ===&gt; 用户名：anonymous  密码：不需要写<br />
+退出： exit  或者 quit 或者 bye</p>
+</li>
+<li>
+<p>lftp ：针对ftp客户端的软件（这个可以上传目录，还可以一次性上传多个文件）<br />
+实名登录：<code>lftp username@serverip</code>  ===&gt; 输入密码<br />
+匿名登录：<code>lftp serverip</code>  ===&gt; 输入login<br />
+操作：<br />
+上传单个文件：<code>put fileName</code><br />
+上传多个文件：<code>mput fileName1 fileName2</code><br />
+下载单个文件：<code>get fileName</code><br />
+下载多个文件：<code>mget fileName1 fileName2</code><br />
+下载整个目录以及子目录：<code>mirror dirName</code><br />
+上传整个目录以及子目录：<code>mirror -R dirName</code></p>
+</li>
+</ul>
+<h4 id="nfs服务器搭建">nfs服务器搭建</h4>
+<ul>
+<li>
+<p>作用：开发项目组中共享文件夹</p>
+</li>
+<li>
+<p>服务器：<br />
+安装： <code>sudo yum install nfs-kernel-server</code></p>
+<p>创建一个欲共享出去的目录：<code>mkdir -p /home/jerry/share</code></p>
+<p>打开配置文件： <code>sudo vi /etc/exports</code></p>
+<p>添加共享目录的绝对路径 ：<code>/home/jerry/share *(rw,sync)</code>     rw 可读可写 ro 只读</p>
+<p>重启服务：<code>sudo service nfs-kernel-server restart</code></p>
+</li>
+<li>
+<p>客服端：<br />
+通过挂载该目录来获取共享目录中的资源</p>
+<p><code>mount serverIp:共享目录绝对路径 挂载目录位置</code><br />
+如：<code>mount serverIp:/home/jerry/share /mnt</code></p>
+</li>
+</ul>
+<h4 id="ssh服务器搭建">ssh服务器搭建</h4>
+<ul>
+<li>ssh服务器<br />
+====&gt;安装ssh:  <code>sudo yum install openssh-server</code><br />
+====&gt;查看是否安装  <code>sudo aptitude show openssh-server</code></li>
+<li>客户端：<br />
+====&gt;远程登录：<code>ssh serverip@username</code>  ===&gt;  密码<br />
+====&gt;退出：<code> logout</code></li>
+<li>scp命令 (super copy)<br />
+<code>scp -r 目标用户名@目标主机ip:目标文件的绝对路径 保存到主机的相对/绝对路径</code></li>
+</ul>
+<blockquote>
+<p>拷贝目录需要加参数（-r）</p>
+</blockquote>
+<h3 id="12查看man帮助文档">12、查看man帮助文档</h3>
+<p>使用<code>man man</code>查看</p>
+<h4 id="安装c库函数帮助文档">安装c库函数帮助文档</h4>
+<p>CentOS系统可能没有自带c库函数 &ndash;需要自己安装<br />
+安装：<code>yum install man-pages.noarch</code></p>
+<h4 id="安装中文版man">安装中文版man</h4>
+<ol>
+<li>获取安装包</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># wget https://src.fedoraproject.org/repo/pkgs/man-pages-zh-CN/manpages-zh-1.5.2.tar.bz2/cab232c7bb49b214c2f7ee44f7f35900/manpages-zh-1.5.2.tar.bz2</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>解压安装包到当前目录并进入解压包</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># tar jxvf manpages-zh-1.5.2.tar.bz2</span>
+<span class="c1"># cd manpages-zh-1.5.2</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>安装(使用者最好是root，由于权限问题)</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># ./configure --disable-zhwt</span>
+<span class="c1"># make &amp;&amp; make install</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>修改配置文件<br />
+为了不覆盖man命令，我们用cman命令来查看中文版的帮助文档，在.bash_profile中追加以下内容(这个文件在用户的家目录中)<br />
+打开.bash_profile文件</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># vi /home/你自己的用户名/.bash_profile</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>追加内容：<code>alias cman='man -M /usr/local/share/man/zh_CN'</code><br />
+更新.bash_profile文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># source /home/你自己的用户名/.bash_profile</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="5">
+<li>拓展<br />
+第4步也可以在用户家目录下的.bashrc文件中追加<code>alias cman='man -M /usr/local/share/man/zh_CN'</code>，然后再更新.bashrc文件</li>
+</ol>
+<blockquote>
+<p><code>~/.bash_profile</code>: 每个用户都可使用该文件输入专用于自己使用的shell信息,当用户登录时,该文件仅仅执行一次!默认情况下,他设置一些环境变量,执行用户的.bashrc文件.<br />
+<code>~/.bashrc</code>: 该文件包含专用于你的bash shell的bash信息,当登录时以及每次打开新的shell时,该文件被读取.</p>
+</blockquote>
+<h3 id="13vim-编辑器的使用">13、vim 编辑器的使用</h3>
+<h4 id="三种模式">三种模式</h4>
+<ul>
+<li>命令模式：可以在此模式下进行光标移动，以及删除、复制操作等操作，低行模式和插入模式的中间层</li>
+<li>插入模式：在此模式下可以向文本添加信息文字</li>
+<li>低行模式：在此模式可以保存、退出文本，查找、替换字符以及显示行号等操作</li>
+</ul>
+<h4 id="命令模式下的操作">命令模式下的操作</h4>
+<h5 id="移动">移动</h5>
+<table>
+<thead>
+<tr>
+<th align="center">前</th>
+<th align="center">下</th>
+<th align="center">上</th>
+<th align="center">后</th>
+<th align="center">行首</th>
+<th align="center">行尾</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><code>h</code></td>
+<td align="center"><code>j</code></td>
+<td align="center"><code>k</code></td>
+<td align="center"><code>l</code></td>
+<td align="center"><code>0</code></td>
+<td align="center"><code>$</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>移动到文件开始位置：<code>g</code>+<code>g</code><br />
+移动到文件末尾： <code>G</code><br />
+跳转到第9行：<code>9</code> + <code>G</code></p>
+</blockquote>
+<h5 id="删除">删除</h5>
+<ul>
+<li>删除单个字符：
+<ul>
+<li>删除光标位置的字符：<code>x</code></li>
+<li>删除光标前的字符：<code>X</code></li>
+</ul>
+</li>
+<li>删除多个字符：
+<ul>
+<li>删除单词：光标移动到某个单词的首个字符：按<code>d</code> + <code>w</code></li>
+<li>删除光标之前所有的字符：<code>d</code> + <code>0</code></li>
+<li>删除光标之前所有的字符：<code>d</code> + <code>$</code>或者  <code>D</code></li>
+<li>删除光标所在行：  <code>d</code> + <code>d</code></li>
+<li>删除光标所在行之后n - 1行(包括光标所在行)： 行号(n) + <code>d</code> + <code>d</code></li>
+</ul>
+</li>
+</ul>
+<h5 id="复制">复制</h5>
+<ul>
+<li>跟删除差不多的操作</li>
+<li>复制光标所在的前n个单词：<code>nyb</code></li>
+<li>复制光标所在的后n个单词：<code>nyw</code></li>
+<li>复制光标之前所有的字符：<code>y</code> + <code>0</code></li>
+<li>复制光标之前所有的字符：<code>y</code> + <code>$</code></li>
+<li>复制光标所在行：<code>y</code> + <code>y</code></li>
+<li>复制光标所在行之后n - 1行(包括光标所在行)： 行号(n) + <code>y</code> + <code>y</code></li>
+</ul>
+<h5 id="粘贴">粘贴</h5>
+<ul>
+<li>在光标所在行的下一行粘贴内容：<code>p</code></li>
+<li>在光标所在行的上一行粘贴内容：<code>Shift</code>+<code>p</code></li>
+</ul>
+<h5 id="剪切">剪切</h5>
+<ul>
+<li>删除 == 剪切 （前面的删除操作其实真正意义上就是剪切）</li>
+</ul>
+<h5 id="撤销操作">撤销操作</h5>
+<ul>
+<li>按键：<code>u</code></li>
+<li>回撤销：<code>Ctrl</code>+<code>r</code></li>
+</ul>
+<h5 id="通过可视模式选中内容">通过可视模式选中内容</h5>
+<ul>
+<li>当你想要选中文本中任意一段内容进行操作：<br />
+1.移动光标到指定内容开头，然后按<code>v</code>进入可视模式，<br />
+2.再用<code>hjkl</code>方向键移动来选择要操作的内容<br />
+3.操作按<code>y</code>即复制，按<code>d</code>即删除</li>
+<li>注意：在可视模式复制的情况下粘贴和非可视模式复制的情况有所不同
+<ul>
+<li>按<code>p</code> 会在光标所在位置的后边粘贴内容</li>
+<li>按<code>P</code> 会在光标所在位置的前边粘贴内容</li>
+</ul>
+</li>
+</ul>
+<h5 id="查找">查找</h5>
+<ul>
+<li>输入 <code>/</code> + 查找内容 从光标位置向下查找</li>
+<li>输入 <code>?</code> + 查找内容 从光标位置向上查找</li>
+<li>向上向下切换按键：<code>n</code>依次向下   <code>N</code>依次向上</li>
+<li>或者直接查找单词：
+<ul>
+<li>把光标放到要查找的单词上，然后按 <code>#</code> 就会选中所有跟这个其他相同的单词，可以通过<code>n</code>和<code>N</code>切换</li>
+</ul>
+</li>
+</ul>
+<h5 id="替换">替换</h5>
+<ul>
+<li>替换单个字符：移动光标到某个字符上，按 <code>r</code> + 要替换的内容</li>
+</ul>
+<h5 id="缩进">缩进</h5>
+<ul>
+<li>按键 <code>&gt;</code>+<code>&gt;</code> 和 <code>&lt;</code>+<code>&lt;</code></li>
+</ul>
+<h5 id="在文件中查看某个系统函数的帮助文档">在文件中查看某个系统函数的帮助文档</h5>
+<ul>
+<li>查看在当前文件中出现某些系统函数如printf可以通过以下操作</li>
+<li>先<code>[章号]</code>+<code>Shift</code>+<code>k</code> 查看帮助文档(man文档)</li>
+</ul>
+<h4 id="命令行模式切换到插入模式">命令行模式切换到插入模式</h4>
+<table>
+<thead>
+<tr>
+<th align="center">光标后插入</th>
+<th align="center">光标所在行尾插入</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><code>a</code></td>
+<td align="center"><code>A</code></td>
+</tr>
+<tr>
+<td align="center">光标前插入</td>
+<td align="center">光标所在行首插入</td>
+</tr>
+<tr>
+<td align="center"><code>i</code></td>
+<td align="center"><code>I</code></td>
+</tr>
+<tr>
+<td align="center">光标所在行的下一行插入</td>
+<td align="center">光标所在行的上一行插入</td>
+</tr>
+<tr>
+<td align="center"><code>o</code></td>
+<td align="center"><code>O</code></td>
+</tr>
+<tr>
+<td align="center">先删除光标位置的字符，再插入到光标位置</td>
+<td align="center">先删除光标所在行的内容，再插入到行首</td>
+</tr>
+<tr>
+<td align="center"><code>s</code></td>
+<td align="center"><code>S</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="底行模式">底行模式</h4>
+<p>a、在命令模式下切换到末行模式用<code>:</code></p>
+<p>b、跳转到某行：直接输入行号</p>
+<p>c、如：替换某行的某段内容如替换光标所在行中的wo为women<br />
+先将光标移动到指定行，再切换到末行模式<br />
+按<code>s/wo/women</code>（这只替换这行中第一个wo，需要替换这行中所有的wo则要加上/g）</p>
+<p>d、如：替换指定所有行的指定内容如单词<br />
+切换到末行模式 输入%s/wo/women/g</p>
+<p>如要指定20-24行中的wo替换为women：切换到末行模式 输入<code>20,24s/wo/women/g</code></p>
+<blockquote>
+<p>总结：<code>%</code> 表示全部  <code>.</code>表示当前行   <code>$</code>表示最末行</p>
+</blockquote>
+<p>e、在末行模式可以输入bash命令，格式：! + bash命令(如<code>!pwd</code> 或者 <code>!ls -l</code>等等)</p>
+<p>f、按两次Esc即可切换到命令模式</p>
+<p>g、保存 ： <code>w</code>               保存退出： <code>wq</code>或者<code>zz</code>或者<code>x</code>          退出不保存： <code>q!</code></p>
+<p>h、在底行模式下也可以复制 ：</p>
+<ul>
+<li><code>:10,20y</code> 表示复制第10行到20行的内容</li>
+<li><code>:.,$-5y</code> 表示复制当前行到倒数第五行的内容</li>
+</ul>
+<h4 id="分屏操作">分屏操作</h4>
+<p>首先必须在末行模式下：</p>
+<p>1、sp (当前文件进行分屏）分为上下两个屏</p>
+<p>2、vsp + 文件（指定文件进行分屏）分为左右两个屏</p>
+<p>3、使用<code>Ctrl</code>+<code>w</code>+<code>w</code> 两个屏中来回切换</p>
+<p>4、保存并退出所有文件： <code>wqall</code></p>
+<h4 id="vim自定义配置">vim自定义配置</h4>
+<p>vim可以通过修改.vimrc配置文件来改造成一款属于自己的IDE</p>
+<blockquote>
+<p>修改系统级的vim配置文件（/etc/vimrc）：所有用户都会应用<br />
+修改用户级的vim配置文件（用户的宿主目录下的.vimrc）: 只有当前用户应用</p>
+</blockquote>
+<h3 id="14gcc编译原理">14、gcc编译原理</h3>
+<ol>
+<li>gcc 编译c文件会经过以下4个步骤：===&gt; 以<code>hello.c</code> 生成<code>hello</code>可执行文件为例</li>
+</ol>
+<ul>
+<li>预处理：<code>gcc -E hell0.c -o hello.i</code></li>
+<li>编译：<code>gcc -S hello.i -o hello.s</code></li>
+<li>汇编：<code>gcc -c hello.s -o hello.o</code></li>
+<li>链接：<code>gcc hello.o -o hello</code></li>
+</ul>
+<blockquote>
+<p>前面这4条命令可以合并成一条：<code>gcc hello.c -o hello</code><br />
+注意：虽然是一条命令，但编译器处理的时候仍然是按照4步处理的<br />
+默认生成目标文件为a.out</p>
+</blockquote>
+<ol start="2">
+<li>gcc编译器的一些常用参数<code> -E -S -c -o -g -I -O -Wall -D</code><br />
+<code>-O</code> :  优化代码（优化级别为0 1 2 3，0表示不优化，数字越大级别越大）<br />
+<code>-D</code> :  DEBUG（加宏值）<br />
+<code>-Wall</code> ：提示警告信息<br />
+<code>-g</code>  ：GDB调试时需要加的参数<br />
+<code>-I</code>  ：提供头文件的路径</li>
+</ol>
+<h3 id="15静态库与动态库">15、静态库与动态库</h3>
+<h4 id="静态库">静态库</h4>
+<ul>
+<li>
+<p>命名规则：lib + 库名字 + .a</p>
+</li>
+<li>
+<p>制作步骤：<br />
+（1）需要的文件 ：二进制文件（.o）<code>gcc -c *.c </code>将c文件生成二进制文件<br />
+（2）<code>ar rcs + 自定义静态库名字 + 所有的二进制文件(*.o)</code>  ====  需要安装ar</p>
+</li>
+<li>
+<p>静态库的使用：<br />
+使用方需要 <code>头文件</code>（include目录）+<code> 静态库</code> （通常放在lib目录下）<br />
+两种方法：<br />
+1）直接指定静态库位置<br />
+执行命令：<code>gcc nihao.c -I include lib/libMyTest.a -o app</code><br />
+2）用参数<code>-L  -l </code>指定静态库<br />
+执行命令：<code>gcc main.c -I include -L lib -l MyTest -o app</code></p>
+</li>
+</ul>
+<h4 id="动态库">动态库</h4>
+<ul>
+<li>
+<p>命名规则：lib + 库名字 + .so</p>
+</li>
+<li>
+<p>制作步骤：<br />
+1）c文件 ===&gt;  二进制文件(.o)   :   <code>gcc -fpic -c *.c</code><br />
+2）<code>gcc -shared -o + 动态库名字 + 所有的二进制文件(*.o) -I头文件路径</code></p>
+</li>
+<li>
+<p>动态库的使用：<br />
+两种使用方法：<br />
+1）直接指定动态库位置：<code>gcc main.c -I include lib/libMytest.so -o app</code><br />
+2）用参数<code>-L  -l</code>指定动态库<br />
+用<code>ldd + 可执行程序名称</code> 可以查看当前程序需要的动态库的加载情况<br />
+<code>gcc main.c -I include -L lib -l MyTest -o app</code></p>
+<blockquote>
+<p>这时候你会发现动态库链接失败</p>
+</blockquote>
+<p>四种加载动态库的方法：<br />
+1）把动态库放到/lib目录下（不推荐）<br />
+2）<code>export LDD_LIBRARY_PATH=动态库的绝对路径</code>（临时的，重启终端后又会造成链接动态库失败）<br />
+3）在当前用户家目录下的<code>.bashrc</code>文件中添加<code>export LDD_LIBRARY_PATH=动态库的绝对路径</code>（相对来说永久的，在每次终端启动的时候会执行.bashrc配置文件中的命令）<br />
+4）这种方法最常用<br />
+找到etc/ld.so.conf 配置文件在末尾加上 动态库绝对路径，更新配置文件 <code>sudo ldconfig -v</code></p>
+</li>
+</ul>
+<h4 id="静态库和动态库的优缺点">静态库和动态库的优缺点</h4>
+<ul>
+<li>
+<p>优点</p>
+<ul>
+<li>静态库：1.发布程序时，不需要提供对应的静态库。2.加载库的速度快</li>
+<li>动态库：1.应用程序体积小。2.当库更新时，应用程序不需要重新编译</li>
+</ul>
+</li>
+<li>
+<p>缺点</p>
+<ul>
+<li>静态库：1.库被打包到应用程序中，造成应用程序过于臃肿。2.当库更新时，应用程序需要重新编译</li>
+<li>动态库：1.发布程序时需要提供库。2.加载库的速度相对较慢</li>
+</ul>
+</li>
+</ul>
+<h3 id="16-gdb调试">16、 GDB调试</h3>
+<p>进入调试：<code>gdb 执行程序名</code> ===&gt; 前提：执行程序必须是加了调试信息的（-g）</p>
+<h4 id="常用操作">常用操作</h4>
+<pre><code>list(l)        # 查看载入文件的源代码
+start          # 开始启动，只会执行一步就会停下
+run(r)         # 程序开始执行， 直到遇到第一个断点才停下
+next(n)        # 单步执行 （不会进入所调用的子函数内部）
+step(s)        # 单步执行 （会进入所调用的子函数内部）
+until          # 运行到函数某一行
+continue(c)    # 执行到下一个断点或程序结束
+set width + 数目 # 设置GDB的行宽
+
+finish         # 退出当前子函数体（注意循环体中必须没有断点）
+u              # 退出当前子函数体
+</code></pre><h4 id="设置断点">设置断点</h4>
+<pre><code>break(b) + 文件名:行号(函数名) (不加文件名即为当前文件)
+info(i) b						# 查看所有的断点信息
+del(delete) 断点号				# 删除断点
+clear + 要清除的断点所在行号	# 删除指定行的断点
+break(b) + 行号 + if + 条件		# 设置带条件的断点
+如  b 10 if i==5   # 在循环语句中很实用
+</code></pre><h4 id="查看值">查看值</h4>
+<pre><code>查看变量的值:		p 变量名
+查看变量的类型:		ptype 变量名
+观察变量:			watch 变量名      设置观察点，当这个变量被读出或写入的时候程序暂停
+查看观察点的信息:	info watchpoints
+
+显示表达式的值:		display + 表达式
+查看所有要显示的表达式信息： info display
+取消显示表达式的值:	undisplay 编号
+
+改变程序中某个变量的值： set var 变量名=变量值
+</code></pre><h3 id="17make工程管理工具">17、make工程管理工具</h3>
+<p>make 实际上是一个自动编译管理器，能够根据文件时间戳自动发现更新过的文件从而减少编译的工作量。<br />
+它通过读入makefile文件的内容执行大量的编译工作，提高了项目开放和维护的工作效率。</p>
+<h4 id="makefile编写规则">makefile编写规则</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-makefile" data-lang="makefile"><span class="nf">目标体 </span><span class="o">:</span> 依赖文件
+	命令
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>命令前必须带一个<code>Tab</code></p>
+</blockquote>
+<p>The simplest example:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-makefile" data-lang="makefile"><span class="nf">hello.o </span><span class="o">:</span> <span class="n">hello</span>.<span class="n">c</span> <span class="n">hello</span>.<span class="n">h</span>
+	gcc hello.c -o hello.o
+</code></pre></td></tr></table>
+</div>
+</div><p>稍微复杂一点的，存在子规则。有三个c文件,分别为hello.c、sum.c、sub.c</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-makefile" data-lang="makefile"><span class="nf">result </span><span class="o">:</span> <span class="n">hello</span>.<span class="n">o</span> <span class="n">sum</span>.<span class="n">o</span> <span class="n">sub</span>.<span class="n">o</span>
+	gcc hello.o sum.o sub.o -o result
+
+<span class="nf">hello.o </span><span class="o">:</span> <span class="n">hello</span>.<span class="n">c</span>
+	gcc -c hello.c -o hello.o
+<span class="nf">sum.o </span><span class="o">:</span> <span class="n">sum</span>.<span class="n">c</span>
+	gcc -c sum.c -o sum.o
+<span class="nf">sub.o </span><span class="o">:</span> <span class="n">sub</span>.<span class="n">c</span>
+	gcc -c sub.c -o sub.o
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>当某个c文件更新时，只会执行跟这个文件相关的命令<br />
+只有目标文件不存在或者时间戳比依赖文件早，才会重新编译</p>
+</blockquote>
+<h4 id="变量">变量</h4>
+<h4 id="自定义变量">自定义变量</h4>
+<ul>
+<li>递归展开式的定义格式：<code>var = 值</code></li>
+<li>简单扩展式的定义格式：<code>var := 值 </code></li>
+<li>变量使用格式：<code>$(var)</code></li>
+</ul>
+<h4 id="预定义变量">预定义变量</h4>
+<p>CC : ============&gt; 默认值为cc<br />
+CFLAGS：=========&gt; c编译器的选项<br />
+ASFLAGS：========&gt; 汇编程序的选项<br />
+CPPFLAGS：=======&gt; c预编译的选项</p>
+<h4 id="自动变量">自动变量</h4>
+<pre><code>  $&lt;     # 第一个依赖文件
+  $@     # 目标文件的完整名称
+  $^     # 所有不重复的依赖文件，以空格分开
+  $+     # 所有的依赖文件，可能包含重复的，以空格分开
+  $*     # 不包含扩展名的目标文件名称
+  $?     # 所有时间戳比目标文件晚的依赖文件，以空格分开
+</code></pre><h3 id="18模式规则">18、模式规则</h3>
+<p>%.o : %.c （主要是用来定义相同处理规则的多个文件的）<br />
+将上面的例子可改写为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-makefile" data-lang="makefile"><span class="nv">CC</span><span class="o">=</span>gcc
+<span class="nv">CFLAGS</span><span class="o">=</span>-Wall -O -g
+<span class="nv">obj</span><span class="o">=</span>hello.o sum.o sub.o
+<span class="nv">target</span><span class="o">=</span>result
+<span class="nf">$(target) </span><span class="o">:</span> <span class="k">$(</span><span class="nv">obj</span><span class="k">)</span>
+	<span class="k">$(</span>CC<span class="k">)</span> $^ -o <span class="nv">$@</span>
+
+<span class="nf">%.o </span><span class="o">:</span> %.<span class="n">c</span>
+	<span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>CFLAGS<span class="k">)</span> -c $&lt; -o <span class="nv">$@</span>
+<span class="nf">clean </span><span class="o">:</span>
+	rm -r *.o
+</code></pre></td></tr></table>
+</div>
+</div><p>clean:<br />
+ls -l<br />
+加标签 (用于打包，删除，复制等善后工作)<br />
+加-  跳过错误命令继续执行下条命令<br />
+加-g不会比较目标文件与已存在的文件的更新时间</p>
+<h3 id="19makefile中的相关函数">19、makefile中的相关函数</h3>
+<h4 id="wildcard">wildcard</h4>
+<p>作用：获得指定目录下的文件<br />
+例子：<code>src=$(wildcard ./*.c)</code>  :  src就等价于当前目录下所有c文件</p>
+<h4 id="patsubst">patsubst</h4>
+<p>作用：转换文件后缀</p>
+
+    </article>
+    
+    
+<script defer src="/js/clipboard.min.1626706afc88d95ebe1173b553ec732c6dc82a576989315fdf5e7779af738a44.js"></script>
+
+<script defer src="/js/helper/prev.min.js"></script>
+
+<script defer src="/js/helper/prop.min.js"></script>
+<script>
+  'use strict';
+  document.addEventListener('DOMContentLoaded', function () {
+    
+    var clipInit = false;
+    var preChromaElem = document.querySelectorAll('pre.chroma');
+    var langCodeElem = document.querySelectorAll('.language-code');
+    var dollarCodeElem = document.querySelectorAll('div.language-\\$');
+    var gtCodeElem = document.querySelectorAll('div.language-\\>');
+
+    var makeClipboard = function(elem) {
+      var code = elem,
+          text = elem.textContent;
+        
+      if (text.length > 15) {
+        if (!clipInit) {
+          var text, clip = new ClipboardJS('.copy-to-clipboard', {
+            text: function (trigger) {
+              var codeElem = prev(trigger).querySelectorAll('code');
+              if (codeElem.length > 1) {
+                text = prev(trigger).querySelector('code[class^="language-"]').textContent;
+              } else {
+                text = prev(trigger).querySelector('code').textContent;
+              }
+
+              return text.replace(/^\$\s/gm, '');
+            }
+          });
+
+          var inPre;
+          clip.on('success', function (e) {
+            e.clearSelection();
+            inPre = prop(e.trigger.parentNode, 'tagName') == 'PRE';
+            e.trigger.setAttribute('aria-label', 'Copied to clipboard!');
+            e.trigger.classList.add('tooltipped');
+            e.trigger.classList.add('tooltipped-w');
+          });
+
+          clip.on('error', function (e) {
+            inPre = prop(e.trigger.parentNode, 'tagName') == 'PRE';
+            e.trigger.setAttribute('aria-label', e.action.toString());
+            e.trigger.classList.add('tooltipped');
+            e.trigger.classList.add('tooltipped-w');
+          });
+
+          clipInit = true;
+        }
+
+        var notAllowedClass = ['language-mermaid', 'language-viz', 'language-wave', 'language-chart', 'language-msc', 'language-flowchart'];
+        var isNotAllowedIncluded = false;
+        var curClassName = code.getAttribute('class');
+
+        for (var i = 0; i < notAllowedClass.length; i++) {
+          if (curClassName && curClassName.startsWith(notAllowedClass[i])) {
+            isNotAllowedIncluded = true;
+            break;
+          }
+        }
+
+        if (!isNotAllowedIncluded) {
+          if (curClassName) {
+            var newClipboardElem = document.createElement('span');
+            newClipboardElem.setAttribute('class', 'copy-to-clipboard');
+            newClipboardElem.setAttribute('title', 'Copy to clipboard');
+            elem.parentNode.parentNode.insertBefore(newClipboardElem, elem.parentNode.nextElementSibling);
+          }
+        }
+      }
+    }
+
+    var makeSymbolClipboard = function(elem) {
+      var clipboardSpan = document.createElement('span');
+      clipboardSpan.setAttribute('class', 'copy-to-clipboard');
+      clipboardSpan.setAttribute('title', 'Copy to clipboard');
+      elem.parentNode.parentNode.insertBefore(clipboardSpan, elem.parentNode.nextElementSibling);
+    }
+
+    preChromaElem ? 
+    preChromaElem.forEach(function(elem) {
+      elem.querySelectorAll('code').forEach(function(codeElem) {
+        makeClipboard(codeElem);
+      });
+    }) : null;
+    
+    langCodeElem ? 
+    langCodeElem.forEach(function(elem) {
+      elem.querySelectorAll('code').forEach(function (codeElem) {
+        makeClipboard(codeElem);
+      });
+    }) : null;
+
+    dollarCodeElem ? 
+    dollarCodeElem.forEach(function(elem) {
+      elem.querySelectorAll('code').forEach(function (codeElem) {
+        makeSymbolClipboard(codeElem);
+      });
+    }) : null;
+
+    gtCodeElem ?
+    gtCodeElem.forEach(function(elem) {
+      elem.querySelectorAll('code').forEach(function (codeElem) {
+        makeSymbolClipboard(codeElem);
+      });
+    }) : null;
+    
+  });
+</script>
+    <script>
+  'use strict';
+  
+  function wrap(el, wrapper) {
+    el.parentNode.insertBefore(wrapper, el);
+    wrapper.appendChild(el);
+  }
+
+  (function () {
+    var singleContentsElem = document.querySelector('.single__contents');
+    singleContentsElem ? 
+    singleContentsElem.querySelectorAll('pre > code').forEach(function(elem) {
+      var dataLang = elem.getAttribute('data-lang');
+      var dataLangWrapper = document.createElement('div');
+      var code = null;
+      var codeTitle = null;
+
+      if (dataLang && dataLang.includes(':')) {
+        code = dataLang.split(':')[0];
+        codeTitle = dataLang.split(':')[1];
+
+        dataLangWrapper.className = 'language-' + code;
+        dataLangWrapper.setAttribute('data-lang', codeTitle);
+
+        elem.className = 'language-' + code;
+        elem.setAttribute('data-lang', codeTitle);
+        elem.setAttribute('id', codeTitle);
+      } else if (!dataLang) {
+        dataLangWrapper.setAttribute('data-lang', 'Code');
+        dataLangWrapper.className = 'language-code';
+      }
+
+      if (!dataLang || codeTitle) {
+        wrap(elem.parentNode, dataLangWrapper);
+      }
+
+    }) : null;
+  })();
+
+  var langCodeElem = document.querySelectorAll('.language-code');
+  langCodeElem ? langCodeElem.forEach(function (elem) {
+    var newElem = document.createElement('span');
+    newElem.className = 'copy-to-clipboard';
+    newElem.setAttribute('title', 'Copy to clipboard');
+    elem.append(newElem);
+  }) : null;
+  
+
+  
+
+  
+  var dollarCodeElem = document.querySelectorAll('div.language-\\$');
+  var gtCodeElem = document.querySelectorAll('div.language-\\>');
+
+  dollarCodeElem ?
+  dollarCodeElem.forEach(function(elem) {
+    var lnts = elem.parentNode.parentNode ? elem.parentNode.parentNode.querySelectorAll('.lnt') : null;
+    lnts ? 
+    lnts.forEach(function(lnt) {
+      lnt.innerHTML = '$<br/>';
+    }) : null;
+  }) : null;
+
+  gtCodeElem ?
+  gtCodeElem.forEach(function(elem) {
+    var lnts = elem.parentNode.parentNode ? elem.parentNode.parentNode.querySelectorAll('.lnt') : null;
+    lnts ? 
+    lnts.forEach(function(lnt) {
+      lnt.innerHTML = '><br/>';
+    }) : null;
+  }) : null;
+  
+</script>
+    
+    
+    
+<div class="whoami__gutter"></div>
+<hr class="hr-slash whoami-hr"/>
+<section class="whoami">
+  <div class="whoami__image-wrapper">
+    
+    
+      
+        <img data-src="/images/whoami/avatar.jpg" src="data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' d='M0 0h24v24H0V0z'/%3E%3Cpath fill='%23aaa' d='M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm-4.44-6.19l-2.35 3.02-1.56-1.88c-.2-.25-.58-.24-.78.01l-1.74 2.23c-.26.33-.02.81.39.81h8.98c.41 0 .65-.47.4-.8l-2.55-3.39c-.19-.26-.59-.26-.79 0z'/%3E%3C/svg%3E" alt="WinterSun" class="lazyload whoami__image"/>
+      
+    
+  </div>
+  <div class="whoami__contents">
+    <div class="whoami__written-by">
+      WRITTEN BY
+    </div>
+    <div class="whoami__title">
+      
+        WinterSun
+      
+    </div>
+    <div class="whoami__desc">
+      
+        A Cplusplus Lover
+      
+    </div>
+    <div class="whoami__social">
+      
+      
+      
+      
+      
+      
+      
+      
+      <a href="mailto:nerverstop@163.com" title="email" aria-label="email">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-.4 4.25l-7.07 4.42c-.32.2-.74.2-1.06 0L4.4 8.25c-.25-.16-.4-.43-.4-.72 0-.67.73-1.07 1.3-.72L12 11l6.7-4.19c.57-.35 1.3.05 1.3.72 0 .29-.15.56-.4.72z"/></svg>
+      </a>
+      
+      
+      
+      
+      
+      
+      
+      <a href="https://github.com/neverwaiting" title="github" aria-label="github">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewBox="0 0 24 24" version="1.1">
+<g id="surface3680">
+<path fill="currentColor" d="M 10.898438 2.101562 C 6.300781 2.601562 2.601562 6.300781 2.101562 10.800781 C 1.601562 15.5 4.300781 19.699219 8.398438 21.300781 C 8.699219 21.398438 9 21.199219 9 20.800781 L 9 19.199219 C 9 19.199219 8.601562 19.300781 8.101562 19.300781 C 6.699219 19.300781 6.101562 18.101562 6 17.398438 C 5.898438 17 5.699219 16.699219 5.398438 16.398438 C 5.101562 16.300781 5 16.300781 5 16.199219 C 5 16 5.300781 16 5.398438 16 C 6 16 6.5 16.699219 6.699219 17 C 7.199219 17.800781 7.800781 18 8.101562 18 C 8.5 18 8.800781 17.898438 9 17.800781 C 9.101562 17.101562 9.398438 16.398438 10 16 C 7.699219 15.5 6 14.199219 6 12 C 6 10.898438 6.5 9.800781 7.199219 9 C 7.101562 8.800781 7 8.300781 7 7.601562 C 7 7.199219 7 6.601562 7.300781 6 C 7.300781 6 8.699219 6 10.101562 7.300781 C 10.601562 7.101562 11.300781 7 12 7 C 12.699219 7 13.398438 7.101562 14 7.300781 C 15.300781 6 16.800781 6 16.800781 6 C 17 6.601562 17 7.199219 17 7.601562 C 17 8.398438 16.898438 8.800781 16.800781 9 C 17.5 9.800781 18 10.800781 18 12 C 18 14.199219 16.300781 15.5 14 16 C 14.601562 16.5 15 17.398438 15 18.300781 L 15 20.898438 C 15 21.199219 15.300781 21.5 15.699219 21.398438 C 19.398438 19.898438 22 16.300781 22 12.101562 C 22 6.101562 16.898438 1.398438 10.898438 2.101562 Z M 10.898438 2.101562 "/>
+</g>
+</svg>
+
+      </a>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </div>
+  </div>
+</section>
+<hr class="hr-slash whoami-hr" />
+
+
+    <section class="related">
+    
+    
+  </section>
+    <div class="grow"></div>
+<nav class="pagination-single">
+  
+    
+    <div class="grow"></div>
+    
+      <a href="http://blog.nstop.cn/posts/vim/centos7%E4%B8%8B%E7%94%A8vim-plug%E5%AE%89%E8%A3%85youcompleteme/" class="pagination-single__right">      
+        <div class="pagination-single__right-title">Centos7下用vim-plug安装YouCompleteMe</div>
+        <div class="pagination-single__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M5 13h11.17l-4.88 4.88c-.39.39-.39 1.03 0 1.42.39.39 1.02.39 1.41 0l6.59-6.59c.39-.39.39-1.02 0-1.41l-6.58-6.6c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L16.17 11H5c-.55 0-1 .45-1 1s.45 1 1 1z"/></svg>
+        </div>
+      </a>
+    
+  
+</nav>
+    
+    <div class="modal micromodal-slide" id="modal" aria-hidden="true">
+  <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+    <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      
+      <div class="modal__content" id="modal-content">
+        <div id="mySwipe" class="swipe">
+          <div class="swipe-wrap">
+          </div>
+        </div>
+      </div>
+
+      <span class="modal__items">
+        
+        <span class="modal__header">
+          <div class="modal__paging" title="Page Info" aria-label="Current Page">
+          </div>
+          <div class="modal__icon modal__toolbar modal__toolbar--close" title="Close" aria-label="Close Button" data-micromodal-close>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" width="25" height="25"><path fill="currentColor" d="M 21.734375 19.640625 L 19.636719 21.734375 C 19.253906 22.121094 18.628906 22.121094 18.242188 21.734375 L 13 16.496094 L 7.761719 21.734375 C 7.375 22.121094 6.746094 22.121094 6.363281 21.734375 L 4.265625 19.640625 C 3.878906 19.253906 3.878906 18.628906 4.265625 18.242188 L 9.503906 13 L 4.265625 7.761719 C 3.882813 7.371094 3.882813 6.742188 4.265625 6.363281 L 6.363281 4.265625 C 6.746094 3.878906 7.375 3.878906 7.761719 4.265625 L 13 9.507813 L 18.242188 4.265625 C 18.628906 3.878906 19.257813 3.878906 19.636719 4.265625 L 21.734375 6.359375 C 22.121094 6.746094 22.121094 7.375 21.738281 7.761719 L 16.496094 13 L 21.734375 18.242188 C 22.121094 18.628906 22.121094 19.253906 21.734375 19.640625 Z"/></svg>
+          </div>
+          <div class="modal__icon modal__toolbar modal__toolbar--full" title="Full Screen" aria-label="Full Screen Button">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="25" height="25"><path fill="currentColor" d="M 5 3 C 3.9069372 3 3 3.9069372 3 5 L 3 8 A 1.0001 1.0001 0 1 0 5 8 L 5 5 L 8 5 A 1.0001 1.0001 0 1 0 8 3 L 5 3 z M 16 3 A 1.0001 1.0001 0 1 0 16 5 L 19 5 L 19 8 A 1.0001 1.0001 0 1 0 21 8 L 21 5 C 21 3.9069372 20.093063 3 19 3 L 16 3 z M 3.984375 14.986328 A 1.0001 1.0001 0 0 0 3 16 L 3 19 C 3 20.093063 3.9069372 21 5 21 L 8 21 A 1.0001 1.0001 0 1 0 8 19 L 5 19 L 5 16 A 1.0001 1.0001 0 0 0 3.984375 14.986328 z M 19.984375 14.986328 A 1.0001 1.0001 0 0 0 19 16 L 19 19 L 16 19 A 1.0001 1.0001 0 1 0 16 21 L 19 21 C 20.093063 21 21 20.093063 21 19 L 21 16 A 1.0001 1.0001 0 0 0 19.984375 14.986328 z"/></svg>
+          </div>
+          <div class="modal__icon modal__toolbar modal__toolbar--normal" title="Normal Screen" aria-label="Normal Screen Button">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="25" height="25"><path fill="currentColor" d="M 16.96875 4.972656 C 15.867188 4.988281 14.984375 5.894531 15 7 L 15 15 L 7 15 C 6.277344 14.988281 5.609375 15.367188 5.246094 15.992188 C 4.878906 16.613281 4.878906 17.386719 5.246094 18.007813 C 5.609375 18.632813 6.277344 19.011719 7 19 L 19 19 L 19 7 C 19.007813 6.460938 18.796875 5.941406 18.414063 5.558594 C 18.03125 5.175781 17.511719 4.964844 16.96875 4.972656 Z M 32.96875 4.972656 C 31.921875 4.988281 31.0625 5.8125 31.003906 6.859375 C 31 6.90625 31 6.953125 31 7 L 31 19 L 43 19 C 43.066406 19 43.132813 19 43.199219 18.992188 C 44.269531 18.894531 45.070313 17.972656 45.015625 16.902344 C 44.964844 15.828125 44.074219 14.988281 43 15 L 35 15 L 35 7 C 35.007813 6.460938 34.796875 5.941406 34.414063 5.558594 C 34.03125 5.175781 33.511719 4.964844 32.96875 4.972656 Z M 7 31 C 6.277344 30.988281 5.609375 31.367188 5.246094 31.992188 C 4.878906 32.613281 4.878906 33.386719 5.246094 34.007813 C 5.609375 34.632813 6.277344 35.011719 7 35 L 15 35 L 15 43 C 14.988281 43.722656 15.367188 44.390625 15.992188 44.753906 C 16.613281 45.121094 17.386719 45.121094 18.007813 44.753906 C 18.632813 44.390625 19.011719 43.722656 19 43 L 19 31 Z M 31 31 L 31 43 C 30.988281 43.722656 31.367188 44.390625 31.992188 44.753906 C 32.613281 45.121094 33.386719 45.121094 34.007813 44.753906 C 34.632813 44.390625 35.011719 43.722656 35 43 L 35 35 L 43 35 C 43.722656 35.011719 44.390625 34.632813 44.753906 34.007813 C 45.121094 33.386719 45.121094 32.613281 44.753906 31.992188 C 44.390625 31.367188 43.722656 30.988281 43 31 Z"/></svg>
+          </div>
+        </span>
+        
+        <div class="modal__icon modal__arrow modal__arrow--left" title="Arrow Left" aria-label="Arrow Left Button">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" width="28" height="28"><path fill="currentColor" d="M 23.28125 11 L 10 10 L 10 6.851563 C 10 6.523438 9.839844 6.277344 9.519531 6.03125 C 9.199219 5.949219 8.878906 5.949219 8.640625 6.113281 C 5.359375 8.410156 2.238281 12.257813 2.160156 12.421875 C 2.082031 12.578125 2.007813 12.8125 2.003906 12.976563 C 2.003906 12.980469 2 12.988281 2 12.992188 C 2 13.15625 2.078125 13.402344 2.160156 13.484375 C 2.238281 13.648438 5.28125 17.507813 8.640625 19.804688 C 8.960938 19.96875 9.28125 20.050781 9.519531 19.886719 C 9.839844 19.722656 10 19.476563 10 19.148438 L 10 16 L 23.28125 15 C 23.679688 14.679688 24 13.875 24 12.992188 C 24 12.195313 23.761719 11.320313 23.28125 11 Z"/></svg>
+        </div>
+        
+        <div class="modal__icon modal__arrow modal__arrow--right" title="Arrow Right" aria-label="Arrow Right Button">
+
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" width="28" height="28"><path fill="currentColor" d="M 2.71875 11.023438 L 16 10.023438 L 16 6.875 C 16 6.546875 16.160156 6.300781 16.480469 6.054688 C 16.800781 5.972656 17.121094 5.972656 17.359375 6.136719 C 20.640625 8.433594 23.761719 12.28125 23.839844 12.445313 C 23.917969 12.601563 23.992188 12.835938 23.996094 13 C 23.996094 13.003906 24 13.011719 24 13.015625 C 24 13.179688 23.921875 13.425781 23.839844 13.507813 C 23.761719 13.671875 20.71875 17.53125 17.359375 19.828125 C 17.039063 19.992188 16.71875 20.074219 16.480469 19.910156 C 16.160156 19.746094 16 19.5 16 19.171875 L 16 16.023438 L 2.71875 15.023438 C 2.320313 14.703125 2 13.898438 2 13.015625 C 2 12.21875 2.238281 11.34375 2.71875 11.023438 Z"/></svg>
+        </div>
+
+        <div class="modal__caption">
+          <div class="modal__caption--text">
+          </div>
+        </div>
+
+      </span>
+    </div>
+  </div>
+</div>
+
+
+<script defer src="/js/swipe.min.b4b82839155519d9ca67746615a4c86ccbc1061c196fe6d8aa26e4fe22902718.js"></script>
+
+<script defer src="/js/micromodal.min.de01b44b2f383056bbcaf6ee921fd385d79108ec1129afd0eb2f3f5a07e11f45.js"></script>
+
+<script defer src="/js/helper/fadeinout.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  
+   
+  var docElem = document.documentElement;
+
+   
+  function openFullscreen() {
+    if (docElem.requestFullscreen) {
+      docElem.requestFullscreen();
+    } else if (docElem.mozRequestFullScreen) {  
+      docElem.mozRequestFullScreen();
+    } else if (docElem.webkitRequestFullscreen) {  
+      docElem.webkitRequestFullscreen();
+    } else if (docElem.msRequestFullscreen) {  
+      docElem.msRequestFullscreen();
+    }
+  }
+
+   
+  function closeFullscreen() {
+    if (document.fullscreenElement ||
+      document.webkitFullscreenElement ||
+      document.mozFullScreenElement) {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.mozCancelFullScreen) {  
+        document.mozCancelFullScreen();
+      } else if (document.webkitExitFullscreen) {  
+        document.webkitExitFullscreen();
+      } else if (document.msExitFullscreen) {  
+        document.msExitFullscreen();
+      }
+    }
+  }
+
+  var modal = document.getElementById('modal');
+  var galleryContainerElem = document.querySelector('.gallery__container');
+  var swipeWrapElem = document.querySelector('.swipe-wrap');
+  var mySwipeElem = document.getElementById('mySwipe');
+  var arrowLeftElem = document.querySelector('.modal__arrow--left');
+  var arrowRightElem = document.querySelector('.modal__arrow--right');
+  var closeElem = document.querySelector('.modal__toolbar--close');
+  var fullElem = document.querySelector('.modal__toolbar--full');
+  var normalElem = document.querySelector('.modal__toolbar--normal');
+  var captionElem = document.querySelector('.modal__caption');
+  var pagingElem = document.querySelector('.modal__paging');
+  var itemsElem = document.querySelector('.modal__items');
+  var imgTotalNum = null;
+  var myFadeTimeout = null;
+  var mySwipe = null;
+  var keydownFunction = function (e) {
+    if (e.key === 'ArrowRight') {
+      if (modal && modal.classList.contains('is-open')) {
+        mySwipe.next();
+      }
+    } else if (e.key === 'ArrowLeft') {
+      if (modal && modal.classList.contains('is-open')) {
+        mySwipe.prev();
+      }
+    }
+  }
+
+  if (galleryContainerElem) {
+    imgTotalNum = galleryContainerElem.querySelectorAll('img').length;
+  } else {
+    galleryContainerElem = document.querySelector('.single__contents');
+    imgTotalNum = galleryContainerElem.querySelectorAll('img').length;
+  }
+
+  MicroModal.init({
+    onClose: function () {
+      if (mySwipe) {
+        mySwipe.kill();
+        mySwipe = null;
+        closeFullscreen();
+      }
+      window.removeEventListener('keydown', keydownFunction);
+    },
+    disableScroll: true,
+    disableFocus: true,
+    awaitOpenAnimation: false,
+    awaitCloseAnimation: false,
+    debugMode: false,
+  });
+
+  var imageLoad = function(src) {
+    return new Promise(function(resolve, reject) {
+      var newImg = new Image;
+      newImg.onload = function() {
+        resolve(newImg);
+      }
+      newImg.onerror = reject;
+      newImg.src = src;
+    });
+  }
+
+  galleryContainerElem.querySelectorAll('img').forEach(function (elem, idx) {
+    elem.style.cursor = 'pointer';
+
+    var clonedElem = elem.cloneNode(true);
+    clonedElem.style.maxHeight = '100%';
+    clonedElem.style.maxWidth = '100%';
+    clonedElem.onclick = function (e) {
+      e.stopPropagation();
+    }
+
+    var wrapper = document.createElement('div');
+    wrapper.style.width = '100%';
+    wrapper.style.height = '100vh';
+    wrapper.setAttribute('data-micromodal-close', '');
+    wrapper.onclick = function () {
+      if (mySwipe) {
+        mySwipe.kill();
+        mySwipe = null;
+      }
+    }
+    wrapper.onmouseenter = function () {
+      clearTimeout(myFadeTimeout);
+      fadeIn(itemsElem, 200);
+    };
+    wrapper.onmouseleave = function () {
+      myFadeTimeout = setTimeout(function () {
+        fadeOut(itemsElem, 200);
+      }, 2500);
+    }
+    wrapper.ontouchstart = function() {
+      fadeIn(itemsElem, 200);
+    }
+    wrapper.append(clonedElem);
+    swipeWrapElem.append(wrapper);
+
+    elem.addEventListener('click', async function (e) {
+      MicroModal.show('modal');
+      if (mySwipe) {
+        mySwipe.kill();
+        mySwipe = null;
+      }
+
+      var imgSrc = e.target.getAttribute('data-src') || e.target.getAttribute('src');
+      var img = await imageLoad(imgSrc);
+      clonedElem.style.width = img.width + 'px';
+      clonedElem.style.height = img.height + 'px';
+      
+      
+      mySwipe = new Swipe(mySwipeElem, {
+        startSlide: idx,
+        draggable: true,
+        autoRestart: false,
+        continuous: false,
+        disableScroll: true,
+        stopPropagation: true,
+        callback: async function (index, element) {
+          
+          var imgElem = element.querySelector('img');
+          var imgSrc = imgElem.getAttribute('data-src') || imgElem.getAttribute('src');
+          var img = await imageLoad(imgSrc);
+          imgElem.style.width = img.width + 'px';
+          imgElem.style.height = img.height + 'px';
+
+          
+          if (captionElem && imgElem) {
+            var caption = null;
+            if (imgElem.getAttribute('data-caption')) {
+              caption = imgElem.getAttribute('data-caption');
+            } else if (imgElem.getAttribute('title')) {
+              caption = imgElem.getAttribute('title');
+            } else if (imgElem.getAttribute('alt')) {
+              caption = imgElem.getAttribute('alt');
+            } else {
+              caption = imgElem.getAttribute('src');
+            }
+
+            captionElem.querySelector('.modal__caption--text').innerText = caption;
+            pagingElem.innerText = (index + 1) + ' / ' + imgTotalNum;
+
+            clearTimeout(myFadeTimeout);
+            fadeIn(itemsElem, 200);
+          }
+        },
+      });
+
+      fadeIn(itemsElem);
+
+      
+      if (captionElem) {
+        var caption = null;
+        if (e.target.getAttribute('data-caption')) {
+          caption = e.target.getAttribute('data-caption');
+        } else if (e.target.getAttribute('title')) {
+          caption = e.target.getAttribute('title');
+        } else if (e.target.getAttribute('alt')) {
+          caption = e.target.getAttribute('alt');
+        } else {
+          caption = e.target.getAttribute('src');
+        }
+
+        captionElem.querySelector('.modal__caption--text').innerText = caption;
+        pagingElem.innerText = (idx + 1) + ' / ' + imgTotalNum;
+      }
+
+      if (normalElem && fullElem) {
+        normalElem.style.zIndex = -1;
+        normalElem.style.opacity = 0;
+        fullElem.style.zIndex = 25;
+        fullElem.style.opacity = 1;
+      }
+    });
+
+    window.addEventListener('keydown', keydownFunction);
+  });
+
+  arrowLeftElem ?
+    arrowLeftElem.addEventListener('click', function (e) {
+      if (mySwipe) {
+        mySwipe.prev();
+      }
+    }) : null;
+  arrowRightElem ?
+    arrowRightElem.addEventListener('click', function (e) {
+      if (mySwipe) {
+        mySwipe.next();
+      }
+    }) : null;
+
+  closeElem ?
+    closeElem.addEventListener('click', function () {
+      if (mySwipe) {
+        mySwipe.kill();
+        mySwipe = null;
+      }
+      closeFullscreen();
+      MicroModal.close('modal');
+    }) : null;
+
+  fullElem ?
+    fullElem.addEventListener('click', function (e) {
+      openFullscreen();
+      if (normalElem) {
+        normalElem.style.zIndex = 25;
+        normalElem.style.opacity = 1;
+        fullElem.style.zIndex = -1;
+        fullElem.style.opacity = 0;
+      }
+    }) : null;
+
+  normalElem ?
+    normalElem.addEventListener('click', function (e) {
+      closeFullscreen();
+      if (fullElem) {
+        fullElem.style.zIndex = 25;
+        fullElem.style.opacity = 1;
+        normalElem.style.zIndex = -1;
+        normalElem.style.opacity = 0;
+      }
+    }) : null;
+  
+});
+</script>
+
+    <div class="hide">
+      
+
+<div class="search">
+  <span class="icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.79 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+  </span>
+  <input id="search" aria-label="Site Search" class="input" type="text" placeholder="Search" autocomplete="off">
+  <div id="search-results" class="dropdown">
+    <div id="search-menu" class="dropdown-menu" role="menu">
+    </div>
+  </div>
+</div>
+
+
+    </div>
+  </div>
+</main>
+
+
+<aside class="single__side main-side">
+  
+
+
+<section class="sidebar hide">
+  <script>document.querySelector('.sidebar').classList.remove('hide')</script>
+  <div class="toc__flexbox" data-position="fixed">
+    <h6 class="toc__title" data-ani="true">What&#39;s on this Page</h6>
+    
+      <label class="switch" data-ani="true">
+        <input id="toggle-toc" aria-label="Toggle TOC" type="checkbox" checked>
+        <span class="slider round"></span>
+      </label>
+    
+  </div>
+  <div class="toc " data-dir="ltr" data-folding="true" data-ani="true">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#前言">前言</a></li>
+        <li><a href="#1终端命令快捷键">1、终端命令快捷键</a></li>
+        <li><a href="#2linux系统目录结构">2、Linux系统目录结构</a></li>
+        <li><a href="#3linux常用命令">3、Linux常用命令</a></li>
+        <li><a href="#4linux文件权限">4、Linux文件权限</a></li>
+        <li><a href="#5linux文件或目录颜色区分">5、Linux文件或目录颜色区分</a></li>
+        <li><a href="#6linux文件检索和内容查找">6、Linux文件检索和内容查找</a></li>
+        <li><a href="#7u盘的手动挂载与卸载">7、u盘的手动挂载与卸载</a></li>
+        <li><a href="#8压缩与解压缩">8、压缩与解压缩</a></li>
+        <li><a href="#9常用网络与查看进程相关命令">9、常用网络与查看进程相关命令</a></li>
+        <li><a href="#10用户管理">10、用户管理</a></li>
+        <li><a href="#11常用服务器搭建与配置">11、常用服务器搭建与配置</a>
+          <ul>
+            <li><a href="#ftp服务器搭建">ftp服务器搭建</a></li>
+            <li><a href="#nfs服务器搭建">nfs服务器搭建</a></li>
+            <li><a href="#ssh服务器搭建">ssh服务器搭建</a></li>
+          </ul>
+        </li>
+        <li><a href="#12查看man帮助文档">12、查看man帮助文档</a>
+          <ul>
+            <li><a href="#安装c库函数帮助文档">安装c库函数帮助文档</a></li>
+            <li><a href="#安装中文版man">安装中文版man</a></li>
+          </ul>
+        </li>
+        <li><a href="#13vim-编辑器的使用">13、vim 编辑器的使用</a>
+          <ul>
+            <li><a href="#三种模式">三种模式</a></li>
+            <li><a href="#命令模式下的操作">命令模式下的操作</a></li>
+            <li><a href="#命令行模式切换到插入模式">命令行模式切换到插入模式</a></li>
+            <li><a href="#底行模式">底行模式</a></li>
+            <li><a href="#分屏操作">分屏操作</a></li>
+            <li><a href="#vim自定义配置">vim自定义配置</a></li>
+          </ul>
+        </li>
+        <li><a href="#14gcc编译原理">14、gcc编译原理</a></li>
+        <li><a href="#15静态库与动态库">15、静态库与动态库</a>
+          <ul>
+            <li><a href="#静态库">静态库</a></li>
+            <li><a href="#动态库">动态库</a></li>
+            <li><a href="#静态库和动态库的优缺点">静态库和动态库的优缺点</a></li>
+          </ul>
+        </li>
+        <li><a href="#16-gdb调试">16、 GDB调试</a>
+          <ul>
+            <li><a href="#常用操作">常用操作</a></li>
+            <li><a href="#设置断点">设置断点</a></li>
+            <li><a href="#查看值">查看值</a></li>
+          </ul>
+        </li>
+        <li><a href="#17make工程管理工具">17、make工程管理工具</a>
+          <ul>
+            <li><a href="#makefile编写规则">makefile编写规则</a></li>
+            <li><a href="#变量">变量</a></li>
+            <li><a href="#自定义变量">自定义变量</a></li>
+            <li><a href="#预定义变量">预定义变量</a></li>
+            <li><a href="#自动变量">自动变量</a></li>
+          </ul>
+        </li>
+        <li><a href="#18模式规则">18、模式规则</a></li>
+        <li><a href="#19makefile中的相关函数">19、makefile中的相关函数</a>
+          <ul>
+            <li><a href="#wildcard">wildcard</a></li>
+            <li><a href="#patsubst">patsubst</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</section>
+
+
+
+</aside>
+
+<script>
+  
+  
+  
+
+  var enableToc = JSON.parse("true");
+  var toc = JSON.parse("null");
+  var tocPosition = JSON.parse("\"inner\"");
+  
+  var singleMainElem = document.querySelector('.single__main');
+  var singleSideElem = document.querySelector('.single__side');
+
+  enquire.register("screen and (max-width: 769px)", {
+    match: function () {
+      if ((enableToc || toc) && tocPosition !== "outer") {
+        if (singleMainElem && singleSideElem) {
+          singleMainElem.classList.remove('main-main');
+          singleMainElem.classList.add('main');
+          singleSideElem.classList.remove('main-side');
+          singleSideElem.classList.add('hide');
+        }
+      } else if (tocPosition === "outer") {
+        if (singleMainElem && !singleMainElem.classList.contains('main-main')) {
+          singleMainElem.classList.remove('main-main');
+          singleMainElem.classList.add('main');
+        }
+        if (singleSideElem && !singleSideElem.classList.contains('hide')) {
+          singleSideElem.classList.add('hide');
+        }
+      }
+    },
+    unmatch: function () {
+      if ((enableToc || toc) && tocPosition !== "outer") {
+        singleMainElem.classList.remove('main');
+        singleMainElem.classList.add('main-main');
+        singleSideElem.classList.remove('hide');
+        singleSideElem.classList.add('main-side');
+      } else if (tocPosition === "outer") {
+        if (singleMainElem && !singleMainElem.classList.contains('main-main')) {
+          singleMainElem.classList.remove('main-main');
+          singleMainElem.classList.add('main');
+        }
+        if (singleSideElem && !singleSideElem.classList.contains('hide')) {
+          singleSideElem.classList.add('hide');
+        }
+      }
+
+      var navCollapseBtn = document.querySelector('.navbar__burger');
+      var navCollapse = document.getElementsByClassName('navbarm__collapse')[0];
+      if (navCollapse) {
+        navCollapse.setAttribute('data-open', false);
+        navCollapse.style.maxHeight = 0;
+        navCollapseBtn.classList.remove('is-active');
+      }
+      document.getElementsByClassName('navbar__menu')[0].classList.remove('is-active');
+      document.getElementsByClassName('mobile-search')[0].classList.add('hide');
+    },
+    setup: function () { },
+    deferSetup: true,
+    destroy: function () { },
+  });
+</script>
+
+
+
+
+<script defer src="/js/helper/getParents.min.js"></script>
+
+<script defer src="/js/helper/closest.min.js"></script>
+
+<script defer src="/js/helper/prev.min.js"></script>
+
+<script defer src="/js/helper/prop.min.js"></script>
+
+<script defer src="/js/helper/fadeinout.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  'use strict';
+
+  window.onload = function() {
+    var navbar = document.querySelector('.navbar');
+    var singleContentsElem = document.querySelector('.single__contents');
+
+    
+    
+    
+    var enableBusuanzi = JSON.parse("false");
+    var busuanziPagePV = JSON.parse("true");
+    
+    if (enableBusuanzi && busuanziPagePV) {
+      var pagePvElem = document.querySelector('#busuanzi_value_page_pv');
+      pagePvElem.textContent = pagePvElem.textContent.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+    }    
+    
+
+
+
+    
+    
+    
+    
+    
+    
+    var enableToc = JSON.parse("true");
+    var toc = JSON.parse("null");
+    var hideToc = JSON.parse("false");
+    var tocFlexbox = document.querySelector('.toc__flexbox');
+    var tocFlexboxOuter = document.querySelector('.toc__flexbox--outer');
+    var tocFolding = JSON.parse("true");
+    
+    if ((enableToc || toc) && document.querySelector('.toc')) {
+      var tableOfContentsElem = document.querySelector('.toc').querySelector('#TableOfContents');
+
+      tableOfContentsElem.onmouseenter = function() {
+        if (navbar.classList.contains('scrolling')) {
+          navbar.classList.remove('scrolling');
+        }
+      }
+
+      tableOfContentsElem.onmouseleave = function() {
+        if (!navbar.classList.contains('scrolling')) {
+          navbar.classList.add('scrolling');
+        }
+      }
+
+      if (false === tocFolding) {
+
+      } else {
+        tableOfContentsElem.querySelectorAll('ul') ?
+          tableOfContentsElem.querySelectorAll('ul').forEach(function (rootUl) {
+            rootUl.querySelectorAll('li').forEach(function (liElem) {
+              liElem.querySelectorAll('ul').forEach(function (ulElem) {
+                ulElem.style.display = 'none';
+              });
+            });
+          }) : null;
+      }
+
+      if (tableOfContentsElem) {
+        if (tableOfContentsElem.querySelectorAll('a').length > 0) {
+          tableOfContentsElem.querySelectorAll('a').forEach(function (elem) {
+            elem.addEventListener('click', function () {
+              var id = elem.getAttribute('id');
+
+              if (!navbar.classList.contains('scrolling')) {
+                navbar.classList.remove('navbar--show');
+                navbar.classList.remove('navbar--hide');
+                navbar.classList.add('navbar--hide');
+              }
+              
+              document.querySelector('.toc').querySelectorAll('a').forEach(function (elem) {
+                elem.classList.remove('active');
+              });
+              elem.classList.add('active');
+
+              var curElem = tableOfContentsElem.querySelector('[href="#' + id + '"]');
+              if (curElem && curElem.nextElementSibling) {
+                curElem.nextElementSibling.style.display = 'block';
+              }
+              if (curElem) {
+                getParents(curElem, 'ul') ?
+                  getParents(curElem, 'ul').forEach(function (elem) {
+                    elem.style.display = 'block';
+                  }) : null;
+              }
+            });
+          });
+        } else {
+          if (tocFlexbox) {
+            tocFlexbox.setAttribute('data-position', '');
+            if (!tocFlexbox.classList.contains('hide')) {
+              tocFlexbox.classList.add('hide');
+            }
+          }
+          if (tocFlexboxOuter) {
+            tocFlexboxOuter.setAttribute('data-position', '');
+            if (!tocFlexboxOuter.classList.contains('hide')) {
+              tocFlexboxOuter.classList.add('hide');
+            }
+          }
+        }
+      }
+
+      
+      var toggleTocElem = document.getElementById("toggle-toc");
+      var visibleTocElem = document.getElementById('visible-toc');
+      var tocElem = document.querySelector('.toc');
+      var mainElem = document.querySelector('main');
+      var sideElem = document.querySelector('side');
+      var tocFlexboxElem = document.querySelector('.toc__flexbox');
+
+      toggleTocElem ? 
+      toggleTocElem.addEventListener('change', function(e) {
+        if (e.target.checked) {
+          if (tocElem) {
+            fadeIn(tocElem, 200);
+          }
+          if (tocFlexboxElem) {
+            tocFlexboxElem.setAttribute('data-position', 'fixed');
+          }
+
+          if (mainElem) {
+            mainElem.classList.remove('main-main');
+            mainElem.classList.remove('main');
+            mainElem.classList.add('main-main');
+          }
+          if (sideElem) {
+            sideElem.classList.remove('main-side');
+          }
+        } else {
+          if (tocElem) {
+            fadeOut(tocElem, 200);
+          }
+          if (tocFlexboxElem) {
+            tocFlexboxElem.setAttribute('data-position', 'absolute');
+          }
+
+          if (mainElem) {
+            mainElem.classList.remove('main-main');
+            mainElem.classList.remove('main');
+            mainElem.classList.add('main');
+          }
+          if (sideElem) {
+            sideElem.classList.remove('main-side');
+          }
+        }
+      }) : null;
+
+      visibleTocElem ?
+      visibleTocElem.addEventListener('change', function(e) {
+        if (e.target.checked) {
+          if (tocElem) {
+            fadeIn(tocElem, 200);
+          }
+        } else {
+          if (tocElem) {
+            fadeOut(tocElem, 200);
+          }
+        }
+      }) : null;
+    }
+    
+
+
+
+    
+    var text, clip = new ClipboardJS('.anchor');
+    var headers = singleContentsElem.querySelectorAll("h1, h2, h3, h4");
+
+    
+    var languagedir = JSON.parse("\"ltr\"");
+
+    headers ? 
+    headers.forEach(function (elem) {
+      var size = parseInt(elem.tagName.substr(1), 10) * 2;
+      var url = encodeURI(document.location.origin + document.location.pathname);
+      var link = url + "#" + elem.getAttribute('id');
+      var newElemOuter = document.createElement('span');
+      newElemOuter.classList.add('anchor');
+      newElemOuter.classList.add('hide');
+      newElemOuter.setAttribute('data-clipboard-text', link);
+      newElemOuter.style.position = 'relative';
+
+      var newElemInner = document.createElement('span');
+      newElemInner.style.position = 'absolute';
+      newElemInner.style.top = '50%';
+      newElemInner.style.left = '0.75rem';
+      newElemInner.style.transform = 'translateY(-50%)';
+      newElemInner.innerHTML = `
+<svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="${32 - size}px" height="${32 - size}px"><path d="M 5.5625 0 C 4.136719 0 2.707031 0.542969 1.625 1.625 C -0.539063 3.789063 -0.539063 7.335938 1.625 9.5 L 5.28125 13.15625 C 5.667969 13.554688 6.304688 13.558594 6.703125 13.171875 C 7.101563 12.785156 7.105469 12.148438 6.71875 11.75 L 3.03125 8.0625 C 1.632813 6.664063 1.632813 4.429688 3.03125 3.03125 C 4.429688 1.632813 6.664063 1.632813 8.0625 3.03125 L 12.96875 7.9375 C 14.367188 9.335938 14.367188 11.570313 12.96875 12.96875 C 12.804688 13.132813 12.621094 13.25 12.4375 13.375 C 11.980469 13.6875 11.859375 14.308594 12.171875 14.765625 C 12.484375 15.222656 13.105469 15.34375 13.5625 15.03125 C 13.847656 14.835938 14.125 14.625 14.375 14.375 C 16.539063 12.210938 16.539063 8.664063 14.375 6.5 L 9.5 1.625 C 8.417969 0.542969 6.988281 0 5.5625 0 Z M 10.78125 8.875 C 10.738281 8.882813 10.695313 8.894531 10.65625 8.90625 C 10.507813 8.9375 10.371094 9 10.25 9.09375 C 10.039063 9.253906 9.820313 9.429688 9.625 9.625 C 7.460938 11.789063 7.460938 15.335938 9.625 17.5 L 14.5 22.375 C 16.664063 24.539063 20.210938 24.539063 22.375 22.375 C 24.539063 20.210938 24.539063 16.664063 22.375 14.5 L 18.71875 10.875 C 18.476563 10.578125 18.089844 10.441406 17.714844 10.527344 C 17.34375 10.613281 17.050781 10.90625 16.964844 11.277344 C 16.878906 11.652344 17.015625 12.039063 17.3125 12.28125 L 20.96875 15.9375 C 22.367188 17.335938 22.367188 19.570313 20.96875 20.96875 C 19.570313 22.367188 17.335938 22.367188 15.9375 20.96875 L 11.03125 16.0625 C 9.632813 14.664063 9.632813 12.429688 11.03125 11.03125 C 11.152344 10.90625 11.300781 10.820313 11.4375 10.71875 C 11.839844 10.472656 12.015625 9.976563 11.855469 9.53125 C 11.699219 9.085938 11.25 8.8125 10.78125 8.875 Z"/></svg>`;
+
+      if (languagedir === "rtl") {
+        newElemInner.style.left = '-2rem';
+      } else {
+        newElemInner.style.right = '-2rem';
+      }
+
+      newElemOuter.append(newElemInner);
+      elem.append(newElemOuter);
+
+      elem.addEventListener('mouseenter', function() {
+        this.querySelector('.anchor').classList.remove('hide');
+      });
+      elem.addEventListener('mouseleave', function () {
+        this.querySelector('.anchor').classList.add('hide');
+      });
+    }) : null;
+
+    document.querySelectorAll('.anchor').forEach(function(elem) {
+      elem.addEventListener('mouseleave', function() {
+        elem.setAttribute('aria-label', null);
+        elem.classList.remove('tooltipped');
+        elem.classList.remove('tooltipped-s');
+        elem.classList.remove('tooltipped-w');
+      });
+    });
+
+    clip.on('success', function (e) {
+      e.clearSelection();
+      e.trigger.setAttribute('aria-label', 'Link copied to clipboard!');
+      e.trigger.classList.add('tooltipped');
+      e.trigger.classList.add('tooltipped-s');
+    });
+    // =================================================================
+
+
+
+    
+    
+    var lib = JSON.parse("null");
+
+    if (lib && lib.includes('mermaid')) {
+      
+      var themeVariant = localStorage.getItem('theme') || JSON.parse("\"dark\"");
+
+      if (themeVariant === "dark" || themeVariant === "hacker") {
+        mermaid.initialize({ theme: 'dark' });
+      } else {
+        mermaid.initialize({ theme: 'default' });
+      }
+      
+      var mermaids = [];
+      [].push.apply(mermaids, document.getElementsByClassName('language-mermaid'));
+      mermaids.forEach(function(elem) {
+        var elemParentNode = elem.parentNode;
+
+        if (elemParentNode !== document.body) {
+          elemParentNode.parentNode.insertBefore(elem, elemParentNode);
+          elemParentNode.parentNode.removeChild(elemParentNode);
+        }
+
+        var newElemWrapper = document.createElement('div');
+        newElemWrapper.classList.add('mermaid');
+        newElemWrapper.style.padding = '34px 4px 6px';
+        newElemWrapper.innerHTML = elem.innerHTML;
+        elem.replaceWith(newElemWrapper);
+      });
+    }
+    
+
+    
+
+    
+    if (lib && lib.includes('katex')) {
+      var mathElements = document.getElementsByClassName('math');
+      var options = {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "\\[", right: "\\]", display: true },
+          { left: "$", right: "$", display: false },
+          { left: "\\(", right: "\\)", display: false }
+        ],
+      };
+
+      renderMathInElement(document.querySelector('.single__contents'), options);
+    }
+    
+
+
+
+    
+    if (lib && lib.includes('flowchartjs')) {
+      
+      var options = JSON.parse("{\"arrow-end\":\"block\",\"element-color\":\"black\",\"fill\":\"white\",\"flowstate\":{\"approved\":{\"fill\":\"#58C4A3\",\"font-size\":12,\"no-text\":\"n/a\",\"yes-text\":\"APPROVED\"},\"current\":{\"fill\":\"yellow\",\"font-color\":\"red\",\"font-weight\":\"bold\"},\"future\":{\"fill\":\"#FFFF99\"},\"invalid\":{\"fill\":\"#444444\"},\"past\":{\"fill\":\"#CCCCCC\",\"font-size\":12},\"rejected\":{\"fill\":\"#C45879\",\"font-size\":12,\"no-text\":\"REJECTED\",\"yes-text\":\"n/a\"},\"request\":{\"fill\":\"blue\"}},\"font-color\":\"black\",\"font-size\":14,\"line-color\":\"black\",\"line-length\":50,\"line-width\":3,\"no-text\":\"no\",\"scale\":1,\"symbols\":{\"end\":{\"class\":\"end-element\"},\"start\":{\"element-color\":\"green\",\"fill\":\"yellow\",\"font-color\":\"red\"}},\"text-margin\":10,\"x\":0,\"y\":0,\"yes-text\":\"yes\"}");
+      var jsonContent = null;
+
+      var flowchartPrefix = "language-flowchart";
+      var index = 0;
+      Array.prototype.forEach.call(document.querySelectorAll("[class^=" + flowchartPrefix + "]"), function(x){
+          x.style.display = 'none'
+          x.parentNode.style.backgroundColor = "transparent"
+          jsonContent = x.innerText;
+
+          var node0 = document.createElement('div');
+          node0.id = 'flowchart' + index;
+          x.parentNode.insertBefore(node0, x);
+
+          var diagram = flowchart.parse(jsonContent);
+          diagram.drawSVG("flowchart"+index, options);
+
+          index +=1;
+      });      
+    }
+    
+
+    
+
+    
+    document.querySelectorAll("mjx-container").forEach(function (x) {
+      x.parentElement.classList += 'has-jax'
+    });
+    
+
+
+
+    
+    if (lib && lib.includes('msc')) {
+      
+      var options = JSON.parse("{\"theme\":\"hand\"}");
+      var jsonContent = null;
+
+      var index = 0;
+      var chartPrefix = "language-msc";
+      Array.prototype.forEach.call(document.querySelectorAll("[class^=" + chartPrefix + "]"), function (x) {
+        x.style.display = 'none'
+        x.parentNode.style.backgroundColor = "transparent"
+        jsonContent = x.innerText;
+        var node0 = document.createElement('div');
+        node0.id = 'msc' + index;
+        x.parentNode.insertBefore(node0, x);
+        var diagram = Diagram.parse(jsonContent);
+        diagram.drawSVG("msc" + index, options);
+        index += 1;
+      });
+    }
+    
+
+
+
+    
+    if (lib && lib.includes('chart')) {
+      var borderColor = "#666";
+      var bgColor = "#ddd";
+      var borderWidth = 2;
+
+      Chart.defaults.global.elements.rectangle.borderWidth = borderWidth;
+      Chart.defaults.global.elements.rectangle.borderColor = borderColor;
+      Chart.defaults.global.elements.rectangle.backgroundColor = bgColor;
+
+      Chart.defaults.global.elements.line.borderWidth = borderWidth;
+      Chart.defaults.global.elements.line.borderColor = borderColor;
+      Chart.defaults.global.elements.line.backgroundColor = bgColor;
+
+      Chart.defaults.global.elements.point.borderWidth = borderWidth;
+      Chart.defaults.global.elements.point.borderColor = borderColor;
+      Chart.defaults.global.elements.point.backgroundColor = bgColor;
+
+      var chartPrefix = "language-chart";
+      var index = 0;
+      var jsonContent = null;
+
+      Array.prototype.forEach.call(document.querySelectorAll("[class^=" + chartPrefix + "]"), function (x) {
+        x.style.display = 'none'
+        x.parentNode.style.backgroundColor = "transparent"
+        jsonContent = x.innerText;
+        var node0 = document.createElement('canvas');
+        var source = null;
+        node0.height = 200;
+        node0.style.height = 200;
+        node0.id = 'myChart' + index;
+        source = JSON.parse(jsonContent);
+        x.parentNode.insertBefore(node0, x);
+        var ctx = document.getElementById('myChart' + index).getContext('2d');
+        var myChart = new Chart(ctx, source);
+        index += 1;
+      });            
+    }
+    
+
+
+
+    
+    if (lib && lib.includes('wavedrom')) {
+      var wavePrefix = "language-wave";
+      var index = 0;
+      var jsonContent = null;
+      
+      Array.prototype.forEach.call(document.querySelectorAll("[class^=" + wavePrefix + "]"), function (x) {
+        x.style.display = 'none'
+        x.parentNode.style.backgroundColor = "transparent"
+        jsonContent = x.innerText;
+        var node0 = document.createElement('div');
+        var source = null;
+        node0.id = 'WaveDrom_Display_' + index;
+        source = JSON.parse(jsonContent);
+        x.parentNode.insertBefore(node0, x);
+        WaveDrom.RenderWaveForm(index, source, "WaveDrom_Display_");
+        index += 1;
+      });
+    }
+    
+
+
+
+    
+    if (lib && lib.includes('viz')) {
+      var vizPrefix = "language-viz-";
+      Array.prototype.forEach.call(document.querySelectorAll("[class^=" + vizPrefix + "]"), function (x) {
+        x.style.display = 'none'
+        x.parentNode.style.backgroundColor = "transparent"
+        var engine;
+        x.getAttribute("class").split(" ").forEach(function (cls) {
+          if (cls.startsWith(vizPrefix)) {
+            engine = cls.substr(vizPrefix.length);
+          }
+        });
+        var viz = new Viz();
+        viz.renderSVGElement(x.innerText, { engine: engine })
+          .then(function (element) {
+            element.style.width = "100%";
+            x.parentNode.insertBefore(element, x);
+          })
+      });
+    }
+    
+    
+  }
+</script>
+
+
+            
+            <footer class="footer">
+    
+    
+<div class="footer__social">
+  <div class="social">
+    
+            
+    
+            
+    
+            
+    
+      
+      <a href="mailto:nerverstop@163.com" title="email" aria-label="email">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-.4 4.25l-7.07 4.42c-.32.2-.74.2-1.06 0L4.4 8.25c-.25-.16-.4-.43-.4-.72 0-.67.73-1.07 1.3-.72L12 11l6.7-4.19c.57-.35 1.3.05 1.3.72 0 .29-.15.56-.4.72z"/></svg>
+      </a>
+            
+    
+            
+    
+            
+    
+      
+      <a href="https://github.com/neverwaiting" title="github" aria-label="github">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 24 24" version="1.1">
+<g id="surface3680">
+<path fill="currentColor" d="M 10.898438 2.101562 C 6.300781 2.601562 2.601562 6.300781 2.101562 10.800781 C 1.601562 15.5 4.300781 19.699219 8.398438 21.300781 C 8.699219 21.398438 9 21.199219 9 20.800781 L 9 19.199219 C 9 19.199219 8.601562 19.300781 8.101562 19.300781 C 6.699219 19.300781 6.101562 18.101562 6 17.398438 C 5.898438 17 5.699219 16.699219 5.398438 16.398438 C 5.101562 16.300781 5 16.300781 5 16.199219 C 5 16 5.300781 16 5.398438 16 C 6 16 6.5 16.699219 6.699219 17 C 7.199219 17.800781 7.800781 18 8.101562 18 C 8.5 18 8.800781 17.898438 9 17.800781 C 9.101562 17.101562 9.398438 16.398438 10 16 C 7.699219 15.5 6 14.199219 6 12 C 6 10.898438 6.5 9.800781 7.199219 9 C 7.101562 8.800781 7 8.300781 7 7.601562 C 7 7.199219 7 6.601562 7.300781 6 C 7.300781 6 8.699219 6 10.101562 7.300781 C 10.601562 7.101562 11.300781 7 12 7 C 12.699219 7 13.398438 7.101562 14 7.300781 C 15.300781 6 16.800781 6 16.800781 6 C 17 6.601562 17 7.199219 17 7.601562 C 17 8.398438 16.898438 8.800781 16.800781 9 C 17.5 9.800781 18 10.800781 18 12 C 18 14.199219 16.300781 15.5 14 16 C 14.601562 16.5 15 17.398438 15 18.300781 L 15 20.898438 C 15 21.199219 15.300781 21.5 15.699219 21.398438 C 19.398438 19.898438 22 16.300781 22 12.101562 C 22 6.101562 16.898438 1.398438 10.898438 2.101562 Z M 10.898438 2.101562 "/>
+</g>
+</svg>
+
+      </a>
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+    
+
+  </div>
+</div>
+
+    
+<div id="gtt">
+  <div class="gtt">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M8.12 14.71L12 10.83l3.88 3.88c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L12.7 8.71c-.39-.39-1.02-.39-1.41 0L6.7 13.3c-.39.39-.39 1.02 0 1.41.39.38 1.03.39 1.42 0z"/></svg>
+  </div>
+</div>
+
+    <hr />
+
+    <div class="basicflex flexwrap">
+        
+            
+        
+            
+        
+    </div>
+
+    <div class="footer__poweredby">
+        
+                
+            <p class="caption">
+                
+                    ©2020, All Rights Reserved
+                
+            </p>
+        
+
+        
+            <p class="caption">Powered by <a href="https://gohugo.io/" target="_blank" rel="noreferrer">Hugo</a> and the <a href="https://github.com/zzossig/hugo-theme-zzo" target="_blank" rel="noreferrer">Zzo theme</a></p>
+        
+        
+    </div> 
+</footer>
+        </div>
+        
+
+
+
+
+
+<div class="wrapper__right hide" data-pad="true" dir="ltr">
+  <script>document.querySelector('.wrapper__right').classList.remove('hide')</script>
+  
+</div>
+
+    </div>
+</body>
+
+</html>

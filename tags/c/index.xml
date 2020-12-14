@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>c on WinterSun</title>
+    <link>http://blog.nstop.cn/tags/c/</link>
+    <description>Recent content in c on WinterSun</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>nerverstop@163.com (WinterSun)</managingEditor>
+    <webMaster>nerverstop@163.com (WinterSun)</webMaster>
+    <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Sat, 01 Feb 2020 19:00:11 +0000</lastBuildDate>
+    
+        <atom:link href="http://blog.nstop.cn/tags/c/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+
+      
+      <item>
+        <title>零数组</title>
+        <link>http://blog.nstop.cn/posts/c/%E9%9B%B6%E6%95%B0%E7%BB%84/</link>
+        <pubDate>Sat, 01 Feb 2020 19:00:11 +0000</pubDate>
+        <author>nerverstop@163.com (WinterSun)</author>
+        <atom:modified>Sat, 01 Feb 2020 19:00:11 +0000</atom:modified>
+        <guid>http://blog.nstop.cn/posts/c/%E9%9B%B6%E6%95%B0%E7%BB%84/</guid>
+        <description>一但使用零数组，基本上就不能跨平台了。零数组是gnu c上特有的。  1 2 3 4 5 6 7 8 9 10 11 12 13  // 平常我们定义数组的时候，给出的长度基本上都大于零的 // 在gnuc平台上竟然还可以这么写 int array[0]; // 并不报错  // 更奇怪的是 printf(&amp;#34;array&amp;#39;s size: %d\n&amp;#34;, sizeof(array)); // result: array&amp;#39;s size: 0  // 更有甚者 array[1] = 2; array[2] = 3; printf(&amp;#34;%d, %d\n&amp;#34;, *(array + 1), *(array + 2)); // result: 2, 3  // 什么鬼？违背常理啊    我们可以利用这个来干嘛呢  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20  // 创造一个不定长数组。 struct buf { int len; char p[0]; // 为什么不直接用char *p？char *占一个指针的大小，而p[0]不占大小 	// 另外char *p 需要再去开辟内存空间或者是指向已分配好的内存空间， 	// 但是，这样就不便于内存的释放管理了。 }; int length = 100; struct buf * pBuff = (struct buf *)malloc(sizeof(struct buf) + length); strcpy(pBuff, &amp;#34;hello world!</description>
+        
+        <dc:creator>WinterSun</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>c</category>
+            
+          
+        
+        
+        
+      </item>
+      
+
+    
+  </channel>
+</rss>

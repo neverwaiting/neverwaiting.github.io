@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>Posts on WinterSun</title>
+    <link>http://blog.nstop.cn/posts/</link>
+    <description>Recent content in Posts on WinterSun</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>nerverstop@163.com (WinterSun)</managingEditor>
+    <webMaster>nerverstop@163.com (WinterSun)</webMaster>
+    <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Mon, 21 Sep 2020 17:15:16 +0000</lastBuildDate>
+    
+        <atom:link href="http://blog.nstop.cn/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+
+      
+      <item>
+        <title>linux command -- find</title>
+        <link>http://blog.nstop.cn/posts/linux/find/</link>
+        <pubDate>Mon, 21 Sep 2020 17:15:16 +0000</pubDate>
+        <author>nerverstop@163.com (WinterSun)</author>
+        <atom:modified>Mon, 21 Sep 2020 17:15:16 +0000</atom:modified>
+        <guid>http://blog.nstop.cn/posts/linux/find/</guid>
+        <description>正则表达式 必备常识
+   正则表达式 描述 示例     ^ 以某内容开头 ^hel匹配hello   $ 以某内容结尾 llo$匹配hello   . 匹配任意一个字符 Hack.匹配Hacki   [ ] 匹配括号内中的任意一个字符 [0-9]匹配任意一个数字   [^] 匹配不属于括号内中的任意一个字符 [^.]匹配除.以外的任意字符   [[:xxx:]] xxx表示一些命名字符类 [[:alpha:]]匹配字符[[:digit:]]匹配数字   \b 匹配单词开头或结尾的项 \bth\b只匹配th   \B 匹配非单词开头或结尾的项 \Bth\B匹配other但不匹配this或oith   ？ 匹配之前的项0次或1次 colou?r匹配color或colour   + 匹配之前的项1次或多次 [0-9]+匹配9或99或999   * 匹配之前的项0次或多次 co*l匹配cl或col或cool   {n} 匹配之前的项n次 [a-z]{3}匹配任意3个字符   {n, } 匹配之前的项至少n次 [a-z]{3, }匹配abc或abcd   { ,m} 匹配之前的项最多m次 [a-z]{ ,2}匹配a或ab   {n, m} n &amp;lt;= 匹配之前的项次数 &amp;lt;= m [a-z]{1, 2}匹配a或ab   | 匹配|两边的任意一项 th(is|at)匹配this或that   ( ) ( )作为一个单元,可以对其使用数量限定符 b(a[0-9])?</description>
+        
+        <dc:creator>WinterSun</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>linux命令</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>浅谈设计模式</title>
+        <link>http://blog.nstop.cn/posts/cpp/design-pattern/</link>
+        <pubDate>Mon, 22 Jun 2020 00:00:00 +0000</pubDate>
+        <author>nerverstop@163.com (WinterSun)</author>
+        <atom:modified>Mon, 22 Jun 2020 00:00:00 +0000</atom:modified>
+        <guid>http://blog.nstop.cn/posts/cpp/design-pattern/</guid>
+        <description>c++设计模式 前言： 我们往往在学习设计模式的时候，总很机械地去想着生搬硬套在某个项目模块中，但这种做法其实违背了设计模式的初衷，设计模式是为了更好地去适应将来的变化，其核心在于隔离稳定和变化的部分，使二者之间的联系不再那么紧密，从而达到我们平常所说的松耦合。而如何能够更好的运用设计模式，并不是你把23种设计模式都记在脑子里，而是在面向对象设计原则的基础上来设计。设计模式的本质是离不开面向对象设计原则的。
+面向对象设计原则  依赖倒置原则（DIP）
+高层模块（稳定）不应该依赖于底层模块（变化），二者都应该依赖于抽象（稳定）
+抽象（稳定）不应该依赖于实现细节（变化），实现细节应该依赖于抽象（稳定） 开放封闭原则（OCP）
+对扩展开放，对更改封闭
+类模块应该是可扩展的，但是不可修改。 单一职责原则（SRP）
+一个类应该仅有一个引起它变化的原因
+变化的方向隐含着类的责任 Liskov替换原则（LSP）
+子类必须能够替换它们的基类（IS-A）
+继承表达类型抽象 接口隔离原则（ISP）
+不应该强迫客户程序依赖它们不用的方法
+接口应该小而完备 优先使用对象组合，而不是类继承
+类继承通常为&amp;quot;白箱复用&amp;quot;，对象组合通常为“黑箱复用”
+继承在某种程度上破坏了封装性，子类父类耦合度高
+而对象组合则只要求被组合的对象具有良好定义的接口，耦合度低。 封装变化点
+使用封装来创建对象之间的分界层，让设计者可以在分界层的一侧进行修改，而不会对另一侧产生不良的影响，从而实现层次间的松耦合。 针对接口编程，而不是针对实现编程
+不将变量类型声明为某个特定的具体类，而是声明为某接口
+客户程序无需获知对象的具体类型，只需要知道对象所具有的接口
+减少系统中各部分的依赖关系，从而实现“高内聚，低耦合”的类型设计方案。  重构的关键技法   静态 ===&amp;gt; 动态
+  早绑定 ===&amp;gt; 晚绑定
+  继承 ===&amp;gt; 组合
+  编译时依赖 ===&amp;gt; 运行时依赖
+  紧耦合 ===&amp;gt; 松耦合
+  23种设计模式 Template Method（模板方法） 定义一个操作中的算法的骨架（稳定），而将一些步骤延迟（变化）到子类中。Template Method使得子类可以不改变（复用）一个算法的结果即可重定义（override 重写）该算法的某些特定步骤。
+Template Method模式是一种非常基础性的设计模式，其根本的机制就是借用虚函数来实现晚绑定，从而为很多应用程序框架提供了灵活多变的扩展点，具有代码复用方面的基本实现结构。
+应用场景：
+一个功能模块实现的流程已经确定，但其中某些方法现在不能确定其具体实现，因为随着将来的需求会发生各种各样的变化，所以这时候可以考虑设计模式的应用，想想这里的变化部分和稳定部分，稳定部分是一个应用框架流程以及流程中某些确定下来的方法，而变化的部分就是其可扩展的方法实现变化。
+c++ example：</description>
+        
+        <dc:creator>WinterSun</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>设计模式</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>初识shell</title>
+        <link>http://blog.nstop.cn/posts/linux/shell/</link>
+        <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
+        <author>nerverstop@163.com (WinterSun)</author>
+        <atom:modified>Tue, 02 Jun 2020 00:00:00 +0000</atom:modified>
+        <guid>http://blog.nstop.cn/posts/linux/shell/</guid>
+        <description>shell基础   echo 与 printf的区别：echo 自带换行，printf需要加回车转义符\n
+  巧用小括号()：比如命令cd ..;ls -l 与 (cd ..;ls -l) 的区别在不加小括号的会改变到上一级的工作目录
+  变量：
+  变量类型：变量只有一种数据类型，都是字符串
+  变量生命周期分类：环境变量、本地变量
+  定义变量：变量名=值 ==&amp;gt; VAR=abc （变量名最好用大写）
+  取值：$VAR===&amp;gt; 打印VAR的值：echo $VAR
+  删除变量：unset 变量名 ===&amp;gt; unset VAR
+    alias用法：如用 ll 来代替 ls -l 功能，则用 alias ll=&#39;ls -l&#39;
+  数字的四则运算：
+1 2 3 4 5 6  VAR=8 echo $(($VAR + 11)) 或者 echo $((VAR + 11)) 或者 echo $[VAR + 11]或者echo $[$VAR + 11] # 指定二进制或者八进制或者十六进制数 echo $[2#10 + 11] # 二进制 echo $[8#10 + 11] # 八进制 echo $[16#10 + 11] # 十六进制     通过打印变量来调用日期命令</description>
+        
+        <dc:creator>WinterSun</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>shell</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>tesseract</title>
+        <link>http://blog.nstop.cn/posts/other/tesseract/</link>
+        <pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
+        <author>nerverstop@163.com (WinterSun)</author>
+        <atom:modified>Mon, 01 Jun 2020 00:00:00 +0000</atom:modified>
+        <guid>http://blog.nstop.cn/posts/other/tesseract/</guid>
+        <description>centos7安装tesseract  直接安装tesseract  1  yum insatll tesseract   用pip源安装opencv-python 或者 pillow  1 2  pip3 install opencv-python pip3 install pillow   安装python所需要的pytesseract包  1  pip3 install pytesseract   安装字体  1 2 3 4  # 中文字体 yum install tesseract-langpack-chi-sim.noarch # 英文字体 yum install tesseract-langpack-eng.noarch   还想装更多的字体，请输入以下命令进行查找  1  yum search tesseract   pip源下载慢的话可以尝试以下两种解决办法   临时的  1  pip3 install -i https://pypi.</description>
+        
+        <dc:creator>WinterSun</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>python</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>linux command -- sed</title>
+        <link>http://blog.nstop.cn/posts/linux/sed/</link>
+        <pubDate>Mon, 25 May 2020 00:00:00 +0000</pubDate>
+        <author>nerverstop@163.com (WinterSun)</author>
+        <atom:modified>Mon, 25 May 2020 00:00:00 +0000</atom:modified>
+        <guid>http://blog.nstop.cn/posts/linux/sed/</guid>
+        <description>前言 sed 可以说是与 awk 是一对亲兄妹
+sed 主要是控制行的内容, 而 awk 则主要是控制列的内容, 二者相辅相成
+sed 与 vim 中有些用法雷同  简单尝试
+sed &#39;s/pattern/replace_string/&#39; file
+pattern可以是任何正则表达式，replace_string代表要替换的字符串  1 2 3 4 5 6 7  cat file.txt 1 hello world hello world 2 hello world hello world sed &amp;#39;s/hello/HELLO/&amp;#39; file.txt 1 HELLO world hello world 2 HELLO world hello world   你会发现所有行中的第一个hello会被替换为HELLO
+扩展:
+ 修改一行中所有的匹配项, 而不仅仅是第一个
+sed &#39;s/pattern/replace_string/g&#39; file 指定修改哪一行, 那么你可以这样
+sed &#39;2s/pattern/replace_string/g&#39; file 加个范围，比如你想只改第一行到第三行的内容</description>
+        
+        <dc:creator>WinterSun</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>linux命令</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>vim实用技巧和一些命令行快捷键</title>
+        <link>http://blog.nstop.cn/posts/linux/linux-vim/</link>
+        <pubDate>Sun, 24 May 2020 00:00:00 +0000</pubDate>
+        <author>nerverstop@163.com (WinterSun)</author>
+        <atom:modified>Sun, 24 May 2020 00:00:00 +0000</atom:modified>
+        <guid>http://blog.nstop.cn/posts/linux/linux-vim/</guid>
+        <description>命令行快捷键 实用快捷键总览
+   快捷键 功能     ctrl a 移动到行首   ctrl e 移动到行尾   ctrl f 向右移动一位,代替左箭头   ctrl b 向左移动一位,代替右箭头   ctrl w 向左删除,直到遇到第一个空格为止   ctrl u 向左删除,一直删到头   ctrl k 向右删除,一直删到尾   ctrl h 向左删除一个字符,等价于backspace   ctrl d 删除光标处字符,如果整行没有一个字符,则相当于exit退出   ctrl r 输入关键字查找历史命令   ctrl j 等价于enter键   ctrl p 向前翻看历史命令   ctrl n 向后翻看历史命令    上表所有的快捷键能够更好的帮助你在终端移动光标以及删除命令</description>
+        
+        <dc:creator>WinterSun</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>vim</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>mail命令发邮件</title>
+        <link>http://blog.nstop.cn/posts/linux/linux-mail/</link>
+        <pubDate>Sat, 23 May 2020 00:00:00 +0000</pubDate>
+        <author>nerverstop@163.com (WinterSun)</author>
+        <atom:modified>Sat, 23 May 2020 00:00:00 +0000</atom:modified>
+        <guid>http://blog.nstop.cn/posts/linux/linux-mail/</guid>
+        <description>linux用命令发送邮件  首先务必关掉本机上的邮箱服务器sendmail和postfix服务，显然通过登录到外来邮箱服务器来发送邮件比较好。 去你的邮箱首页设置中开启IMAP/SMTP 或者 POP3/STMP服务，拿到授权码。 打开/etc/mail.rc文件，在其后增加以下内容  set from=123456@qq.com # 你的邮箱账号 set smtp=smtp.qq.com # qq邮箱服务器的地址，你也可以用smtp.163.com(网易的) set smtp-auth-user=123456 # 你的qq号 set smtp-auth-password=runoob # 你的授权码 set smtp-auth=login  你可以用现有的文件email.txt发送  1  mail -s &amp;#34;title&amp;#34; ###@qq.com &amp;lt; email.txt    当然你也可以直接发一串字符  echo &amp;quot;hello world!\n\n&amp;quot; | mail -s &amp;quot;title&amp;quot; ***@163.com 阿里云服务器不能正常发邮件的解决办法   原因
+一般来说，SMTP服务的端口为25，但阿里云服务器限制了这个端口的开放。
+为什么要限制？呵呵！防止你利用它来群发垃圾邮件!
+  可以使用加密邮件，默认端口为465。
+  方法步骤
+    关掉现在主机上使用的sendmail和postfix服务，不使用本机上的邮件服务器。开放服务器端口465
+  安装mailx ====&amp;gt; yum install mailx -y</description>
+        
+        <dc:creator>WinterSun</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>mail</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>linux command -- grep</title>
+        <link>http://blog.nstop.cn/posts/linux/grep/</link>
+        <pubDate>Thu, 21 May 2020 00:00:00 +0000</pubDate>
+        <author>nerverstop@163.com (WinterSun)</author>
+        <atom:modified>Thu, 21 May 2020 00:00:00 +0000</atom:modified>
+        <guid>http://blog.nstop.cn/posts/linux/grep/</guid>
+        <description>grep 查找文件内容
+1  grep &amp;#34;test&amp;#34; file.txt file1.txt    选项-n
+显示匹配内容所在行的行号  1  grep &amp;#34;test&amp;#34; file.txt file1.txt -n    选项-o
+只输出匹配到的文本,不会打印整行  1  grep -o &amp;#34;test&amp;#34; file.txt    选项-v
+反转，打印出除匹配内容所在行之外的内容  1  grep -v &amp;#34;test&amp;#34; file.txt    选项-c
+统计匹配内容行的行数, 注意如果一行中有多个
+匹配项，则只计数1次  1 2 3 4  grep -c &amp;#34;test&amp;#34; file.txt # 如果要统计某文本中匹配项的个数 grep -o &amp;#34;test&amp;#34; file.txt | wc -l    选项-l</description>
+        
+        <dc:creator>WinterSun</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>linux命令</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>c&#43;&#43;11一些新特性</title>
+        <link>http://blog.nstop.cn/posts/cpp/cpp11/</link>
+        <pubDate>Mon, 16 Mar 2020 00:00:00 +0000</pubDate>
+        <author>nerverstop@163.com (WinterSun)</author>
+        <atom:modified>Mon, 16 Mar 2020 00:00:00 +0000</atom:modified>
+        <guid>http://blog.nstop.cn/posts/cpp/cpp11/</guid>
+        <description>检查编译器是否支持c++11 1 2 3 4 5 6 7 8 9 10 11  #include &amp;lt;iostream&amp;gt; using namespace std; int main() { //c++98：199711  //c++11: 201103  cout &amp;lt;&amp;lt; __cplusplus &amp;lt;&amp;lt; endl; retrurn 0; }   defalut &amp;amp;&amp;amp; delete  =default的使用
+一般设计一个空类，编译器会默认为其生成默认的构造函数，默认的析构函数，
+默认的拷贝构造，默认的拷贝赋值，如果自定义写出了自己的版本，那么编译器将不再生成默认的以上函数。
+假设既想有自己版本的构造函数，又想要编译器提供默认的构造函数，那么可以这么写  1 2 3 4 5  class Foo{ public: Foo()=default; Foo(int a); };    注意：一个类中只允许存在一个拷贝构造（拷贝赋值、析构函数）
+  =delete
+将默认的版本禁用（删除）
+好像不太常用，那什么时候用这个关键字呢？   在设计单例模式的时候应该要用到=delete, 单例模式中在整个运行过程中只允许出现一个该对象，</description>
+        
+        <dc:creator>WinterSun</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>c&#43;&#43;11</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>c&#43;&#43;基础小结</title>
+        <link>http://blog.nstop.cn/posts/cpp/cpp-notes/</link>
+        <pubDate>Sun, 15 Mar 2020 00:00:00 +0000</pubDate>
+        <author>nerverstop@163.com (WinterSun)</author>
+        <atom:modified>Sun, 15 Mar 2020 00:00:00 +0000</atom:modified>
+        <guid>http://blog.nstop.cn/posts/cpp/cpp-notes/</guid>
+        <description>class class 与 struct 的区别 class 与struct的默认访问权限不同。class 默认访问权限是private，struct 默认访问权限是public
+计算类的大小 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  class A { }; class B { private: int a; char b; }; class C { public: virtual ~C() { } }; sizeof(A); // 1 sizeof(B); // 8 (内存字节对齐) sizeof(C); // 8 (多一个虚指针) 64位机器上   构造、析构函数 一个空类，编译器会为其生成一个默认构造、默认拷贝构造、默认赋值运算符、默认析构函数。
+ 构造函数中的初始值列表  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  class A { private: int i; int j; public: A() = default; // 成员初始化顺序必须与它们在类定义中的顺序保持一致 	A(int x, int y) : i(x), j(y) { }	// 初始化(尽量写成这种形式) 	// A(int x, int y) { i = x; j = y} // 在初始化完之后才赋值 	// 虽然都达到了同样的效果，但过程却不同，一个是初始化，一个是赋值  // 只有构造函数和拷贝构造函数才能用初始值列表 }; // A a(); // error: 这是一个函数声明，而非创建对象 A a;	// 这才是用默认构造函数创建对象的正确方式    虚析构函数  当一个class with pointer(带有指针的类), 在它定义之后有子类继承，这时应为其基类声明虚析构函数</description>
+        
+        <dc:creator>WinterSun</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>cplusplus</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>壁纸搜集器</title>
+        <link>http://blog.nstop.cn/posts/other/%E5%A3%81%E7%BA%B8%E6%90%9C%E9%9B%86%E5%99%A8/</link>
+        <pubDate>Mon, 10 Feb 2020 19:00:11 +0000</pubDate>
+        <author>nerverstop@163.com (WinterSun)</author>
+        <atom:modified>Mon, 10 Feb 2020 19:00:11 +0000</atom:modified>
+        <guid>http://blog.nstop.cn/posts/other/%E5%A3%81%E7%BA%B8%E6%90%9C%E9%9B%86%E5%99%A8/</guid>
+        <description>壁纸搜集器 1、原理：使用bat文件获取指定路径下的文件，并将其后缀名改为.jpg 2、如何使用 a. 创建一个文件夹（任意位置）
+b. 在这个文件夹中新建记事本，粘贴以下内容，另存为ANSI格式，最后修改后缀名为bat
+1 2 3 4 5 6 7 8 9  set y=%date:~0,4%%date:~5,2%%date:~8,2% md .\壁纸\%y% del &amp;#34;.\壁纸\%y%\*.jpg&amp;#34; set str1=&amp;#34;C:\Users\ set str2=\AppData\Local\Packages\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\LocalState\Assets\*&amp;#34; set picPath=%str1%%USERNAME%%str2% xcopy /d %picPath% .\壁纸\%y%\ ren .\壁纸\%y%\* *.jpg for /r %%F in (*.jpg) do if %%~zF LSS 300000 del &amp;#34;%%F&amp;#34;   c. 双击bat，你就能获得你想要的锁屏壁纸了
+3、注意事项 a. 粘贴内容时，每条cmd命令之间用回车符Enter换行。
+b. 每条cmd命令中不要存在不必要的空格和换行符。
+c. 记事本格式要是ANSI格式的，切记不能换成utf8，由于命令中出现了&amp;quot;壁纸&amp;ldquo;中文会导致乱码。</description>
+        
+        <dc:creator>WinterSun</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>tools</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>windows改键位</title>
+        <link>http://blog.nstop.cn/posts/other/keyboard_mapping/</link>
+        <pubDate>Sun, 02 Feb 2020 19:00:11 +0000</pubDate>
+        <author>nerverstop@163.com (WinterSun)</author>
+        <atom:modified>Sun, 02 Feb 2020 19:00:11 +0000</atom:modified>
+        <guid>http://blog.nstop.cn/posts/other/keyboard_mapping/</guid>
+        <description>前言 有时候我们想要DIY属于自己的键位，但又不知道从何下手，本文将以win10为例，通过添加映射文件来达到修改键位的目的。如果你的系统是Mac OS，可以用软件karabiner-elements来更改。
+开始   打开注册表：win + R打开cmd， 输入regedit 回车。
+  搜索路径：计算机\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout,
+右键单击Keyboard Layout新建二进制文件Scancode Map
+  双击打开Scancode Map，如何编辑此文件呢?
+先了解具体的映射格式：
+每个键位都有对应的扫描码，扫描码为两个十六进制数：
+如左Ctrl键的扫描码为：00 1D，Esc键的扫描码为：00 01，
+Caps lock键的扫描码为：00 3A，左Alt键的扫描码为：00 38
+注意：在映射的时候，需要将每个键位对应的扫描码两个十六进制数互换。
+举例：
+(1). 将Esc键改为Caps lock键：01 00 3A 00
+(2). 将左Ctrl键改为左Alt键：1D 00 38 00
+下图中修改的键位就是将Esc和Caps lock互换，左Ctrl和左Alt互换。
+  重启电脑。
+  附上键位扫描码目录：
+  map code  Backspace 00 0E Caps Lock 00 3A Delete E0 53 End E0 4F Enter 00 1C Escape 00 01 HOME E0 47 Insert E0 52 Left Alt 00 38 Left Ctrl 00 1D Left Shift 00 2A Left Windows E0 5B Num Lock 00 45 Page Down E0 51 Page Up E0 49 Power E0 5E PrtSc E0 37 Right Alt E0 38 Right Ctrl E0 1D Right Shift 00 36 Right Windows E0 5C Scroll Lock 00 46 Sleep E0 5F Space 00 39 Tab 00 0F Wake E0 63 0 00 52 1 00 4F 2 00 50 3 00 51 4 00 4B 5 00 4C 6 00 4D 7 00 47 8 00 48 9 00 49 - 00 4A /* 00 37 .</description>
+        
+        <dc:creator>WinterSun</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>tools</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>零数组</title>
+        <link>http://blog.nstop.cn/posts/c/%E9%9B%B6%E6%95%B0%E7%BB%84/</link>
+        <pubDate>Sat, 01 Feb 2020 19:00:11 +0000</pubDate>
+        <author>nerverstop@163.com (WinterSun)</author>
+        <atom:modified>Sat, 01 Feb 2020 19:00:11 +0000</atom:modified>
+        <guid>http://blog.nstop.cn/posts/c/%E9%9B%B6%E6%95%B0%E7%BB%84/</guid>
+        <description>一但使用零数组，基本上就不能跨平台了。零数组是gnu c上特有的。  1 2 3 4 5 6 7 8 9 10 11 12 13  // 平常我们定义数组的时候，给出的长度基本上都大于零的 // 在gnuc平台上竟然还可以这么写 int array[0]; // 并不报错  // 更奇怪的是 printf(&amp;#34;array&amp;#39;s size: %d\n&amp;#34;, sizeof(array)); // result: array&amp;#39;s size: 0  // 更有甚者 array[1] = 2; array[2] = 3; printf(&amp;#34;%d, %d\n&amp;#34;, *(array + 1), *(array + 2)); // result: 2, 3  // 什么鬼？违背常理啊    我们可以利用这个来干嘛呢  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20  // 创造一个不定长数组。 struct buf { int len; char p[0]; // 为什么不直接用char *p？char *占一个指针的大小，而p[0]不占大小 	// 另外char *p 需要再去开辟内存空间或者是指向已分配好的内存空间， 	// 但是，这样就不便于内存的释放管理了。 }; int length = 100; struct buf * pBuff = (struct buf *)malloc(sizeof(struct buf) + length); strcpy(pBuff, &amp;#34;hello world!</description>
+        
+        <dc:creator>WinterSun</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>c</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>加速github访问</title>
+        <link>http://blog.nstop.cn/posts/other/%E5%8A%A0%E9%80%9Fgithub%E8%AE%BF%E9%97%AE/</link>
+        <pubDate>Wed, 22 Jan 2020 19:00:11 +0000</pubDate>
+        <author>nerverstop@163.com (WinterSun)</author>
+        <atom:modified>Wed, 22 Jan 2020 19:00:11 +0000</atom:modified>
+        <guid>http://blog.nstop.cn/posts/other/%E5%8A%A0%E9%80%9Fgithub%E8%AE%BF%E9%97%AE/</guid>
+        <description>Mac下 绕过国内DNS解析，直接访问github的CDN节点，加速访问的方法   打开IPAddress.com网站，查询下面3个网址对应的IP地址
+ github.com github.github.io github.global.ssl.fastly.net    sudo vim /etc/hosts
+将搜寻到的ip一一对应写入文件保存即可
+格式如：140.82.114.3 github.com
+  刷新DNS缓存 连续输入以下三条命令
+ sudo killall -HUP mDNSResponder sudo killall mDNSResponderHelper sudo dscacheutil -flushcache    </description>
+        
+        <dc:creator>WinterSun</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>github</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Centos7下用vim-plug安装YouCompleteMe</title>
+        <link>http://blog.nstop.cn/posts/vim/centos7%E4%B8%8B%E7%94%A8vim-plug%E5%AE%89%E8%A3%85youcompleteme/</link>
+        <pubDate>Mon, 20 Jan 2020 20:46:30 +0000</pubDate>
+        <author>nerverstop@163.com (WinterSun)</author>
+        <atom:modified>Mon, 20 Jan 2020 20:46:30 +0000</atom:modified>
+        <guid>http://blog.nstop.cn/posts/vim/centos7%E4%B8%8B%E7%94%A8vim-plug%E5%AE%89%E8%A3%85youcompleteme/</guid>
+        <description>前言 YouCompleteMe是一款支持代码自动补全功能的vim插件，我们使用vim编辑器时，可能会用到大量的vim插件，但是如果一个个去手动安装的话，不便于管理。但有了插件管理器，一切都变得简单化。它通过一个配置文件能够很方便的管理大量的插件，现在流行的插件管理器有vundle、vim-plug等等，这里我采用比较新的vim-plug来安装YouCompleteMe。
+1. 在装之前必须要学会灵活使用GitHub，不管是vim还是vim插件基本上都来自GitHub，可以说在GitHub上无所不有。 2. 安装vim插件管理器vim-plug，在安装之前你可以先去GitHub上搜一下，看看其发布者他的安装帮助文档（其实这上面写的很详细的，只不过是英文而已，对我们中国人不太友好）。 这里我以CentOS为例，在终端输入：
+1 2  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim   可能会报以下错误：
+Failed to connect to raw.githubusercontent.com port 443: Connection refused
+没事，我们修改一下配置文件/etc/hosts,为raw.githubusercontent.com添加域名解析就行了。
+  打开hosts：sudo vim /etc/hosts
+  在文件最后添加内容：199.232.28.133 raw.githubusercontent.com
+  重新执行命令：
+1 2  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim     3. 装完vim-plug之后，我们就可以利用其来完成YouCompleteMe的安装了，直接在~/.vimrc配置文件头部加入以下代码 1 2 3 4 5 6  call plug#begin( &amp;#39;~/.vim/plugged&amp;#39;) &amp;#34; 这个就是装插件的写法格式，Plug 后面加&amp;#39;GitHub用户名/插件名&amp;#39; Plug &amp;#39;ycm-core/YouCompleteMe&amp;#39; call plug#end()   wq保存退出，再打开该文件直接键入:PlugInstall进行安装，会显示其下载进度。（下载YCM的过程相当缓慢，请耐心等待，你完全可以去看一部电影先）</description>
+        
+        <dc:creator>WinterSun</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>vim</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>linux基础学习</title>
+        <link>http://blog.nstop.cn/posts/linux/linux%E5%9F%BA%E7%A1%80/</link>
+        <pubDate>Sun, 10 Nov 2019 19:00:11 +0000</pubDate>
+        <author>nerverstop@163.com (WinterSun)</author>
+        <atom:modified>Sun, 10 Nov 2019 19:00:11 +0000</atom:modified>
+        <guid>http://blog.nstop.cn/posts/linux/linux%E5%9F%BA%E7%A1%80/</guid>
+        <description>前言 学习Linux的笔记总结，主要是对当天学到的知识进行整理，以便将来能用到能够快速回忆。
+1、终端命令快捷键 以下命令主要是方便在终端输入命令时的操作
+清屏：clear 或 ctrl + l
+查看最近使用命令的历史纪录：history
+建议使用ctrl + xxx 代替 上下左右箭头 操作
+ 向前翻阅一个历史命令：ctrl + p 或 上箭头
+向后翻阅一个历史命令：ctrl + n 或 下箭头
+  向左移动光标： ctrl + b 或 左箭头
+向右移动光标： ctrl + f 或 右箭头
+  移动到行首： ctrl + a
+移动到行尾： ctrl + e
+  删除光标所在处字符：ctrl + d
+删除光标前一个字符：ctrl + h
+删除光标所在处到末尾的所有字符：ctrl + k
+删除光标前面的所有字符：ctrl + u
+ 像以上这些快捷键还有很多，这里只是总结一些常用的。
+2、Linux系统目录结构 一些比较常用的目录的作用
+ /bin : 这里存放的是我们经常用到的一些shell命令，如cat、ls、cp、rm、mv等等。</description>
+        
+        <dc:creator>WinterSun</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>linux</category>
+            
+          
+        
+        
+        
+      </item>
+      
+
+    
+  </channel>
+</rss>

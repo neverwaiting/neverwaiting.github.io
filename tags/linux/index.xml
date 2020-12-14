@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>linux on WinterSun</title>
+    <link>http://blog.nstop.cn/tags/linux/</link>
+    <description>Recent content in linux on WinterSun</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>nerverstop@163.com (WinterSun)</managingEditor>
+    <webMaster>nerverstop@163.com (WinterSun)</webMaster>
+    <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Sun, 10 Nov 2019 19:00:11 +0000</lastBuildDate>
+    
+        <atom:link href="http://blog.nstop.cn/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+
+      
+      <item>
+        <title>linux基础学习</title>
+        <link>http://blog.nstop.cn/posts/linux/linux%E5%9F%BA%E7%A1%80/</link>
+        <pubDate>Sun, 10 Nov 2019 19:00:11 +0000</pubDate>
+        <author>nerverstop@163.com (WinterSun)</author>
+        <atom:modified>Sun, 10 Nov 2019 19:00:11 +0000</atom:modified>
+        <guid>http://blog.nstop.cn/posts/linux/linux%E5%9F%BA%E7%A1%80/</guid>
+        <description>前言 学习Linux的笔记总结，主要是对当天学到的知识进行整理，以便将来能用到能够快速回忆。
+1、终端命令快捷键 以下命令主要是方便在终端输入命令时的操作
+清屏：clear 或 ctrl + l
+查看最近使用命令的历史纪录：history
+建议使用ctrl + xxx 代替 上下左右箭头 操作
+ 向前翻阅一个历史命令：ctrl + p 或 上箭头
+向后翻阅一个历史命令：ctrl + n 或 下箭头
+  向左移动光标： ctrl + b 或 左箭头
+向右移动光标： ctrl + f 或 右箭头
+  移动到行首： ctrl + a
+移动到行尾： ctrl + e
+  删除光标所在处字符：ctrl + d
+删除光标前一个字符：ctrl + h
+删除光标所在处到末尾的所有字符：ctrl + k
+删除光标前面的所有字符：ctrl + u
+ 像以上这些快捷键还有很多，这里只是总结一些常用的。
+2、Linux系统目录结构 一些比较常用的目录的作用
+ /bin : 这里存放的是我们经常用到的一些shell命令，如cat、ls、cp、rm、mv等等。</description>
+        
+        <dc:creator>WinterSun</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>linux</category>
+            
+          
+        
+        
+        
+      </item>
+      
+
+    
+  </channel>
+</rss>

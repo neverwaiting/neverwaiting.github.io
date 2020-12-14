@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>shell on WinterSun</title>
+    <link>http://blog.nstop.cn/tags/shell/</link>
+    <description>Recent content in shell on WinterSun</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>nerverstop@163.com (WinterSun)</managingEditor>
+    <webMaster>nerverstop@163.com (WinterSun)</webMaster>
+    <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Tue, 02 Jun 2020 00:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="http://blog.nstop.cn/tags/shell/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+
+      
+      <item>
+        <title>初识shell</title>
+        <link>http://blog.nstop.cn/posts/linux/shell/</link>
+        <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
+        <author>nerverstop@163.com (WinterSun)</author>
+        <atom:modified>Tue, 02 Jun 2020 00:00:00 +0000</atom:modified>
+        <guid>http://blog.nstop.cn/posts/linux/shell/</guid>
+        <description>shell基础   echo 与 printf的区别：echo 自带换行，printf需要加回车转义符\n
+  巧用小括号()：比如命令cd ..;ls -l 与 (cd ..;ls -l) 的区别在不加小括号的会改变到上一级的工作目录
+  变量：
+  变量类型：变量只有一种数据类型，都是字符串
+  变量生命周期分类：环境变量、本地变量
+  定义变量：变量名=值 ==&amp;gt; VAR=abc （变量名最好用大写）
+  取值：$VAR===&amp;gt; 打印VAR的值：echo $VAR
+  删除变量：unset 变量名 ===&amp;gt; unset VAR
+    alias用法：如用 ll 来代替 ls -l 功能，则用 alias ll=&#39;ls -l&#39;
+  数字的四则运算：
+1 2 3 4 5 6  VAR=8 echo $(($VAR + 11)) 或者 echo $((VAR + 11)) 或者 echo $[VAR + 11]或者echo $[$VAR + 11] # 指定二进制或者八进制或者十六进制数 echo $[2#10 + 11] # 二进制 echo $[8#10 + 11] # 八进制 echo $[16#10 + 11] # 十六进制     通过打印变量来调用日期命令</description>
+        
+        <dc:creator>WinterSun</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>shell</category>
+            
+          
+        
+        
+        
+      </item>
+      
+
+    
+  </channel>
+</rss>
