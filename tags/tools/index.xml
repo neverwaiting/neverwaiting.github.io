@@ -7,7 +7,7 @@
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>tools on WinterSun</title>
-    <link>http://blog.nstop.cn/tags/tools/</link>
+    <link>http://blog.zwled.xyz/tags/tools/</link>
     <description>Recent content in tools on WinterSun</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
@@ -16,7 +16,7 @@
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
     <lastBuildDate>Mon, 10 Feb 2020 19:00:11 +0000</lastBuildDate>
     
-        <atom:link href="http://blog.nstop.cn/tags/tools/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://blog.zwled.xyz/tags/tools/index.xml" rel="self" type="application/rss+xml" />
     
     
     
@@ -24,11 +24,11 @@
       
       <item>
         <title>壁纸搜集器</title>
-        <link>http://blog.nstop.cn/posts/other/%E5%A3%81%E7%BA%B8%E6%90%9C%E9%9B%86%E5%99%A8/</link>
+        <link>http://blog.zwled.xyz/posts/other/%E5%A3%81%E7%BA%B8%E6%90%9C%E9%9B%86%E5%99%A8/</link>
         <pubDate>Mon, 10 Feb 2020 19:00:11 +0000</pubDate>
         <author>nerverstop@163.com (WinterSun)</author>
         <atom:modified>Mon, 10 Feb 2020 19:00:11 +0000</atom:modified>
-        <guid>http://blog.nstop.cn/posts/other/%E5%A3%81%E7%BA%B8%E6%90%9C%E9%9B%86%E5%99%A8/</guid>
+        <guid>http://blog.zwled.xyz/posts/other/%E5%A3%81%E7%BA%B8%E6%90%9C%E9%9B%86%E5%99%A8/</guid>
         <description>壁纸搜集器 1、原理：使用bat文件获取指定路径下的文件，并将其后缀名改为.jpg 2、如何使用 a. 创建一个文件夹（任意位置）
 b. 在这个文件夹中新建记事本，粘贴以下内容，另存为ANSI格式，最后修改后缀名为bat
 1 2 3 4 5 6 7 8 9  set y=%date:~0,4%%date:~5,2%%date:~8,2% md .\壁纸\%y% del &amp;#34;.\壁纸\%y%\*.jpg&amp;#34; set str1=&amp;#34;C:\Users\ set str2=\AppData\Local\Packages\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\LocalState\Assets\*&amp;#34; set picPath=%str1%%USERNAME%%str2% xcopy /d %picPath% .\壁纸\%y%\ ren .\壁纸\%y%\* *.jpg for /r %%F in (*.jpg) do if %%~zF LSS 300000 del &amp;#34;%%F&amp;#34;   c. 双击bat，你就能获得你想要的锁屏壁纸了
@@ -53,11 +53,11 @@ c. 记事本格式要是ANSI格式的，切记不能换成utf8，由于命令中
       
       <item>
         <title>windows改键位</title>
-        <link>http://blog.nstop.cn/posts/other/keyboard_mapping/</link>
+        <link>http://blog.zwled.xyz/posts/other/keyboard_mapping/</link>
         <pubDate>Sun, 02 Feb 2020 19:00:11 +0000</pubDate>
         <author>nerverstop@163.com (WinterSun)</author>
         <atom:modified>Sun, 02 Feb 2020 19:00:11 +0000</atom:modified>
-        <guid>http://blog.nstop.cn/posts/other/keyboard_mapping/</guid>
+        <guid>http://blog.zwled.xyz/posts/other/keyboard_mapping/</guid>
         <description>前言 有时候我们想要DIY属于自己的键位，但又不知道从何下手，本文将以win10为例，通过添加映射文件来达到修改键位的目的。如果你的系统是Mac OS，可以用软件karabiner-elements来更改。
 开始   打开注册表：win + R打开cmd， 输入regedit 回车。
   搜索路径：计算机\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout,

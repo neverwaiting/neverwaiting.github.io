@@ -7,7 +7,7 @@
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>c&#43;&#43;11 on WinterSun</title>
-    <link>http://blog.nstop.cn/tags/c&#43;&#43;11/</link>
+    <link>http://blog.zwled.xyz/tags/c&#43;&#43;11/</link>
     <description>Recent content in c&#43;&#43;11 on WinterSun</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
@@ -16,7 +16,7 @@
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
     <lastBuildDate>Mon, 16 Mar 2020 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="http://blog.nstop.cn/tags/c++11/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://blog.zwled.xyz/tags/c++11/index.xml" rel="self" type="application/rss+xml" />
     
     
     
@@ -24,11 +24,11 @@
       
       <item>
         <title>c&#43;&#43;11一些新特性</title>
-        <link>http://blog.nstop.cn/posts/cpp/cpp11/</link>
+        <link>http://blog.zwled.xyz/posts/cpp/cpp11/</link>
         <pubDate>Mon, 16 Mar 2020 00:00:00 +0000</pubDate>
         <author>nerverstop@163.com (WinterSun)</author>
         <atom:modified>Mon, 16 Mar 2020 00:00:00 +0000</atom:modified>
-        <guid>http://blog.nstop.cn/posts/cpp/cpp11/</guid>
+        <guid>http://blog.zwled.xyz/posts/cpp/cpp11/</guid>
         <description>检查编译器是否支持c++11 1 2 3 4 5 6 7 8 9 10 11  #include &amp;lt;iostream&amp;gt; using namespace std; int main() { //c++98：199711  //c++11: 201103  cout &amp;lt;&amp;lt; __cplusplus &amp;lt;&amp;lt; endl; retrurn 0; }   defalut &amp;amp;&amp;amp; delete  =default的使用
 一般设计一个空类，编译器会默认为其生成默认的构造函数，默认的析构函数，
 默认的拷贝构造，默认的拷贝赋值，如果自定义写出了自己的版本，那么编译器将不再生成默认的以上函数。

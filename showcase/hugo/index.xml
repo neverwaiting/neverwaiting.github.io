@@ -7,7 +7,7 @@
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>Hugo on WinterSun</title>
-    <link>http://blog.nstop.cn/showcase/hugo/</link>
+    <link>http://blog.zwled.xyz/showcase/hugo/</link>
     <description>Recent content in Hugo on WinterSun</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
@@ -16,7 +16,7 @@
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
     <lastBuildDate>Sun, 19 Jan 2020 21:04:11 +0900</lastBuildDate>
     
-        <atom:link href="http://blog.nstop.cn/showcase/hugo/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://blog.zwled.xyz/showcase/hugo/index.xml" rel="self" type="application/rss+xml" />
     
     
     
@@ -24,11 +24,11 @@
       
       <item>
         <title>Hugo Zzo Theme</title>
-        <link>http://blog.nstop.cn/showcase/hugo/hugo-theme-zzo/</link>
+        <link>http://blog.zwled.xyz/showcase/hugo/hugo-theme-zzo/</link>
         <pubDate>Sun, 19 Jan 2020 21:13:42 +0900</pubDate>
         <author>nerverstop@163.com (WinterSun)</author>
         <atom:modified>Sun, 19 Jan 2020 21:13:42 +0900</atom:modified>
-        <guid>http://blog.nstop.cn/showcase/hugo/hugo-theme-zzo/</guid>
+        <guid>http://blog.zwled.xyz/showcase/hugo/hugo-theme-zzo/</guid>
         <description></description>
         
         <dc:creator>WinterSun</dc:creator>
@@ -42,11 +42,11 @@
       
       <item>
         <title>Hugo zDoc Theme</title>
-        <link>http://blog.nstop.cn/showcase/hugo/hugo-theme-zdoc/</link>
+        <link>http://blog.zwled.xyz/showcase/hugo/hugo-theme-zdoc/</link>
         <pubDate>Sun, 19 Jan 2020 21:13:42 +0900</pubDate>
         <author>nerverstop@163.com (WinterSun)</author>
         <atom:modified>Sun, 19 Jan 2020 21:13:42 +0900</atom:modified>
-        <guid>http://blog.nstop.cn/showcase/hugo/hugo-theme-zdoc/</guid>
+        <guid>http://blog.zwled.xyz/showcase/hugo/hugo-theme-zdoc/</guid>
         <description></description>
         
         <dc:creator>WinterSun</dc:creator>

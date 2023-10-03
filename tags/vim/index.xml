@@ -7,7 +7,7 @@
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>vim on WinterSun</title>
-    <link>http://blog.nstop.cn/tags/vim/</link>
+    <link>http://blog.zwled.xyz/tags/vim/</link>
     <description>Recent content in vim on WinterSun</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
@@ -16,7 +16,7 @@
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
     <lastBuildDate>Sun, 24 May 2020 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="http://blog.nstop.cn/tags/vim/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://blog.zwled.xyz/tags/vim/index.xml" rel="self" type="application/rss+xml" />
     
     
     
@@ -24,11 +24,11 @@
       
       <item>
         <title>vim实用技巧和一些命令行快捷键</title>
-        <link>http://blog.nstop.cn/posts/linux/linux-vim/</link>
+        <link>http://blog.zwled.xyz/posts/linux/linux-vim/</link>
         <pubDate>Sun, 24 May 2020 00:00:00 +0000</pubDate>
         <author>nerverstop@163.com (WinterSun)</author>
         <atom:modified>Sun, 24 May 2020 00:00:00 +0000</atom:modified>
-        <guid>http://blog.nstop.cn/posts/linux/linux-vim/</guid>
+        <guid>http://blog.zwled.xyz/posts/linux/linux-vim/</guid>
         <description>命令行快捷键 实用快捷键总览
    快捷键 功能     ctrl a 移动到行首   ctrl e 移动到行尾   ctrl f 向右移动一位,代替左箭头   ctrl b 向左移动一位,代替右箭头   ctrl w 向左删除,直到遇到第一个空格为止   ctrl u 向左删除,一直删到头   ctrl k 向右删除,一直删到尾   ctrl h 向左删除一个字符,等价于backspace   ctrl d 删除光标处字符,如果整行没有一个字符,则相当于exit退出   ctrl r 输入关键字查找历史命令   ctrl j 等价于enter键   ctrl p 向前翻看历史命令   ctrl n 向后翻看历史命令    上表所有的快捷键能够更好的帮助你在终端移动光标以及删除命令</description>
         
@@ -49,11 +49,11 @@
       
       <item>
         <title>Centos7下用vim-plug安装YouCompleteMe</title>
-        <link>http://blog.nstop.cn/posts/vim/centos7%E4%B8%8B%E7%94%A8vim-plug%E5%AE%89%E8%A3%85youcompleteme/</link>
+        <link>http://blog.zwled.xyz/posts/vim/centos7%E4%B8%8B%E7%94%A8vim-plug%E5%AE%89%E8%A3%85youcompleteme/</link>
         <pubDate>Mon, 20 Jan 2020 20:46:30 +0000</pubDate>
         <author>nerverstop@163.com (WinterSun)</author>
         <atom:modified>Mon, 20 Jan 2020 20:46:30 +0000</atom:modified>
-        <guid>http://blog.nstop.cn/posts/vim/centos7%E4%B8%8B%E7%94%A8vim-plug%E5%AE%89%E8%A3%85youcompleteme/</guid>
+        <guid>http://blog.zwled.xyz/posts/vim/centos7%E4%B8%8B%E7%94%A8vim-plug%E5%AE%89%E8%A3%85youcompleteme/</guid>
         <description>前言 YouCompleteMe是一款支持代码自动补全功能的vim插件，我们使用vim编辑器时，可能会用到大量的vim插件，但是如果一个个去手动安装的话，不便于管理。但有了插件管理器，一切都变得简单化。它通过一个配置文件能够很方便的管理大量的插件，现在流行的插件管理器有vundle、vim-plug等等，这里我采用比较新的vim-plug来安装YouCompleteMe。
 1. 在装之前必须要学会灵活使用GitHub，不管是vim还是vim插件基本上都来自GitHub，可以说在GitHub上无所不有。 2. 安装vim插件管理器vim-plug，在安装之前你可以先去GitHub上搜一下，看看其发布者他的安装帮助文档（其实这上面写的很详细的，只不过是英文而已，对我们中国人不太友好）。 这里我以CentOS为例，在终端输入：
 1 2  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim   可能会报以下错误：

@@ -7,7 +7,7 @@
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>linux on WinterSun</title>
-    <link>http://blog.nstop.cn/tags/linux/</link>
+    <link>http://blog.zwled.xyz/tags/linux/</link>
     <description>Recent content in linux on WinterSun</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
@@ -16,7 +16,7 @@
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
     <lastBuildDate>Sun, 10 Nov 2019 19:00:11 +0000</lastBuildDate>
     
-        <atom:link href="http://blog.nstop.cn/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://blog.zwled.xyz/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
     
     
@@ -24,11 +24,11 @@
       
       <item>
         <title>linux基础学习</title>
-        <link>http://blog.nstop.cn/posts/linux/linux%E5%9F%BA%E7%A1%80/</link>
+        <link>http://blog.zwled.xyz/posts/linux/linux%E5%9F%BA%E7%A1%80/</link>
         <pubDate>Sun, 10 Nov 2019 19:00:11 +0000</pubDate>
         <author>nerverstop@163.com (WinterSun)</author>
         <atom:modified>Sun, 10 Nov 2019 19:00:11 +0000</atom:modified>
-        <guid>http://blog.nstop.cn/posts/linux/linux%E5%9F%BA%E7%A1%80/</guid>
+        <guid>http://blog.zwled.xyz/posts/linux/linux%E5%9F%BA%E7%A1%80/</guid>
         <description>前言 学习Linux的笔记总结，主要是对当天学到的知识进行整理，以便将来能用到能够快速回忆。
 1、终端命令快捷键 以下命令主要是方便在终端输入命令时的操作
 清屏：clear 或 ctrl + l

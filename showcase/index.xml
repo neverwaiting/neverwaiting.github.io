@@ -7,7 +7,7 @@
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>Showcase overview on WinterSun</title>
-    <link>http://blog.nstop.cn/showcase/</link>
+    <link>http://blog.zwled.xyz/showcase/</link>
     <description>Recent content in Showcase overview on WinterSun</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
@@ -16,7 +16,7 @@
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
     <lastBuildDate>Sun, 19 Jan 2020 15:43:38 +0900</lastBuildDate>
     
-        <atom:link href="http://blog.nstop.cn/showcase/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://blog.zwled.xyz/showcase/index.xml" rel="self" type="application/rss+xml" />
     
     
     
@@ -24,11 +24,11 @@
       
       <item>
         <title>Hugo</title>
-        <link>http://blog.nstop.cn/showcase/hugo/</link>
+        <link>http://blog.zwled.xyz/showcase/hugo/</link>
         <pubDate>Sun, 19 Jan 2020 21:04:11 +0900</pubDate>
         <author>nerverstop@163.com (WinterSun)</author>
         <atom:modified>Sun, 19 Jan 2020 21:04:11 +0900</atom:modified>
-        <guid>http://blog.nstop.cn/showcase/hugo/</guid>
+        <guid>http://blog.zwled.xyz/showcase/hugo/</guid>
         <description></description>
         
         <dc:creator>WinterSun</dc:creator>

@@ -7,7 +7,7 @@
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>设计模式 on WinterSun</title>
-    <link>http://blog.nstop.cn/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+    <link>http://blog.zwled.xyz/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
     <description>Recent content in 设计模式 on WinterSun</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
@@ -16,7 +16,7 @@
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
     <lastBuildDate>Mon, 22 Jun 2020 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="http://blog.nstop.cn/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://blog.zwled.xyz/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
     
     
     
@@ -24,11 +24,11 @@
       
       <item>
         <title>浅谈设计模式</title>
-        <link>http://blog.nstop.cn/posts/cpp/design-pattern/</link>
+        <link>http://blog.zwled.xyz/posts/cpp/design-pattern/</link>
         <pubDate>Mon, 22 Jun 2020 00:00:00 +0000</pubDate>
         <author>nerverstop@163.com (WinterSun)</author>
         <atom:modified>Mon, 22 Jun 2020 00:00:00 +0000</atom:modified>
-        <guid>http://blog.nstop.cn/posts/cpp/design-pattern/</guid>
+        <guid>http://blog.zwled.xyz/posts/cpp/design-pattern/</guid>
         <description>c++设计模式 前言： 我们往往在学习设计模式的时候，总很机械地去想着生搬硬套在某个项目模块中，但这种做法其实违背了设计模式的初衷，设计模式是为了更好地去适应将来的变化，其核心在于隔离稳定和变化的部分，使二者之间的联系不再那么紧密，从而达到我们平常所说的松耦合。而如何能够更好的运用设计模式，并不是你把23种设计模式都记在脑子里，而是在面向对象设计原则的基础上来设计。设计模式的本质是离不开面向对象设计原则的。
 面向对象设计原则  依赖倒置原则（DIP）
 高层模块（稳定）不应该依赖于底层模块（变化），二者都应该依赖于抽象（稳定）

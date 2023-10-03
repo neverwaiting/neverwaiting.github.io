@@ -7,7 +7,7 @@
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>python on WinterSun</title>
-    <link>http://blog.nstop.cn/tags/python/</link>
+    <link>http://blog.zwled.xyz/tags/python/</link>
     <description>Recent content in python on WinterSun</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
@@ -16,7 +16,7 @@
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
     <lastBuildDate>Mon, 01 Jun 2020 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="http://blog.nstop.cn/tags/python/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://blog.zwled.xyz/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
     
     
@@ -24,11 +24,11 @@
       
       <item>
         <title>tesseract</title>
-        <link>http://blog.nstop.cn/posts/other/tesseract/</link>
+        <link>http://blog.zwled.xyz/posts/other/tesseract/</link>
         <pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
         <author>nerverstop@163.com (WinterSun)</author>
         <atom:modified>Mon, 01 Jun 2020 00:00:00 +0000</atom:modified>
-        <guid>http://blog.nstop.cn/posts/other/tesseract/</guid>
+        <guid>http://blog.zwled.xyz/posts/other/tesseract/</guid>
         <description>centos7安装tesseract  直接安装tesseract  1  yum insatll tesseract   用pip源安装opencv-python 或者 pillow  1 2  pip3 install opencv-python pip3 install pillow   安装python所需要的pytesseract包  1  pip3 install pytesseract   安装字体  1 2 3 4  # 中文字体 yum install tesseract-langpack-chi-sim.noarch # 英文字体 yum install tesseract-langpack-eng.noarch   还想装更多的字体，请输入以下命令进行查找  1  yum search tesseract   pip源下载慢的话可以尝试以下两种解决办法   临时的  1  pip3 install -i https://pypi.</description>
         
         <dc:creator>WinterSun</dc:creator>

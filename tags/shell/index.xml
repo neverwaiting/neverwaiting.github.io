@@ -7,7 +7,7 @@
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>shell on WinterSun</title>
-    <link>http://blog.nstop.cn/tags/shell/</link>
+    <link>http://blog.zwled.xyz/tags/shell/</link>
     <description>Recent content in shell on WinterSun</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
@@ -16,7 +16,7 @@
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
     <lastBuildDate>Tue, 02 Jun 2020 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="http://blog.nstop.cn/tags/shell/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://blog.zwled.xyz/tags/shell/index.xml" rel="self" type="application/rss+xml" />
     
     
     
@@ -24,11 +24,11 @@
       
       <item>
         <title>初识shell</title>
-        <link>http://blog.nstop.cn/posts/linux/shell/</link>
+        <link>http://blog.zwled.xyz/posts/linux/shell/</link>
         <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
         <author>nerverstop@163.com (WinterSun)</author>
         <atom:modified>Tue, 02 Jun 2020 00:00:00 +0000</atom:modified>
-        <guid>http://blog.nstop.cn/posts/linux/shell/</guid>
+        <guid>http://blog.zwled.xyz/posts/linux/shell/</guid>
         <description>shell基础   echo 与 printf的区别：echo 自带换行，printf需要加回车转义符\n
   巧用小括号()：比如命令cd ..;ls -l 与 (cd ..;ls -l) 的区别在不加小括号的会改变到上一级的工作目录
   变量：

@@ -7,7 +7,7 @@
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>github on WinterSun</title>
-    <link>http://blog.nstop.cn/tags/github/</link>
+    <link>http://blog.zwled.xyz/tags/github/</link>
     <description>Recent content in github on WinterSun</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
@@ -16,7 +16,7 @@
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
     <lastBuildDate>Wed, 22 Jan 2020 19:00:11 +0000</lastBuildDate>
     
-        <atom:link href="http://blog.nstop.cn/tags/github/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://blog.zwled.xyz/tags/github/index.xml" rel="self" type="application/rss+xml" />
     
     
     
@@ -24,11 +24,11 @@
       
       <item>
         <title>加速github访问</title>
-        <link>http://blog.nstop.cn/posts/other/%E5%8A%A0%E9%80%9Fgithub%E8%AE%BF%E9%97%AE/</link>
+        <link>http://blog.zwled.xyz/posts/other/%E5%8A%A0%E9%80%9Fgithub%E8%AE%BF%E9%97%AE/</link>
         <pubDate>Wed, 22 Jan 2020 19:00:11 +0000</pubDate>
         <author>nerverstop@163.com (WinterSun)</author>
         <atom:modified>Wed, 22 Jan 2020 19:00:11 +0000</atom:modified>
-        <guid>http://blog.nstop.cn/posts/other/%E5%8A%A0%E9%80%9Fgithub%E8%AE%BF%E9%97%AE/</guid>
+        <guid>http://blog.zwled.xyz/posts/other/%E5%8A%A0%E9%80%9Fgithub%E8%AE%BF%E9%97%AE/</guid>
         <description>Mac下 绕过国内DNS解析，直接访问github的CDN节点，加速访问的方法   打开IPAddress.com网站，查询下面3个网址对应的IP地址
  github.com github.github.io github.global.ssl.fastly.net    sudo vim /etc/hosts
 将搜寻到的ip一一对应写入文件保存即可

@@ -7,7 +7,7 @@
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>Series on WinterSun</title>
-    <link>http://blog.nstop.cn/series/</link>
+    <link>http://blog.zwled.xyz/series/</link>
     <description>Recent content in Series on WinterSun</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
@@ -15,7 +15,7 @@
     <webMaster>nerverstop@163.com (WinterSun)</webMaster>
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
     
-        <atom:link href="http://blog.nstop.cn/series/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://blog.zwled.xyz/series/index.xml" rel="self" type="application/rss+xml" />
     
     
     

@@ -7,7 +7,7 @@
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>mail on WinterSun</title>
-    <link>http://blog.nstop.cn/tags/mail/</link>
+    <link>http://blog.zwled.xyz/tags/mail/</link>
     <description>Recent content in mail on WinterSun</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
@@ -16,7 +16,7 @@
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
     <lastBuildDate>Sat, 23 May 2020 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="http://blog.nstop.cn/tags/mail/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://blog.zwled.xyz/tags/mail/index.xml" rel="self" type="application/rss+xml" />
     
     
     
@@ -24,11 +24,11 @@
       
       <item>
         <title>mail命令发邮件</title>
-        <link>http://blog.nstop.cn/posts/linux/linux-mail/</link>
+        <link>http://blog.zwled.xyz/posts/linux/linux-mail/</link>
         <pubDate>Sat, 23 May 2020 00:00:00 +0000</pubDate>
         <author>nerverstop@163.com (WinterSun)</author>
         <atom:modified>Sat, 23 May 2020 00:00:00 +0000</atom:modified>
-        <guid>http://blog.nstop.cn/posts/linux/linux-mail/</guid>
+        <guid>http://blog.zwled.xyz/posts/linux/linux-mail/</guid>
         <description>linux用命令发送邮件  首先务必关掉本机上的邮箱服务器sendmail和postfix服务，显然通过登录到外来邮箱服务器来发送邮件比较好。 去你的邮箱首页设置中开启IMAP/SMTP 或者 POP3/STMP服务，拿到授权码。 打开/etc/mail.rc文件，在其后增加以下内容  set from=123456@qq.com # 你的邮箱账号 set smtp=smtp.qq.com # qq邮箱服务器的地址，你也可以用smtp.163.com(网易的) set smtp-auth-user=123456 # 你的qq号 set smtp-auth-password=runoob # 你的授权码 set smtp-auth=login  你可以用现有的文件email.txt发送  1  mail -s &amp;#34;title&amp;#34; ###@qq.com &amp;lt; email.txt    当然你也可以直接发一串字符  echo &amp;quot;hello world!\n\n&amp;quot; | mail -s &amp;quot;title&amp;quot; ***@163.com 阿里云服务器不能正常发邮件的解决办法   原因
 一般来说，SMTP服务的端口为25，但阿里云服务器限制了这个端口的开放。
 为什么要限制？呵呵！防止你利用它来群发垃圾邮件!
